@@ -117,15 +117,7 @@ linear_reg() %>%
 ```
 
 ---
-
-Using liner regression model enables us to determine the values of both $\beta_0$  and $\beta_1$, updating the model with the values we get the following updated model:  
-
-
- $$\widehat{Height}_{i} = 0.87 + 0.26 \times Cross Length_{i}$$ 
-
-
-
----
+The data set is shown in the following graph:
 
 ```{r height-cross_length-plot, echo=FALSE, warning=FALSE,message=FALSE,out.width="100%"}
 ggplot(data = dataset, aes(x = cross_length,y = height )) +
@@ -148,7 +140,7 @@ theme_bw()+
 
 ```
 
-
+The data set and the least square line are shown in the following graph:
 
 ```{r heightcross_length-plot, echo=FALSE, warning=FALSE,message=FALSE,out.width="100%"}
 ggplot(data = dataset, aes(x = cross_length,y = height )) +
@@ -163,7 +155,7 @@ ggplot(data = dataset, aes(x = cross_length,y = height )) +
    theme(plot.subtitle = element_text(colour = "#E48957", face = "bold", size = rel(1.5)))
 ```
 
-
+The data, the least square line and the residuals are shown in the following graph:
 
 
 
@@ -191,5 +183,17 @@ geom_segment(mapping = aes(xend = cross_length, yend = .fitted), color = "#E4895
    theme(plot.subtitle = element_text(colour = "#E48957", face = "bold", size = rel(1.5)))
 ```
 
+The resulted liner regression model where the values of both $\beta_0$  and $\beta_1$ have been determined and updated is shown below:
 
+
+ $$\widehat{Height}_{i} = 0.87 + 0.26 \times Cross Length_{i}$$ 
+
+
+
+---
+from the model we can see that:
+
+- Slope: For each additional cm the fish is longer, the height is expected to be higher, on average, by 0.26 cm.
+
+- Intercept: fishes that are 9 cm long are expected to be 0.87 cm high, on average.
 
