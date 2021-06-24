@@ -15,7 +15,6 @@ output: html_document
 ---
 
 
-
 ```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(DataExplorer)
@@ -63,8 +62,8 @@ dataset <- read_csv("Fish.csv") %>%
 
  In this part we are going to create a data profiling report, in this report we can get an overview of the shape and structure of our dataset by summarizing their main characters and use  statistical graphics and other data visualization methods.
 
-```{r,echo = FALSE, message=FALSE, warning=FALSE, eval=FALSE}
- create_report(dataset)
+```{r,echo = FALSE, message=FALSE, warning=FALSE}
+ #create_report(dataset)
 ```
 
 <iframe height="800" width="100%" frameborder="no"src="./report.html/"> </iframe>
@@ -118,14 +117,21 @@ linear_reg() %>%
 
 ---
 
-Using liner regression model enables us to determine the values of both $\beta_0$  and $\beta_1$, updating the model with the values we get the following updated model:  
+After determining the values of both $\beta_0$  and $\beta_1$, the updated linear regression model with the values of $\beta_0$  and $\beta_1$  is shown as follow:  
 
 
  $$\widehat{Height}_{i} = 0.87 + 0.26 \times Cross Length_{i}$$ 
 
 
-
 ---
+
+
+From the above model we can see that :
+
+- Slope: For each additional cm the fish is longer, the height is expected to be higher, on average, by 0.26 cm.
+- Intercept: fish that is 8.8 cm tall (minimum cross length value among the dataset) is expected to be 3.2 cm high, on average.
+
+### The data is shown in the following plot:
 
 ```{r height-cross_length-plot, echo=FALSE, warning=FALSE,message=FALSE,out.width="100%"}
 ggplot(data = dataset, aes(x = cross_length,y = height )) +
@@ -149,6 +155,8 @@ theme_bw()+
 ```
 
 
+### The data and the least square line are shown in the following plot:
+
 
 ```{r heightcross_length-plot, echo=FALSE, warning=FALSE,message=FALSE,out.width="100%"}
 ggplot(data = dataset, aes(x = cross_length,y = height )) +
@@ -164,6 +172,8 @@ ggplot(data = dataset, aes(x = cross_length,y = height )) +
 ```
 
 
+
+### The data, the least square line and the residuales are shown in the following plot:
 
 
 ```{r vis-res-1, echo=FALSE,warning=FALSE,message=FALSE,out.width="100%"}

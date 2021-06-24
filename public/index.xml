@@ -5,12 +5,31 @@
     <link>/</link>
       <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <description>HOME</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 21 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 24 Jun 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
       <title>HOME</title>
       <link>/</link>
     </image>
+    
+    <item>
+      <title>cheking latex</title>
+      <link>/post/cheking-latex/</link>
+      <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>/post/cheking-latex/</guid>
+      <description>
+&lt;script src=&#34;/post/cheking-latex/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;linear-regression-model&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Linear Regression Model&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;To create a liner regression model to predict the height of a fish given its cross length, we need to determine the value of \textrm{beta_0} that is the population parameter for the intercept and the value of &lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt; that is the population parameter for the slope as shown in the following model:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\widehat{Height}_{i} = \beta_0 + \beta_1 \times Cross Length_{i}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Project </title>

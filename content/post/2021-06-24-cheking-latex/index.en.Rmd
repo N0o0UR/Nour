@@ -1,0 +1,24 @@
+---
+title: cheking latex
+author: ''
+date: '2021-06-24'
+slug: cheking-latex
+categories: []
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-06-24T10:54:34-03:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+### Linear Regression Model
+
+- To create a liner regression model to predict the height of a fish given its cross length, we need to determine the value of  \textrm{beta_0} that is the population parameter for the intercept and the value of $\beta_1$ that is the population parameter for the slope as shown in the following model:
+
+
+ $$\widehat{Height}_{i} = \beta_0 + \beta_1 \times Cross Length_{i}$$ 
