@@ -11,8 +11,7 @@ categories:
   - tidymodels
 tags: []
 runtime: shiny
-output: html_notebook
-self_contained: true
+output: html_document
 ---
 
 <script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
@@ -48,11 +47,26 @@ self_contained: true
 </ul>
 <p><span class="math display">\[\widehat{Height}_{i} = \beta_0 + \beta_1 \times Cross Length_{i}\]</span></p>
 <hr />
-<p>Using liner regression model enables us to determine the values of both <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, updating the model with the values we get the following updated model:</p>
+<p>After determining the values of both <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, the updated linear regression model with the values of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> is shown as follow:</p>
 <p><span class="math display">\[\widehat{Height}_{i} = 0.87 + 0.26 \times Cross Length_{i}\]</span></p>
 <hr />
+<p>From the above model we can see that :</p>
+<ul>
+<li>Slope: For each additional cm the fish is longer, the height is expected to be higher, on average, by 0.26 cm.</li>
+<li>Intercept: fish that is 8.8 cm tall (minimum cross length value among the dataset) is expected to be 3.2 cm high, on average.</li>
+</ul>
+</div>
+<div id="section-the-data-is-shown-in-the-following-plot" class="section level3">
+<h3>The data is shown in the following plot:</h3>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/height-cross_length-plot-1.png" width="100%" /></p>
+</div>
+<div id="section-the-data-and-the-least-square-line-are-shown-in-the-following-plot" class="section level3">
+<h3>The data and the least square line are shown in the following plot:</h3>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/heightcross_length-plot-1.png" width="100%" /></p>
+<hr />
+</div>
+<div id="section-the-data-the-least-square-line-and-the-residuales-are-shown-in-the-following-plot" class="section level3">
+<h3>The data, the least square line and the residuales are shown in the following plot:</h3>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/vis-res-1-1.png" width="100%" /></p>
 </div>
 </div>
