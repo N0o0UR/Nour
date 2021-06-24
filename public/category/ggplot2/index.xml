@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ggplot2 | HOME</title>
+    <link>/category/ggplot2/</link>
+      <atom:link href="/category/ggplot2/index.xml" rel="self" type="application/rss+xml" />
+    <description>ggplot2</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 21 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>ggplot2</title>
+      <link>/category/ggplot2/</link>
+    </image>
+    
+    <item>
+      <title>Project </title>
+      <link>/post/the-project/</link>
+      <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>/post/the-project/</guid>
+      <description>
+&lt;script src=&#34;/post/the-project/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;section-the-dataset&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The dataset&lt;/h2&gt;
+&lt;p&gt;The used data set in this project composed of a record of 7 common different fish species in fish market sales. For each fish participated on this record, a certain measurements were taken, which are the fish species, the weight in Gram g, vertical length in cm, diagonal length in cm, cross length in cm, height in cm and diagonal width in cm.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;fish.png&#34; width=&#34;98%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The data was obtained from &lt;strong&gt;Kaggle &lt;/strong&gt; website, to access the source of the data use the link below&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.kaggle.com/aungpyaeap/fish-market&#34; target=&#34;_blank&#34;&gt;Link to the dataset&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-explanatory-data-analysis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Explanatory data analysis&lt;/h2&gt;
+&lt;p&gt;In this part we are going to create a data profiling report, in this report we can get an overview of the shape and structure of our dataset by summarizing their main characters and use statistical graphics and other data visualization methods.&lt;/p&gt;
+&lt;iframe height=&#34;800&#34; width=&#34;100%&#34; frameborder=&#34;no&#34; src=&#34;./report.html/&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;Based on the data profiling report, specifically in the Univariate Distribution Histogram part , We can see that there are some fishes in our data set with zero weights, we need to remove the rows where the weight equal to zero.&lt;/p&gt;
+&lt;p&gt;To access the &lt;strong&gt;Data Profiling Report&lt;/strong&gt; in a new window please press the link below
+&lt;a href=&#34;./report.html&#34; target=&#34;_blank&#34;&gt;Link to open the data profiling report in a new window&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In this part we can interactively perform further exploration to our data set.&lt;/p&gt;
+&lt;iframe height=&#34;1000&#34; width=&#34;100%&#34; frameborder=&#34;no&#34; src=&#34;https://nouran.shinyapps.io/2021-06-21-project/&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;To open the &lt;strong&gt;Shiny app&lt;/strong&gt; in a new window please press the link below
+&lt;a href=&#34;https://nouran.shinyapps.io/2021-06-21-project/&#34; target=&#34;_blank&#34;&gt;Link to open the Shiny app in a new window&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-fitting-a-model-to-predict-the-fish-height-based-on-its-cross-length&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Fitting a model to predict the fish height based on it’s cross length&lt;/h1&gt;
+&lt;div id=&#34;section-linear-regression-model&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Linear Regression Model&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;To create a liner regression model to predict the height of a fish given its cross length, we need to determine the value of &lt;span class=&#34;math inline&#34;&gt;\(\beta_0\)&lt;/span&gt; that is the population parameter for the intercept and the value of &lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt; that is the population parameter for the slope as shown in the following model:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\widehat{Height}_{i} = \beta_0 + \beta_1 \times Cross Length_{i}\]&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Using liner regression model enables us to determine the values of both &lt;span class=&#34;math inline&#34;&gt;\(\beta_0\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt;, updating the model with the values we get the following updated model:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\widehat{Height}_{i} = 0.87 + 0.26 \times Cross Length_{i}\]&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/the-project/index_files/figure-html/height-cross_length-plot-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/the-project/index_files/figure-html/heightcross_length-plot-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/the-project/index_files/figure-html/vis-res-1-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A05  Exploratory Data Analysis</title>
+      <link>/post/a05-exploratory-data-analysis/</link>
+      <pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>/post/a05-exploratory-data-analysis/</guid>
+      <description>
+&lt;script src=&#34;/post/a05-exploratory-data-analysis/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;section-the-dataset&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The dataset&lt;/h2&gt;
+&lt;p&gt;The data used in this blog was obtained from The &lt;strong&gt;World Bank Data&lt;/strong&gt;, to access the source of the data use the link below&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://data.worldbank.org/topic/health?view=chart&#34; target=&#34;_blank&#34;&gt;Link to the data set&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-initial-analysis-questions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Initial Analysis Questions&lt;/h2&gt;
+&lt;p&gt;1- which country in North America with the highest population in 2019?&lt;/p&gt;
+&lt;p&gt;2- which country in North America has the highest population of elderly in 2019?&lt;/p&gt;
+&lt;p&gt;3- which country in North America has the highest birth rate in 2019?&lt;/p&gt;
+&lt;p&gt;4- which country in North America has the highest mortality rate in 2019?&lt;/p&gt;
+&lt;p&gt;5- How does the population in Canada change over time?&lt;/p&gt;
+&lt;p&gt;6- The difference between age distribution in Canada in 2000 and that in 2019?&lt;/p&gt;
+&lt;p&gt;7- Is the modern technology that is present in all life aspects including healthcare affect the human lifespan in Canada?&lt;/p&gt;
+&lt;p&gt;8- Is the modern lifestyle in Canada affect the adolescent mind regarding giving birth in this phase of their life?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-explanatory-data-analysis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Explanatory data analysis&lt;/h2&gt;
+&lt;div id=&#34;section-data-profiling-report-in-this-report-we-can-get-an-overview-of-the-shape-and-structure-of-our-dataset-by-summarizing-their-main-characters-and-use-statistical-graphics-and-other-data-visualization-methods.&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Data profiling report, in this report we can get an overview of the shape and structure of our dataset by summarizing their main characters and use statistical graphics and other data visualization methods.&lt;/h3&gt;
+&lt;iframe height=&#34;800&#34; width=&#34;100%&#34; frameborder=&#34;no&#34; src=&#34;./report.html/&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;To access the &lt;strong&gt;Data Profiling Report&lt;/strong&gt; in a new window please press the link below
+&lt;a href=&#34;./report.html&#34; target=&#34;_blank&#34;&gt;Link to open the data profiling report in a new window&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-in-this-part-we-can-analyze-the-dataset-by-visually-explore-each-indicator-in-each-country&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;in this part we can analyze the dataset by visually explore each indicator in each country&lt;/h3&gt;
+&lt;iframe height=&#34;800&#34; width=&#34;100%&#34; frameborder=&#34;no&#34; src=&#34;https://nouran.shinyapps.io/2021-06-16-a05-exploratory-data-analysis/&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;To open the &lt;strong&gt;Shiny app&lt;/strong&gt; in a new window please press the link below
+&lt;a href=&#34;https://nouran.shinyapps.io/2021-06-16-a05-exploratory-data-analysis/&#34; target=&#34;_blank&#34;&gt;Link to open the Shiny app in a new window&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-question-1-whats-the-country-with-the-highest-population-in-north-america-in-2019&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 1: what’s the country with the highest population in North America in 2019?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a05-exploratory-data-analysis/index_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;
+From Figure(1), we can see that in 2019 the United States of America has the highest population of 328239523 among the countries of North America, then Mexico that has a population of 127575529 then Canada that has population of 37593384.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-question-2-which-country-in-north-america-has-the-highest-population-of-elderly-in-2019&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 2: which country in North America has the highest population of elderly in 2019?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a05-exploratory-data-analysis/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;from Figure(2) we can see that the elderly population among the North America countries follows the same ranking of the total population we did in question 1 , so that in 2019 the United States of America has the highest elderly population of 53206334, then Mexico that has elderly population of 9461844 then Canada that has elderly population of 6634442.&lt;/p&gt;
+&lt;p&gt;Also from Figure (2), we can see the portion of the elderly population among the whole population in each country.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-question-3-which-country-in-north-america-has-the-highest-birth-rate-in-2019&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 3: which country in North America has the highest birth rate in 2019?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a05-exploratory-data-analysis/index_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;To answer this question we will use the indicator of fertility rate that is defined as the total births per woman in the country as we can see in Figure(3), using the fertility rate as an indicator to the birth rate, we can see that Haiti has the highest fertility rate in 2019 among the North America countries of value 2.89. Also we can see that the fertility rate in Canada was 1.47 in 2019.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-question-4-which-country-in-north-america-has-the-highest-mortality-rate-in-2019&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 4: which country in North America has the highest mortality rate in 2019?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a05-exploratory-data-analysis/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;To answer this question we will use the indicator of Death Rate Crude Per 1000 People in the country, as we can see in Figure(4), using the Death Rate Crude Per 1000 People as an indicator to the mortality rate, we can see that Grenada has the highest mortality rate in 2019 among the North America countries of value 9.58. Also we can see that in 2019 the death rate in Canada was 7.60 and the lowest death rate was in Honduras of value 4.45.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-question-5-how-does-the-population-in-canada-change-over-time&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 5: How does the population in Canada change over time?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a05-exploratory-data-analysis/index_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;From Figure (5) shown above , we can see that the population in Canada increases every year so that starting from year 1960 the population was 17909009 and it keeps increasing linearly reaching to population of 30685730 in 2000 and population of 37593384 in 2019.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-question-6-the-difference-between-age-distribution-in-canada-population-in-2000-and-that-in-2019&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 6: the difference between age distribution in Canada population in 2000 and that in 2019?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a05-exploratory-data-analysis/index_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;
+From Figure (6) shown above , we can see that the age distribution in Canada in 1960 that the zero to 9 age group was contributed more in the population than in 2019 and also in 2019 the plus eighty age group has a larger contribution in the population compared to 1960 where the contribution is almost zero and from 1960 to 2019 the contribution of the two age groups forty to forty nine and fifty to fifty nine increases over time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-question-7-is-the-modern-technology-that-is-present-in-all-life-aspects-including-healthcare-affect-the-human-lifespan-in-canada&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 7: Is the modern technology that is present in all life aspects including healthcare affect the human lifespan in Canada?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a05-exploratory-data-analysis/index_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;from Figure(7), we can see that the modern technology present in all life aspects including healthcare affect the human lifespan in Canada, so that human tends to live longer as the population of the age group of eighty and above increases with time and technology.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a05-exploratory-data-analysis/index_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;We can have a closer look by plotting the population of group age 80 and above from 1960 to 2019, as we can see in Figure (8) that there is an increase of this age group in Canada’s population since 1960 and since 2000 this increase became a little higher.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-question-8-is-the-modern-lifestyle-in-canada-affect-the-adolescent-mind-regarding-giving-birth-in-this-phase-of-their-life&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 8: Is the modern lifestyle in Canada affect the adolescent mind regarding giving birth in this phase of their life?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a05-exploratory-data-analysis/index_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;From Figure (9), we can see that the Adolescent fertility rate in Canada has tremendously decreases over time starting at 1960 the adolescent fertility rate was 55.63 reaching to adolescent fertility rate of 7.68 in 2019. it seems that the modern life style in Canada has the effect to decrease the adolescent women fertility rate.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-summary&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;The modern technology has helped to make human live longer life, although in the other side the modern life affected the adolescent fertility rate in Canada.in 2019 United states of America has the highest population in the North America and comparing it Canada the difference is huge. In 2019 among countries of North America the mortality rate was the least in Honduras while the birth rate was the highest in Haiti.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A04 Shiny App</title>
+      <link>/post/a04-shiny-app/</link>
+      <pubDate>Fri, 11 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>/post/a04-shiny-app/</guid>
+      <description>
+&lt;script src=&#34;/post/a04-shiny-app/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;section-provisional-count-of-deaths-involving-coronavirus-disease-2019-covid-19-by-united-states-county&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Provisional count of deaths involving coronavirus disease 2019 (COVID-19) by United States county&lt;/h2&gt;
+&lt;p&gt;The data used in this post is obtained from Data.Gov and it shows the provisional count of deaths involving coronavirus disease 2019 (COVID-19) by United States county.&lt;/p&gt;
+&lt;p&gt;The dataset is intended for public access and use.&lt;/p&gt;
+&lt;iframe height=&#34;800&#34; width=&#34;100%&#34; frameborder=&#34;no&#34; src=&#34;https://nouran.shinyapps.io/Data-Anaytics/&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Assignment A01: GGPLOT2 </title>
+      <link>/post/assignment-a01-ggplot2/</link>
+      <pubDate>Sat, 22 May 2021 00:00:00 +0000</pubDate>
+      <guid>/post/assignment-a01-ggplot2/</guid>
+      <description>
+&lt;script src=&#34;/post/assignment-a01-ggplot2/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;first-the-effect-of-vitamin-c-on-tooth-growth-in-guinea-pigs&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;First, The Effect of Vitamin C on Tooth Growth in Guinea Pigs&lt;/h2&gt;
+&lt;p&gt;In this blog we are going to show the effect of providing vitamin C on the growth of the odontoblasts of 60 guinea pigs.&lt;/p&gt;
+&lt;div id=&#34;keywords&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Keywords:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Odontoblasts: cells responsible for tooth growth&lt;/li&gt;
+&lt;li&gt;Ascorbic acid: a form of vitamin C and coded as VC.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;each-pig-received-one-of-three-dose-levels-of-vitamin-c-which-are&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Each pig received one of three dose levels of vitamin C which are:&lt;/h4&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;0.5 mg/day&lt;/li&gt;
+&lt;li&gt;1 mg/day&lt;/li&gt;
+&lt;li&gt;2 mg/day&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-vitamin-c-dose-is-provided-by-one-of-the-two-following-delivery-methods&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;The Vitamin C dose is provided by one of the two following delivery methods:&lt;/h4&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Through orange juice.&lt;/li&gt;
+&lt;li&gt;Through ascorbic acid.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The collected data is composed of 60 observations one for each pig where the tooth length, taken dose and the delivery method are recorded.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-number-of-participant-in-each-dose-level-providing-the-dose-delivery-method&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The number of participant in each dose level providing the dose delivery method&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;
+from the above Fig (1), we can see that for every dose level there are 20 participants and from which 10 participants received the dose through orange juice (OJ) and the other 10 participants received the dose through ascorbic acid (VC).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-relationship-between-the-tooth-growth-and-the-dose-level&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The relationship between the tooth growth and the dose level&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
+From Fig(2) we can see that the tooth growth that is determined by measuring the tooth length vs the dose level given to each pig providing the delivery method of the dose.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;grouping-the-data-based-on-both-the-dose-and-the-delivery-method&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Grouping the data based on both the dose and the delivery method&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;
+From Fig(3), we can have a more detailed information about each group, where the grouping is done based on the dose level and the dose delivery method. in fig (3), we can see that the group with dose level equal 2 mg/day and deliver the dose through ascorbic acid (VC/2) achieved the largest tooth growth but when the dose was 0.5 mg/day and the delivery method was VC, it achieved the lowest tooth growth.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;distribution-of-tooth-growth-at-each-dose-level-for-each-delivery-method&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Distribution of Tooth growth at each dose level for each delivery method&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;
+From Fig (4), we can see that at dose level 0.5 and 1 mg/day the tooth growth is better when the delivery method is the orange juice and at dose level of 2mg/day the tooth growth is better when the dose is delivered by ascorbic acid.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;tooth-length-histogram&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Tooth length histogram&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(ToothGrowth,aes(x=len))+
+geom_histogram(binwidth = 1)+
+labs(title=&amp;quot;                                Counts for Tooth length measurements &amp;quot;,x=&amp;quot;Tooth Length&amp;quot;,
+ caption = &amp;quot;Fig(5)                                                                                                       &amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;
+From Fig(5), we can see that the peak of the histogram occurs at length around 26 with 5 teeth occurred at the bin.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;density-of-the-tooth-growth-based-on-the-dose-delivery-method&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Density of the tooth growth based on the dose delivery method&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;
+Fig (6), shows the distribution of tooth length for each dose delivery method.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;boxplot-for-the-tooth-length-distribution-based-on-the-delivery-method&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Boxplot for the tooth length distribution based on the delivery method&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Fig(7) shows the distribution of the tooth growth data based on each dose delivery method. This boxplot shows the minimum, maximum, median, first quartile and third quartile in the data set.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;density-of-the-tooth-growth-based-on-the-dose-level&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Density of the tooth growth based on the dose level&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Fig (8), shows the distribution of tooth length for each dose level.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;boxplot-for-the-tooth-length-distribution-based-on-the-dose-level&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Boxplot for the tooth length distribution based on the dose level&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Fig (9), shows the distribution of the tooth growth data based on each dose level. This boxplot shows the minimum, maximum, median, first quartile and third quartile in the data set.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;second-average-heights-and-weights-for-american-women&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Second, Average Heights and Weights for American Women&lt;/h2&gt;
+&lt;p&gt;This data set provides the average heights and weights for American women of age ranges from 30 to 39&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(women,aes(height,weight))+geom_point()+labs(title=&amp;quot;                                                  Height vs weight&amp;quot;,x=&amp;quot;Height in In &amp;quot;,y=&amp;quot;Weight in Ibs&amp;quot;, caption = &amp;quot;Fig(10)                                                                                                       &amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Fig (10), shows us that the relationship between the height and the weight for the American women is linearly.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Data and Visualization</title>
+      <link>/post/data-and-visualization/</link>
+      <pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate>
+      <guid>/post/data-and-visualization/</guid>
+      <description>
+&lt;script src=&#34;/post/data-and-visualization/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;data-visualization-exercise&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Data visualization Exercise&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+starwars&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 87 x 14
+##    name    height  mass hair_color  skin_color eye_color birth_year sex   gender
+##    &amp;lt;chr&amp;gt;    &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;       &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; 
+##  1 Luke S~    172    77 blond       fair       blue            19   male  mascu~
+##  2 C-3PO      167    75 &amp;lt;NA&amp;gt;        gold       yellow         112   none  mascu~
+##  3 R2-D2       96    32 &amp;lt;NA&amp;gt;        white, bl~ red             33   none  mascu~
+##  4 Darth ~    202   136 none        white      yellow          41.9 male  mascu~
+##  5 Leia O~    150    49 brown       light      brown           19   fema~ femin~
+##  6 Owen L~    178   120 brown, grey light      blue            52   male  mascu~
+##  7 Beru W~    165    75 brown       light      blue            47   fema~ femin~
+##  8 R5-D4       97    32 &amp;lt;NA&amp;gt;        white, red red             NA   none  mascu~
+##  9 Biggs ~    183    84 black       light      brown           24   male  mascu~
+## 10 Obi-Wa~    182    77 auburn, wh~ fair       blue-gray       57   male  mascu~
+## # ... with 77 more rows, and 5 more variables: homeworld &amp;lt;chr&amp;gt;, species &amp;lt;chr&amp;gt;,
+## #   films &amp;lt;list&amp;gt;, vehicles &amp;lt;list&amp;gt;, starships &amp;lt;list&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;mass-vs-weight&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Mass Vs Weight&lt;/h3&gt;
+&lt;p&gt;We will study the mass vs weight relationship through scatter plot&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
+ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
+  geom_point() +
+  labs(title = &amp;quot;                                Mass vs. height of Starwars characters&amp;quot;,
+       x = &amp;quot;Height (cm)&amp;quot;, y = &amp;quot;Weight (kg)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/data-and-visualization/index_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;anscombes-quartet&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Anscombe’s Quartet&lt;/h3&gt;
+&lt;p&gt;We summarize the quartet information by each set of data&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(Tmisc)
+quartet %&amp;gt;%
+  group_by(set) %&amp;gt;%
+  summarise(
+    mean_x = mean(x), 
+    mean_y = mean(y),
+    sd_x = sd(x),
+    sd_y = sd(y),
+    r = cor(x, y)
+  )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 x 6
+##   set   mean_x mean_y  sd_x  sd_y     r
+##   &amp;lt;fct&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+## 1 I          9   7.50  3.32  2.03 0.816
+## 2 II         9   7.50  3.32  2.03 0.816
+## 3 III        9   7.5   3.32  2.03 0.816
+## 4 IV         9   7.50  3.32  2.03 0.817&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We visualize all four sets
+&lt;img src=&#34;/post/data-and-visualization/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

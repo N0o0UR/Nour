@@ -1,0 +1,1077 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.2.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Nouran Mostafa" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="First, The Effect of Vitamin C on Tooth Growth in Guinea PigsIn this blog we are going to show the effect of providing vitamin C on the growth of the odontoblasts of 60 guinea pigs." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/assignment-a01-ggplot2/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.7145a9a307b7b6e0cf40149bdecd66b5.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/post/assignment-a01-ggplot2/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="HOME" />
+  <meta property="og:url" content="/post/assignment-a01-ggplot2/" />
+  <meta property="og:title" content="Assignment A01: GGPLOT2  | HOME" />
+  <meta property="og:description" content="First, The Effect of Vitamin C on Tooth Growth in Guinea PigsIn this blog we are going to show the effect of providing vitamin C on the growth of the odontoblasts of 60 guinea pigs." /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-05-22T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-05-22T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/assignment-a01-ggplot2/"
+  },
+  "headline": "Assignment A01: GGPLOT2 ",
+  
+  "datePublished": "2021-05-22T00:00:00Z",
+  "dateModified": "2021-05-22T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Nouran Mostafa"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "HOME",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "First, The Effect of Vitamin C on Tooth Growth in Guinea Pigs\rIn this blog we are going to show the effect of providing vitamin C on the growth of the odontoblasts of 60 guinea pigs."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Assignment A01: GGPLOT2  | HOME</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="410f2206c6c8a48ca578ac63387cdac1" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.b8153d4570dcbb34350a2a846dba8c03.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">HOME</a>
+    </div>
+    
+
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">HOME</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="https://twitter.com/NouranM85487915" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+
+      
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Assignment A01: GGPLOT2 </h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    May 22, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/ggplot2/">ggplot2</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/post/assignment-a01-ggplot2/index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="first-the-effect-of-vitamin-c-on-tooth-growth-in-guinea-pigs" class="section level2">
+<h2>First, The Effect of Vitamin C on Tooth Growth in Guinea Pigs</h2>
+<p>In this blog we are going to show the effect of providing vitamin C on the growth of the odontoblasts of 60 guinea pigs.</p>
+<div id="keywords" class="section level4">
+<h4>Keywords:</h4>
+<ul>
+<li>Odontoblasts: cells responsible for tooth growth</li>
+<li>Ascorbic acid: a form of vitamin C and coded as VC.</li>
+</ul>
+</div>
+<div id="each-pig-received-one-of-three-dose-levels-of-vitamin-c-which-are" class="section level4">
+<h4>Each pig received one of three dose levels of vitamin C which are:</h4>
+<ol style="list-style-type: lower-alpha">
+<li>0.5 mg/day</li>
+<li>1 mg/day</li>
+<li>2 mg/day</li>
+</ol>
+</div>
+<div id="the-vitamin-c-dose-is-provided-by-one-of-the-two-following-delivery-methods" class="section level4">
+<h4>The Vitamin C dose is provided by one of the two following delivery methods:</h4>
+<ol style="list-style-type: decimal">
+<li>Through orange juice.</li>
+<li>Through ascorbic acid.</li>
+</ol>
+<p>The collected data is composed of 60 observations one for each pig where the tooth length, taken dose and the delivery method are recorded.</p>
+</div>
+<div id="the-number-of-participant-in-each-dose-level-providing-the-dose-delivery-method" class="section level3">
+<h3>The number of participant in each dose level providing the dose delivery method</h3>
+<p><img src="/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+from the above Fig (1), we can see that for every dose level there are 20 participants and from which 10 participants received the dose through orange juice (OJ) and the other 10 participants received the dose through ascorbic acid (VC).</p>
+</div>
+<div id="the-relationship-between-the-tooth-growth-and-the-dose-level" class="section level3">
+<h3>The relationship between the tooth growth and the dose level</h3>
+<p><img src="/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+From Fig(2) we can see that the tooth growth that is determined by measuring the tooth length vs the dose level given to each pig providing the delivery method of the dose.</p>
+</div>
+<div id="grouping-the-data-based-on-both-the-dose-and-the-delivery-method" class="section level3">
+<h3>Grouping the data based on both the dose and the delivery method</h3>
+<p><img src="/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+From Fig(3), we can have a more detailed information about each group, where the grouping is done based on the dose level and the dose delivery method. in fig (3), we can see that the group with dose level equal 2 mg/day and deliver the dose through ascorbic acid (VC/2) achieved the largest tooth growth but when the dose was 0.5 mg/day and the delivery method was VC, it achieved the lowest tooth growth.</p>
+</div>
+<div id="distribution-of-tooth-growth-at-each-dose-level-for-each-delivery-method" class="section level3">
+<h3>Distribution of Tooth growth at each dose level for each delivery method</h3>
+<p><img src="/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+From Fig (4), we can see that at dose level 0.5 and 1 mg/day the tooth growth is better when the delivery method is the orange juice and at dose level of 2mg/day the tooth growth is better when the dose is delivered by ascorbic acid.</p>
+</div>
+<div id="tooth-length-histogram" class="section level3">
+<h3>Tooth length histogram</h3>
+<pre class="r"><code>ggplot(ToothGrowth,aes(x=len))+
+geom_histogram(binwidth = 1)+
+labs(title=&quot;                                Counts for Tooth length measurements &quot;,x=&quot;Tooth Length&quot;,
+ caption = &quot;Fig(5)                                                                                                       &quot;)</code></pre>
+<p><img src="/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+From Fig(5), we can see that the peak of the histogram occurs at length around 26 with 5 teeth occurred at the bin.</p>
+</div>
+<div id="density-of-the-tooth-growth-based-on-the-dose-delivery-method" class="section level3">
+<h3>Density of the tooth growth based on the dose delivery method</h3>
+<p><img src="/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+Fig (6), shows the distribution of tooth length for each dose delivery method.</p>
+</div>
+<div id="boxplot-for-the-tooth-length-distribution-based-on-the-delivery-method" class="section level3">
+<h3>Boxplot for the tooth length distribution based on the delivery method</h3>
+<p><img src="/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Fig(7) shows the distribution of the tooth growth data based on each dose delivery method. This boxplot shows the minimum, maximum, median, first quartile and third quartile in the data set.</p>
+</div>
+<div id="density-of-the-tooth-growth-based-on-the-dose-level" class="section level3">
+<h3>Density of the tooth growth based on the dose level</h3>
+<p><img src="/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Fig (8), shows the distribution of tooth length for each dose level.</p>
+</div>
+<div id="boxplot-for-the-tooth-length-distribution-based-on-the-dose-level" class="section level3">
+<h3>Boxplot for the tooth length distribution based on the dose level</h3>
+<p><img src="/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Fig (9), shows the distribution of the tooth growth data based on each dose level. This boxplot shows the minimum, maximum, median, first quartile and third quartile in the data set.</p>
+</div>
+</div>
+<div id="second-average-heights-and-weights-for-american-women" class="section level2">
+<h2>Second, Average Heights and Weights for American Women</h2>
+<p>This data set provides the average heights and weights for American women of age ranges from 30 to 39</p>
+<pre class="r"><code>ggplot(women,aes(height,weight))+geom_point()+labs(title=&quot;                                                  Height vs weight&quot;,x=&quot;Height in In &quot;,y=&quot;Weight in Ibs&quot;, caption = &quot;Fig(10)                                                                                                       &quot;)</code></pre>
+<p><img src="/post/assignment-a01-ggplot2/index_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Fig (10), shows us that the relationship between the height and the weight for the American women is linearly.</p>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/assignment-a01-ggplot2/&amp;text=Assignment%20A01:%20GGPLOT2%20" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/assignment-a01-ggplot2/&amp;t=Assignment%20A01:%20GGPLOT2%20" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Assignment%20A01:%20GGPLOT2%20&amp;body=/post/assignment-a01-ggplot2/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/assignment-a01-ggplot2/&amp;title=Assignment%20A01:%20GGPLOT2%20" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Assignment%20A01:%20GGPLOT2%20%20/post/assignment-a01-ggplot2/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/assignment-a01-ggplot2/&amp;title=Assignment%20A01:%20GGPLOT2%20" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/author/nouran-mostafa/avatar_hu87b681ad54a12849109b4b507d9003fa_46844_270x270_fill_q75_lanczos_center.jpg" alt="Nouran Mostafa">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">Nouran Mostafa</h5>
+      
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/NouranM85487915" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/N0o0UR" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/nouran-mostafa/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.4bba0826db6409c865d2e7b99039d6d0.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

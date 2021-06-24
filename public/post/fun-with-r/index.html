@@ -1,0 +1,1121 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.2.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Nouran Mostafa" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="The Variables and Numbersx&lt;- 1y=23 -&gt; zx&#43;y## [1] 3y*z## [1] 6y/x## [1] 2Vectorsa&lt;- 0:10print(a)## [1] 0 1 2 3 4 5 6 7 8 9 10b&lt;- 10:-4print(b)## [1] 10 9 8 7 6 5 4 3 2 1 0 -1 -2 -3 -4class(a)## [1] &quot;integer&quot;str(a)## int [1:11] 0 1 2 3 4 5 6 7 8 9 ." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/fun-with-r/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.7145a9a307b7b6e0cf40149bdecd66b5.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/post/fun-with-r/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+  <meta property="og:site_name" content="HOME" />
+  <meta property="og:url" content="/post/fun-with-r/" />
+  <meta property="og:title" content="Fun with R | HOME" />
+  <meta property="og:description" content="The Variables and Numbersx&lt;- 1y=23 -&gt; zx&#43;y## [1] 3y*z## [1] 6y/x## [1] 2Vectorsa&lt;- 0:10print(a)## [1] 0 1 2 3 4 5 6 7 8 9 10b&lt;- 10:-4print(b)## [1] 10 9 8 7 6 5 4 3 2 1 0 -1 -2 -3 -4class(a)## [1] &quot;integer&quot;str(a)## int [1:11] 0 1 2 3 4 5 6 7 8 9 ." /><meta property="og:image" content="/post/fun-with-r/featured.jpg" />
+    <meta property="twitter:image" content="/post/fun-with-r/featured.jpg" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-05-25T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-05-25T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/fun-with-r/"
+  },
+  "headline": "Fun with R",
+  
+  "image": [
+    "/post/fun-with-r/featured.jpg"
+  ],
+  
+  "datePublished": "2021-05-25T00:00:00Z",
+  "dateModified": "2021-05-25T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Nouran Mostafa"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "HOME",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "The Variables and Numbers\rx\u0026lt;- 1\ry=2\r3 -\u0026gt; z\rx+y\r## [1] 3\ry*z\r## [1] 6\ry/x\r## [1] 2\r\rVectors\ra\u0026lt;- 0:10\rprint(a)\r## [1] 0 1 2 3 4 5 6 7 8 9 10\rb\u0026lt;- 10:-4\rprint(b)\r## [1] 10 9 8 7 6 5 4 3 2 1 0 -1 -2 -3 -4\rclass(a)\r## [1] \u0026quot;integer\u0026quot;\rstr(a)\r## int [1:11] 0 1 2 3 4 5 6 7 8 9 ."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Fun with R | HOME</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="45c364a94785a15e35af29e8883707d6" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.b8153d4570dcbb34350a2a846dba8c03.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">HOME</a>
+    </div>
+    
+
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">HOME</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="https://twitter.com/NouranM85487915" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+
+      
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="article-container pt-3">
+  <h1>Fun with R</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    May 25, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/basics/">Basics</a></span>
+  
+
+</div>
+
+  
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 500px; max-height: 750px;">
+  <div style="position: relative">
+    <img src="/post/fun-with-r/featured.jpg" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/post/fun-with-r/index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="the-variables-and-numbers" class="section level2">
+<h2>The Variables and Numbers</h2>
+<pre class="r"><code>x&lt;- 1
+y=2
+3 -&gt; z
+x+y</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>y*z</code></pre>
+<pre><code>## [1] 6</code></pre>
+<pre class="r"><code>y/x</code></pre>
+<pre><code>## [1] 2</code></pre>
+</div>
+<div id="vectors" class="section level2">
+<h2>Vectors</h2>
+<pre class="r"><code>a&lt;- 0:10
+print(a)</code></pre>
+<pre><code>##  [1]  0  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre class="r"><code>b&lt;- 10:-4
+print(b)</code></pre>
+<pre><code>##  [1] 10  9  8  7  6  5  4  3  2  1  0 -1 -2 -3 -4</code></pre>
+<pre class="r"><code>class(a)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<pre class="r"><code>str(a)</code></pre>
+<pre><code>##  int [1:11] 0 1 2 3 4 5 6 7 8 9 ...</code></pre>
+<pre class="r"><code>a[ c(1, 5, 10) ]</code></pre>
+<pre><code>## [1] 0 4 9</code></pre>
+<pre class="r"><code>head(a)</code></pre>
+<pre><code>## [1] 0 1 2 3 4 5</code></pre>
+<pre class="r"><code>head(a,4)</code></pre>
+<pre><code>## [1] 0 1 2 3</code></pre>
+<pre class="r"><code>tail(b,5)</code></pre>
+<pre><code>## [1]  0 -1 -2 -3 -4</code></pre>
+</div>
+<div id="compine-operators-for-creatinmg-vectors" class="section level2">
+<h2>Compine Operators for Creatinmg Vectors</h2>
+<p>When we create a vector with multiple data types, R coerces the vector to most compatible data type</p>
+<pre class="r"><code>C&lt;-c(1:5,10.5,&#39;red&#39;,&#39;green&#39;,&quot;yellow&quot;)
+print(C)</code></pre>
+<pre><code>## [1] &quot;1&quot;      &quot;2&quot;      &quot;3&quot;      &quot;4&quot;      &quot;5&quot;      &quot;10.5&quot;   &quot;red&quot;    &quot;green&quot; 
+## [9] &quot;yellow&quot;</code></pre>
+<pre class="r"><code>class(C)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>str(C)</code></pre>
+<pre><code>##  chr [1:9] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; &quot;10.5&quot; &quot;red&quot; &quot;green&quot; &quot;yellow&quot;</code></pre>
+<pre class="r"><code>d&lt;- c(1:5,10.5)
+
+print(d)</code></pre>
+<pre><code>## [1]  1.0  2.0  3.0  4.0  5.0 10.5</code></pre>
+<pre class="r"><code>class(d)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code>str(d)</code></pre>
+<pre><code>##  num [1:6] 1 2 3 4 5 10.5</code></pre>
+</div>
+<div id="sequence-operator-application" class="section level2">
+<h2>Sequence Operator Application</h2>
+<pre class="r"><code>x&lt;-seq(0,8*pi,length.out = 200);
+y &lt;- sin(x);
+plot(x,y)</code></pre>
+<p><img src="/post/fun-with-r/index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="dropping-missing-values" class="section level2">
+<h2>Dropping Missing Values</h2>
+<pre class="r"><code>a&lt;-c(3,-2,4,NA,-1,8,-4,9,NA, 11,3,8,NA)
+a[!is.na(a)]</code></pre>
+<pre><code>##  [1]  3 -2  4 -1  8 -4  9 11  3  8</code></pre>
+<pre class="r"><code>a &lt;-c(2,3,-1,3,5,2,-3,1)
+cat(&quot;The sum of positive integers in a =&quot;,sum(a[a&gt;0]))</code></pre>
+<pre><code>## The sum of positive integers in a = 16</code></pre>
+</div>
+<div id="matrix" class="section level2">
+<h2>Matrix</h2>
+<pre class="r"><code>M1&lt;-matrix(1:12, ncol=4,byrow=TRUE)
+M1</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    2    3    4
+## [2,]    5    6    7    8
+## [3,]    9   10   11   12</code></pre>
+<pre class="r"><code>M1[,3]</code></pre>
+<pre><code>## [1]  3  7 11</code></pre>
+<pre class="r"><code>M2&lt;-matrix(1:12, nrow=4)
+M2</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12</code></pre>
+</div>
+<div id="challange-matrix-element" class="section level2">
+<h2>Challange: Matrix element</h2>
+<pre class="r"><code>M1 &lt;-matrix(1:20,ncol=4) 
+M1[c(3,5),c(2,4)]</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    8   18
+## [2,]   10   20</code></pre>
+</div>
+<div id="data-frames" class="section level2">
+<h2>Data Frames</h2>
+<pre class="r"><code>DF &lt;- data.frame(
+gender = c(&quot;Male&quot;, &quot;Male&quot;,&quot;Female&quot;),
+height = c(152, 171.5, 165),
+weight = c(81,93, 78),
+age =c(42,38,26),
+row.names=c(&#39;Ally&#39;,&#39;Belinda&#39;,&#39;Alfred&#39;)
+)
+DF$age</code></pre>
+<pre><code>## [1] 42 38 26</code></pre>
+<pre class="r"><code>DF[DF$gender==&quot;Male&quot;,]</code></pre>
+<pre><code>##         gender height weight age
+## Ally      Male  152.0     81  42
+## Belinda   Male  171.5     93  38</code></pre>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/fun-with-r/&amp;text=Fun%20with%20R" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/fun-with-r/&amp;t=Fun%20with%20R" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Fun%20with%20R&amp;body=/post/fun-with-r/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/fun-with-r/&amp;title=Fun%20with%20R" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Fun%20with%20R%20/post/fun-with-r/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/fun-with-r/&amp;title=Fun%20with%20R" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/author/nouran-mostafa/avatar_hu87b681ad54a12849109b4b507d9003fa_46844_270x270_fill_q75_lanczos_center.jpg" alt="Nouran Mostafa">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">Nouran Mostafa</h5>
+      
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/NouranM85487915" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/N0o0UR" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/nouran-mostafa/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.4bba0826db6409c865d2e7b99039d6d0.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

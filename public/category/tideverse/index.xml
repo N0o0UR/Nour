@@ -1,0 +1,1221 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tideverse | HOME</title>
+    <link>/category/tideverse/</link>
+      <atom:link href="/category/tideverse/index.xml" rel="self" type="application/rss+xml" />
+    <description>Tideverse</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 21 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>Tideverse</title>
+      <link>/category/tideverse/</link>
+    </image>
+    
+    <item>
+      <title>Project </title>
+      <link>/post/the-project/</link>
+      <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>/post/the-project/</guid>
+      <description>
+&lt;script src=&#34;/post/the-project/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;section-the-dataset&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The dataset&lt;/h2&gt;
+&lt;p&gt;The used data set in this project composed of a record of 7 common different fish species in fish market sales. For each fish participated on this record, a certain measurements were taken, which are the fish species, the weight in Gram g, vertical length in cm, diagonal length in cm, cross length in cm, height in cm and diagonal width in cm.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;fish.png&#34; width=&#34;98%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The data was obtained from &lt;strong&gt;Kaggle &lt;/strong&gt; website, to access the source of the data use the link below&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.kaggle.com/aungpyaeap/fish-market&#34; target=&#34;_blank&#34;&gt;Link to the dataset&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-explanatory-data-analysis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Explanatory data analysis&lt;/h2&gt;
+&lt;p&gt;In this part we are going to create a data profiling report, in this report we can get an overview of the shape and structure of our dataset by summarizing their main characters and use statistical graphics and other data visualization methods.&lt;/p&gt;
+&lt;iframe height=&#34;800&#34; width=&#34;100%&#34; frameborder=&#34;no&#34; src=&#34;./report.html/&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;Based on the data profiling report, specifically in the Univariate Distribution Histogram part , We can see that there are some fishes in our data set with zero weights, we need to remove the rows where the weight equal to zero.&lt;/p&gt;
+&lt;p&gt;To access the &lt;strong&gt;Data Profiling Report&lt;/strong&gt; in a new window please press the link below
+&lt;a href=&#34;./report.html&#34; target=&#34;_blank&#34;&gt;Link to open the data profiling report in a new window&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In this part we can interactively perform further exploration to our data set.&lt;/p&gt;
+&lt;iframe height=&#34;1000&#34; width=&#34;100%&#34; frameborder=&#34;no&#34; src=&#34;https://nouran.shinyapps.io/2021-06-21-project/&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;To open the &lt;strong&gt;Shiny app&lt;/strong&gt; in a new window please press the link below
+&lt;a href=&#34;https://nouran.shinyapps.io/2021-06-21-project/&#34; target=&#34;_blank&#34;&gt;Link to open the Shiny app in a new window&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-fitting-a-model-to-predict-the-fish-height-based-on-its-cross-length&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Fitting a model to predict the fish height based on it’s cross length&lt;/h1&gt;
+&lt;div id=&#34;section-linear-regression-model&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Linear Regression Model&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;To create a liner regression model to predict the height of a fish given its cross length, we need to determine the value of &lt;span class=&#34;math inline&#34;&gt;\(\beta_0\)&lt;/span&gt; that is the population parameter for the intercept and the value of &lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt; that is the population parameter for the slope as shown in the following model:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\widehat{Height}_{i} = \beta_0 + \beta_1 \times Cross Length_{i}\]&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Using liner regression model enables us to determine the values of both &lt;span class=&#34;math inline&#34;&gt;\(\beta_0\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt;, updating the model with the values we get the following updated model:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\widehat{Height}_{i} = 0.87 + 0.26 \times Cross Length_{i}\]&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/the-project/index_files/figure-html/height-cross_length-plot-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/the-project/index_files/figure-html/heightcross_length-plot-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/the-project/index_files/figure-html/vis-res-1-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A05  Exploratory Data Analysis</title>
+      <link>/post/a05-exploratory-data-analysis/</link>
+      <pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>/post/a05-exploratory-data-analysis/</guid>
+      <description>
+&lt;script src=&#34;/post/a05-exploratory-data-analysis/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;section-the-dataset&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The dataset&lt;/h2&gt;
+&lt;p&gt;The data used in this blog was obtained from The &lt;strong&gt;World Bank Data&lt;/strong&gt;, to access the source of the data use the link below&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://data.worldbank.org/topic/health?view=chart&#34; target=&#34;_blank&#34;&gt;Link to the data set&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-initial-analysis-questions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Initial Analysis Questions&lt;/h2&gt;
+&lt;p&gt;1- which country in North America with the highest population in 2019?&lt;/p&gt;
+&lt;p&gt;2- which country in North America has the highest population of elderly in 2019?&lt;/p&gt;
+&lt;p&gt;3- which country in North America has the highest birth rate in 2019?&lt;/p&gt;
+&lt;p&gt;4- which country in North America has the highest mortality rate in 2019?&lt;/p&gt;
+&lt;p&gt;5- How does the population in Canada change over time?&lt;/p&gt;
+&lt;p&gt;6- The difference between age distribution in Canada in 2000 and that in 2019?&lt;/p&gt;
+&lt;p&gt;7- Is the modern technology that is present in all life aspects including healthcare affect the human lifespan in Canada?&lt;/p&gt;
+&lt;p&gt;8- Is the modern lifestyle in Canada affect the adolescent mind regarding giving birth in this phase of their life?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-explanatory-data-analysis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Explanatory data analysis&lt;/h2&gt;
+&lt;div id=&#34;section-data-profiling-report-in-this-report-we-can-get-an-overview-of-the-shape-and-structure-of-our-dataset-by-summarizing-their-main-characters-and-use-statistical-graphics-and-other-data-visualization-methods.&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Data profiling report, in this report we can get an overview of the shape and structure of our dataset by summarizing their main characters and use statistical graphics and other data visualization methods.&lt;/h3&gt;
+&lt;iframe height=&#34;800&#34; width=&#34;100%&#34; frameborder=&#34;no&#34; src=&#34;./report.html/&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;To access the &lt;strong&gt;Data Profiling Report&lt;/strong&gt; in a new window please press the link below
+&lt;a href=&#34;./report.html&#34; target=&#34;_blank&#34;&gt;Link to open the data profiling report in a new window&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-in-this-part-we-can-analyze-the-dataset-by-visually-explore-each-indicator-in-each-country&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;in this part we can analyze the dataset by visually explore each indicator in each country&lt;/h3&gt;
+&lt;iframe height=&#34;800&#34; width=&#34;100%&#34; frameborder=&#34;no&#34; src=&#34;https://nouran.shinyapps.io/2021-06-16-a05-exploratory-data-analysis/&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;To open the &lt;strong&gt;Shiny app&lt;/strong&gt; in a new window please press the link below
+&lt;a href=&#34;https://nouran.shinyapps.io/2021-06-16-a05-exploratory-data-analysis/&#34; target=&#34;_blank&#34;&gt;Link to open the Shiny app in a new window&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-question-1-whats-the-country-with-the-highest-population-in-north-america-in-2019&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 1: what’s the country with the highest population in North America in 2019?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a05-exploratory-data-analysis/index_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;
+From Figure(1), we can see that in 2019 the United States of America has the highest population of 328239523 among the countries of North America, then Mexico that has a population of 127575529 then Canada that has population of 37593384.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-question-2-which-country-in-north-america-has-the-highest-population-of-elderly-in-2019&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 2: which country in North America has the highest population of elderly in 2019?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a05-exploratory-data-analysis/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;from Figure(2) we can see that the elderly population among the North America countries follows the same ranking of the total population we did in question 1 , so that in 2019 the United States of America has the highest elderly population of 53206334, then Mexico that has elderly population of 9461844 then Canada that has elderly population of 6634442.&lt;/p&gt;
+&lt;p&gt;Also from Figure (2), we can see the portion of the elderly population among the whole population in each country.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-question-3-which-country-in-north-america-has-the-highest-birth-rate-in-2019&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 3: which country in North America has the highest birth rate in 2019?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a05-exploratory-data-analysis/index_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;To answer this question we will use the indicator of fertility rate that is defined as the total births per woman in the country as we can see in Figure(3), using the fertility rate as an indicator to the birth rate, we can see that Haiti has the highest fertility rate in 2019 among the North America countries of value 2.89. Also we can see that the fertility rate in Canada was 1.47 in 2019.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-question-4-which-country-in-north-america-has-the-highest-mortality-rate-in-2019&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 4: which country in North America has the highest mortality rate in 2019?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a05-exploratory-data-analysis/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;To answer this question we will use the indicator of Death Rate Crude Per 1000 People in the country, as we can see in Figure(4), using the Death Rate Crude Per 1000 People as an indicator to the mortality rate, we can see that Grenada has the highest mortality rate in 2019 among the North America countries of value 9.58. Also we can see that in 2019 the death rate in Canada was 7.60 and the lowest death rate was in Honduras of value 4.45.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-question-5-how-does-the-population-in-canada-change-over-time&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 5: How does the population in Canada change over time?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a05-exploratory-data-analysis/index_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;From Figure (5) shown above , we can see that the population in Canada increases every year so that starting from year 1960 the population was 17909009 and it keeps increasing linearly reaching to population of 30685730 in 2000 and population of 37593384 in 2019.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-question-6-the-difference-between-age-distribution-in-canada-population-in-2000-and-that-in-2019&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 6: the difference between age distribution in Canada population in 2000 and that in 2019?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a05-exploratory-data-analysis/index_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;
+From Figure (6) shown above , we can see that the age distribution in Canada in 1960 that the zero to 9 age group was contributed more in the population than in 2019 and also in 2019 the plus eighty age group has a larger contribution in the population compared to 1960 where the contribution is almost zero and from 1960 to 2019 the contribution of the two age groups forty to forty nine and fifty to fifty nine increases over time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-question-7-is-the-modern-technology-that-is-present-in-all-life-aspects-including-healthcare-affect-the-human-lifespan-in-canada&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 7: Is the modern technology that is present in all life aspects including healthcare affect the human lifespan in Canada?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a05-exploratory-data-analysis/index_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;from Figure(7), we can see that the modern technology present in all life aspects including healthcare affect the human lifespan in Canada, so that human tends to live longer as the population of the age group of eighty and above increases with time and technology.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a05-exploratory-data-analysis/index_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;We can have a closer look by plotting the population of group age 80 and above from 1960 to 2019, as we can see in Figure (8) that there is an increase of this age group in Canada’s population since 1960 and since 2000 this increase became a little higher.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-question-8-is-the-modern-lifestyle-in-canada-affect-the-adolescent-mind-regarding-giving-birth-in-this-phase-of-their-life&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 8: Is the modern lifestyle in Canada affect the adolescent mind regarding giving birth in this phase of their life?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a05-exploratory-data-analysis/index_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;From Figure (9), we can see that the Adolescent fertility rate in Canada has tremendously decreases over time starting at 1960 the adolescent fertility rate was 55.63 reaching to adolescent fertility rate of 7.68 in 2019. it seems that the modern life style in Canada has the effect to decrease the adolescent women fertility rate.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-summary&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;The modern technology has helped to make human live longer life, although in the other side the modern life affected the adolescent fertility rate in Canada.in 2019 United states of America has the highest population in the North America and comparing it Canada the difference is huge. In 2019 among countries of North America the mortality rate was the least in Honduras while the birth rate was the highest in Haiti.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A03</title>
+      <link>/post/a03/</link>
+      <pubDate>Thu, 03 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>/post/a03/</guid>
+      <description>
+&lt;script src=&#34;/post/a03/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;reading-the-lego_sales.csv-file&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Reading the lego_sales.csv file&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.3     v purrr   0.3.4
+## v tibble  3.1.1     v dplyr   1.0.6
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lego_sales &amp;lt;- read_csv(&amp;quot;lego_sales.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   first_name = col_character(),
+##   last_name = col_character(),
+##   age = col_double(),
+##   phone_number = col_character(),
+##   set_id = col_double(),
+##   number = col_character(),
+##   theme = col_character(),
+##   subtheme = col_character(),
+##   year = col_double(),
+##   name = col_character(),
+##   pieces = col_double(),
+##   us_price = col_double(),
+##   image_url = col_character(),
+##   quantity = col_double()
+## )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;glimpse(lego_sales)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 620
+## Columns: 14
+## $ first_name   &amp;lt;chr&amp;gt; &amp;quot;Kimberly&amp;quot;, &amp;quot;Neel&amp;quot;, &amp;quot;Neel&amp;quot;, &amp;quot;Chelsea&amp;quot;, &amp;quot;Chelsea&amp;quot;, &amp;quot;Chelse~
+## $ last_name    &amp;lt;chr&amp;gt; &amp;quot;Beckstead&amp;quot;, &amp;quot;Garvin&amp;quot;, &amp;quot;Garvin&amp;quot;, &amp;quot;Bouchard&amp;quot;, &amp;quot;Bouchard&amp;quot;, ~
+## $ age          &amp;lt;dbl&amp;gt; 24, 35, 35, 41, 41, 41, 19, 19, 37, 37, 19, 19, 20, 36, 3~
+## $ phone_number &amp;lt;chr&amp;gt; &amp;quot;216-555-2549&amp;quot;, &amp;quot;819-555-3189&amp;quot;, &amp;quot;819-555-3189&amp;quot;, NA, NA, N~
+## $ set_id       &amp;lt;dbl&amp;gt; 24701, 25626, 24665, 24695, 25626, 24721, 24797, 24701, 2~
+## $ number       &amp;lt;chr&amp;gt; &amp;quot;76062&amp;quot;, &amp;quot;70595&amp;quot;, &amp;quot;21031&amp;quot;, &amp;quot;31048&amp;quot;, &amp;quot;70595&amp;quot;, &amp;quot;10831&amp;quot;, &amp;quot;75~
+## $ theme        &amp;lt;chr&amp;gt; &amp;quot;DC Comics Super Heroes&amp;quot;, &amp;quot;Ninjago&amp;quot;, &amp;quot;Architecture&amp;quot;, &amp;quot;Cre~
+## $ subtheme     &amp;lt;chr&amp;gt; &amp;quot;Mighty Micros&amp;quot;, &amp;quot;Rise of the Villains&amp;quot;, NA, NA, &amp;quot;Rise of~
+## $ year         &amp;lt;dbl&amp;gt; 2018, 2018, 2018, 2018, 2018, 2018, 2018, 2018, 2018, 201~
+## $ name         &amp;lt;chr&amp;gt; &amp;quot;Robin vs. Bane&amp;quot;, &amp;quot;Ultra Stealth Raider&amp;quot;, &amp;quot;Burj Khalifa&amp;quot;,~
+## $ pieces       &amp;lt;dbl&amp;gt; 77, 1093, 333, 368, 1093, 19, 233, 77, 108, NA, 13, 15, 6~
+## $ us_price     &amp;lt;dbl&amp;gt; 9.99, 119.99, 39.99, 29.99, 119.99, 9.99, 24.99, 9.99, 9.~
+## $ image_url    &amp;lt;chr&amp;gt; &amp;quot;http://images.brickset.com/sets/images/76062-1.jpg&amp;quot;, &amp;quot;ht~
+## $ quantity     &amp;lt;dbl&amp;gt; 1, 1, 1, 1, 1, 1, 1, 3, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, ~&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lego_sales&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 620 x 14
+##    first_name last_name    age phone_number set_id number theme  subtheme   year
+##    &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;         &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;     &amp;lt;dbl&amp;gt;
+##  1 Kimberly   Beckstead     24 216-555-2549  24701 76062  DC Co~ Mighty M~  2018
+##  2 Neel       Garvin        35 819-555-3189  25626 70595  Ninja~ Rise of ~  2018
+##  3 Neel       Garvin        35 819-555-3189  24665 21031  Archi~ &amp;lt;NA&amp;gt;       2018
+##  4 Chelsea    Bouchard      41 &amp;lt;NA&amp;gt;          24695 31048  Creat~ &amp;lt;NA&amp;gt;       2018
+##  5 Chelsea    Bouchard      41 &amp;lt;NA&amp;gt;          25626 70595  Ninja~ Rise of ~  2018
+##  6 Chelsea    Bouchard      41 &amp;lt;NA&amp;gt;          24721 10831  Duplo  &amp;lt;NA&amp;gt;       2018
+##  7 Bryanna    Welsh         19 &amp;lt;NA&amp;gt;          24797 75138  Star ~ Episode V  2018
+##  8 Bryanna    Welsh         19 &amp;lt;NA&amp;gt;          24701 76062  DC Co~ Mighty M~  2018
+##  9 Caleb      Garcia-Wi~    37 907-555-9236  24730 41115  Frien~ &amp;lt;NA&amp;gt;       2018
+## 10 Caleb      Garcia-Wi~    37 907-555-9236  25611 21127  Minec~ Minifig-~  2018
+## # ... with 610 more rows, and 5 more variables: name &amp;lt;chr&amp;gt;, pieces &amp;lt;dbl&amp;gt;,
+## #   us_price &amp;lt;dbl&amp;gt;, image_url &amp;lt;chr&amp;gt;, quantity &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;q1.what-are-the-three-most-common-first-names-of-customers&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Q1.What are the three most common first names of customers?&lt;/h2&gt;
+&lt;div id=&#34;the-answer&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The answer:&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;common_first_names&amp;lt;- lego_sales %&amp;gt;%
+  count(first_name,sort = TRUE)  %&amp;gt;%
+  head(3)
+cat(&amp;quot;The three most common first names of customers are &amp;quot;,common_first_names$first_name,sep = &amp;quot;\n &amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The three most common first names of customers are 
+##  Jackson
+##  Jacob
+##  Joseph&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;q2.what-are-the-three-most-common-themes-of-lego-sets-purchased&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Q2.What are the three most common themes of lego sets purchased?&lt;/h3&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-answer-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The answer:&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;common_themes &amp;lt;-lego_sales %&amp;gt;%
+  count(theme ,sort = TRUE)%&amp;gt;%
+  head(3)
+cat(&amp;quot;The three most common themes of lego sets purchased are  &amp;quot;,common_themes$theme ,sep = &amp;quot;\n &amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The three most common themes of lego sets purchased are  
+##  Star Wars
+##  Nexo Knights
+##  Gear&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;q3.among-the-most-common-theme-of-lego-sets-purchased-what-is-the-most-common-subtheme&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Q3.Among the most common theme of lego sets purchased, what is the most common subtheme?&lt;/h3&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-answer-2&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The answer:&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;common_subtheme&amp;lt;- lego_sales %&amp;gt;%
+  filter (theme==&amp;quot;Star Wars&amp;quot;) %&amp;gt;%
+  count(subtheme,sort = TRUE )%&amp;gt;%
+  head(1)
+cat(&amp;quot;The most common subtheme among the most common theme of lego sets purchased is &amp;quot;,common_subtheme$subtheme ,sep = &amp;quot;\n &amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The most common subtheme among the most common theme of lego sets purchased is 
+##  The Force Awakens&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;q4.create-a-new-variable-called-age_group-and-group-the-ages-into-the-following-categories-18-and-under-19---25-26---35-36---50-51-and-over.-be-sure-to-save-the-updated-data-set-so-you-can-use-the-new-variable-in-other-questions.&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Q4.Create a new variable called age_group and group the ages into the following categories: “18 and under”, “19 - 25”, “26 - 35”, “36 - 50”, “51 and over”. Be sure to save the updated data set so you can use the new variable in other questions.&lt;/h3&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-answer-3&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The answer:&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;  lego_sales_age_group &amp;lt;- lego_sales %&amp;gt;%
+  mutate (age_group=case_when(
+    between(age,min(age),18)~ &amp;quot;18 and under&amp;quot;,
+    between(age,19,25)~ &amp;quot;19 - 25&amp;quot;,
+    between(age,26,35)~ &amp;quot;26 - 35&amp;quot;,
+    between(age,36,50)~ &amp;quot;36 - 50&amp;quot;,
+    between(age,51,max(age))~ &amp;quot;51 and over&amp;quot;
+        ))
+## Displaying the new data frame with the new variable:
+
+lego_sales_age_group&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 620 x 15
+##    first_name last_name    age phone_number set_id number theme  subtheme   year
+##    &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;         &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;     &amp;lt;dbl&amp;gt;
+##  1 Kimberly   Beckstead     24 216-555-2549  24701 76062  DC Co~ Mighty M~  2018
+##  2 Neel       Garvin        35 819-555-3189  25626 70595  Ninja~ Rise of ~  2018
+##  3 Neel       Garvin        35 819-555-3189  24665 21031  Archi~ &amp;lt;NA&amp;gt;       2018
+##  4 Chelsea    Bouchard      41 &amp;lt;NA&amp;gt;          24695 31048  Creat~ &amp;lt;NA&amp;gt;       2018
+##  5 Chelsea    Bouchard      41 &amp;lt;NA&amp;gt;          25626 70595  Ninja~ Rise of ~  2018
+##  6 Chelsea    Bouchard      41 &amp;lt;NA&amp;gt;          24721 10831  Duplo  &amp;lt;NA&amp;gt;       2018
+##  7 Bryanna    Welsh         19 &amp;lt;NA&amp;gt;          24797 75138  Star ~ Episode V  2018
+##  8 Bryanna    Welsh         19 &amp;lt;NA&amp;gt;          24701 76062  DC Co~ Mighty M~  2018
+##  9 Caleb      Garcia-Wi~    37 907-555-9236  24730 41115  Frien~ &amp;lt;NA&amp;gt;       2018
+## 10 Caleb      Garcia-Wi~    37 907-555-9236  25611 21127  Minec~ Minifig-~  2018
+## # ... with 610 more rows, and 6 more variables: name &amp;lt;chr&amp;gt;, pieces &amp;lt;dbl&amp;gt;,
+## #   us_price &amp;lt;dbl&amp;gt;, image_url &amp;lt;chr&amp;gt;, quantity &amp;lt;dbl&amp;gt;, age_group &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## Displaying selected variables from the new generated data frame so that the new variable age_group can be clearly seen:
+
+lego_sales_age_group %&amp;gt;% select(first_name,age,age_group)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 620 x 3
+##    first_name   age age_group
+##    &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;    
+##  1 Kimberly      24 19 - 25  
+##  2 Neel          35 26 - 35  
+##  3 Neel          35 26 - 35  
+##  4 Chelsea       41 36 - 50  
+##  5 Chelsea       41 36 - 50  
+##  6 Chelsea       41 36 - 50  
+##  7 Bryanna       19 19 - 25  
+##  8 Bryanna       19 19 - 25  
+##  9 Caleb         37 36 - 50  
+## 10 Caleb         37 36 - 50  
+## # ... with 610 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;q5.what-is-the-probability-a-randomly-selected-customer&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Q5.What is the probability a randomly selected customer&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;is in the 19 - 25 age group?&lt;/li&gt;
+&lt;li&gt;is in the 19 - 25 age group and purchased a Duplo theme set?&lt;/li&gt;
+&lt;li&gt;is in the 19 - 25 age group given they purchased a Duplo theme set?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-answer-4&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The answer:&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# 1st part Calculating the probability a randomly selected customer is in the 19 - 25 age group
+from19_to25_age_group &amp;lt;- lego_sales_age_group %&amp;gt;%
+count(age_group) %&amp;gt;%
+  filter( age_group==&amp;quot;19 - 25&amp;quot;)
+
+prob_of_19_25 &amp;lt;- (from19_to25_age_group$n/nrow(lego_sales))
+       
+# 2nd part Calculating the probability a randomly selected customer is in the 19 - 25 age group and purchased a Duplo theme set
+from19_25_duplo_theme  &amp;lt;- lego_sales_age_group %&amp;gt;%
+  filter( age_group==&amp;quot;19 - 25&amp;quot; &amp;amp; theme==&amp;quot;Duplo&amp;quot;)
+
+prob_from19_25_duplo_theme &amp;lt;- (nrow(from19_25_duplo_theme)/nrow(lego_sales))
+
+# 3rd part Calculating the probability a randomly selected customer is in the 19 - 25 age group given they purchased a Duplo theme set
+duplo_theme_customers  &amp;lt;- lego_sales_age_group %&amp;gt;%
+  filter(theme==&amp;quot;Duplo&amp;quot;)
+  
+prob_of_19_given_duplo_theme &amp;lt;- (nrow(from19_25_duplo_theme)/nrow(duplo_theme_customers))
+
+
+cat(&amp;quot;The probability of a randomly selected customer is in the 19 - 25 age groupis &amp;quot;,prob_of_19_25 ,sep = &amp;quot;\n &amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The probability of a randomly selected customer is in the 19 - 25 age groupis 
+##  0.2080645&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cat(&amp;quot;The probability of a randomly selected customer is in the 19 - 25 age group and purchased a Duplo theme is &amp;quot;,prob_from19_25_duplo_theme ,sep = &amp;quot;\n &amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The probability of a randomly selected customer is in the 19 - 25 age group and purchased a Duplo theme is 
+##  0.01451613&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cat(&amp;quot;The probability of a randomly selected customer is in the 19 - 25 age group given they purchased a Duplo theme is &amp;quot;,prob_of_19_given_duplo_theme ,sep = &amp;quot;\n &amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The probability of a randomly selected customer is in the 19 - 25 age group given they purchased a Duplo theme is 
+##  0.2571429&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;q6.which-age-group-has-purchased-the-largest-number-of-lego-sets-how-many-did-they-purchase&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Q6.Which age group has purchased the largest number of lego sets? How many did they purchase?&lt;/h3&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-answer-5&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The answer:&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lego_sales_by_age_group &amp;lt;- lego_sales_age_group %&amp;gt;% group_by(age_group) %&amp;gt;% 
+  summarise(total_quantity=sum(quantity)) %&amp;gt;% 
+  arrange(desc(total_quantity))%&amp;gt;%
+  head(1)
+  cat(&amp;quot;The age group that has purchased the largest number of lego sets is&amp;quot;,lego_sales_by_age_group$age_group,sep=&amp;quot;\n&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The age group that has purchased the largest number of lego sets is
+## 36 - 50&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;  cat(&amp;quot;They purchased a total number of lego sets equal to &amp;quot;,lego_sales_by_age_group$total_quantity,sep=&amp;quot;\n&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## They purchased a total number of lego sets equal to 
+## 313&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;q7.which-age-group-has-spent-the-most-money-on-legos-how-much-did-they-spend&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Q7.Which age group has spent the most money on legos? How much did they spend?&lt;/h3&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-answer-6&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The answer:&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;most_spending_by_age_group &amp;lt;- lego_sales_age_group %&amp;gt;% mutate(total_price=us_price*quantity) %&amp;gt;%
+  group_by(age_group) %&amp;gt;% 
+  summarise(total_spending=sum(total_price)) %&amp;gt;% 
+  arrange(desc(total_spending))%&amp;gt;%
+  head(1)
+cat(&amp;quot;The age group that has spent the most money on Lego is  &amp;quot;,most_spending_by_age_group$age_group ,sep = &amp;quot;\n &amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The age group that has spent the most money on Lego is  
+##  36 - 50&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cat(&amp;quot;They spend amount of US dollars equal to  &amp;quot;,most_spending_by_age_group$total_spending ,sep = &amp;quot;\n &amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## They spend amount of US dollars equal to  
+##  9532.87&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;q8.come-up-with-a-question-you-want-to-answer-using-this-data-and-write-it-down.-then-create-a-data-visualization-that-answers-the-question-and-briefly-explain-how-your-visualization-answers-the-question.&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Q8.Come up with a question you want to answer using this data, and write it down. Then, create a data visualization that answers the question, and briefly explain how your visualization answers the question.&lt;/h3&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-answer-7&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The answer:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The question could be how much revenue Lego makes from each theme and the contribution of each age group in each theme revenue?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The answer of this question can be obtained by first multiplying the quantity of sets purchased by every customer by the price per each set, then group the data frame by the theme so that the revenue from each theme can be obtained, plotting the theme on the x axis and the revenue on the y axis of the column plot would allow us easily to determine the revenue of each theme and the age groups contributed in each theme revenue.&lt;/p&gt;
+&lt;p&gt;From the plot we can see that Star Wars theme makes the most revenue of more than 4000 Us dollars where 26-35 and 36-50 age groups have more contributions on this revenue than the other age groups, next is the Ninjago theme of revenue more than 2000 US dollar where we can see that 18 and under age group doesn’t contribute in this revenue much and city theme of revenue more than 2000 US dollar where we can see that this theme doesn’t attract the 51 and over age group and the themes that makes the little revenues are Classic, Collectable Minifigures and seasonal themes where each theme attract only a certain age group that is 36-50, 51 and over and 26-35 respectively.&lt;/p&gt;
+&lt;p&gt;The Duplo, Elvis, Friends, Gear and Minicraft themes make revenue of a little more than 1000 us dollars where the contribution of the 18 and under age group is very small, the revenue from the remaining themes is less than 1000 us dollars and the age groups contribution vary from one theme to another.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lego_sales_by_theme &amp;lt;- lego_sales_age_group %&amp;gt;% mutate(total_price=us_price*quantity) %&amp;gt;%
+  group_by(theme) 
+
+ggplot(lego_sales_by_theme,aes(x=theme,y=total_price,fill=age_group))+
+  geom_col()+
+  theme(axis.text.x=element_text(color = &amp;quot;black&amp;quot;, size=9, angle=90, vjust=.5, hjust=0.7))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a03/index_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;q9.add-one-element-to-the-plot-from-the-previous-exercise-to-change-the-look-of-the-plot-without-changing-the-underlying-data.-for-example-you-can-change-the-theme-background-color-add-annotations-etc.-state-the-change-youre-making-and-display-the-updated-visualization.-we-encourage-you-to-be-creative&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Q9.Add one element to the plot from the previous exercise to change the look of the plot without changing the underlying data. For example, you can change the theme, background color, add annotations, etc. State the change you’re making and display the updated visualization. We encourage you to be creative!&lt;/h3&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-answer-8&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The answer:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Title for the plot has been added&lt;/li&gt;
+&lt;li&gt;Titles for the 2 axes of the plot have been added&lt;/li&gt;
+&lt;li&gt;Black and white theme is used&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;The background color has been changed&lt;/li&gt;
+&lt;li&gt;viridis used to update the color map&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(lego_sales_by_theme,aes(x=theme,y=total_price,fill=age_group))+
+  geom_col() +
+  scale_fill_viridis_d() +
+  theme_bw()+
+  theme(axis.text.x=element_text(color = &amp;quot;red&amp;quot;, size=9, angle=90, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &amp;quot;#BFD5E3&amp;quot;))+
+  labs(
+    x = &amp;quot;Theme&amp;quot;, y = &amp;quot;The revenue in US Dollars &amp;quot;, 
+    title = &amp;quot;The revenue associated with each theme and the contribution \n                        of each age group in this revenue&amp;quot;, 
+         fill = &amp;quot;Age Groups&amp;quot; 
+    )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a03/index_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Data I/O</title>
+      <link>/post/data-i-o/</link>
+      <pubDate>Tue, 01 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>/post/data-i-o/</guid>
+      <description>
+&lt;script src=&#34;/post/data-i-o/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;import-nobel.csv-file&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Import Nobel.csv file&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.3     v purrr   0.3.4
+## v tibble  3.1.1     v dplyr   1.0.6
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;nobel &amp;lt;- read_csv(&amp;quot;nobel.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   .default = col_character(),
+##   id = col_double(),
+##   year = col_double(),
+##   born_date = col_date(format = &amp;quot;&amp;quot;),
+##   died_date = col_date(format = &amp;quot;&amp;quot;),
+##   share = col_double()
+## )
+## i Use `spec()` for the full column specifications.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(nobel)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 26
+##      id firstname  surname  year category affiliation   city  country born_date 
+##   &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;date&amp;gt;    
+## 1     1 Wilhelm C~ Röntgen  1901 Physics  Munich Unive~ Muni~ Germany 1845-03-27
+## 2     2 Hendrik A. Lorentz  1902 Physics  Leiden Unive~ Leid~ Nether~ 1853-07-18
+## 3     3 Pieter     Zeeman   1902 Physics  Amsterdam Un~ Amst~ Nether~ 1865-05-25
+## 4     4 Henri      Becque~  1903 Physics  École Polyte~ Paris France  1852-12-15
+## 5     5 Pierre     Curie    1903 Physics  École munici~ Paris France  1859-05-15
+## 6     6 Marie      Curie    1903 Physics  &amp;lt;NA&amp;gt;          &amp;lt;NA&amp;gt;  &amp;lt;NA&amp;gt;    1867-11-07
+## # ... with 17 more variables: died_date &amp;lt;date&amp;gt;, gender &amp;lt;chr&amp;gt;, born_city &amp;lt;chr&amp;gt;,
+## #   born_country &amp;lt;chr&amp;gt;, born_country_code &amp;lt;chr&amp;gt;, died_city &amp;lt;chr&amp;gt;,
+## #   died_country &amp;lt;chr&amp;gt;, died_country_code &amp;lt;chr&amp;gt;, overall_motivation &amp;lt;chr&amp;gt;,
+## #   share &amp;lt;dbl&amp;gt;, motivation &amp;lt;chr&amp;gt;, born_country_original &amp;lt;chr&amp;gt;,
+## #   born_city_original &amp;lt;chr&amp;gt;, died_country_original &amp;lt;chr&amp;gt;,
+## #   died_city_original &amp;lt;chr&amp;gt;, city_original &amp;lt;chr&amp;gt;, country_original &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;write-a-csv-file&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Write a csv file&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df &amp;lt;- tribble(
+  ~x, ~y,
+  1,  &amp;quot;a&amp;quot;,
+  2,  &amp;quot;b&amp;quot;,
+  3,  &amp;quot;c&amp;quot;
+)
+write_csv(df, file = &amp;quot;df.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;dealing-with-bad-variable-names&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Dealing with bad variable names&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#edibnb_badnames &amp;lt;- read_csv(&amp;quot;edibnb-badnames.csv&amp;quot;)
+#names(edibnb_badnames)
+
+edibnb_col_names &amp;lt;- read_csv(&amp;quot;edibnb-badnames.csv&amp;quot;,
+                             col_names = c(&amp;quot;id&amp;quot;, &amp;quot;price&amp;quot;, 
+                                           &amp;quot;neighbourhood&amp;quot;, &amp;quot;accommodates&amp;quot;,
+                                           &amp;quot;bathroom&amp;quot;, &amp;quot;bedroom&amp;quot;, 
+                                           &amp;quot;bed&amp;quot;, &amp;quot;review_scores_rating&amp;quot;, 
+                                           &amp;quot;n_reviews&amp;quot;, &amp;quot;url&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   id = col_character(),
+##   price = col_character(),
+##   neighbourhood = col_character(),
+##   accommodates = col_character(),
+##   bathroom = col_character(),
+##   bedroom = col_character(),
+##   bed = col_character(),
+##   review_scores_rating = col_character(),
+##   n_reviews = col_character(),
+##   url = col_character()
+## )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;names(edibnb_col_names)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;id&amp;quot;                   &amp;quot;price&amp;quot;                &amp;quot;neighbourhood&amp;quot;       
+##  [4] &amp;quot;accommodates&amp;quot;         &amp;quot;bathroom&amp;quot;             &amp;quot;bedroom&amp;quot;             
+##  [7] &amp;quot;bed&amp;quot;                  &amp;quot;review_scores_rating&amp;quot; &amp;quot;n_reviews&amp;quot;           
+## [10] &amp;quot;url&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;importing-data-with-snake-case-variables&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Importing data with snake case variables&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;edibnb_clean_names &amp;lt;- read_csv(&amp;quot;edibnb-badnames.csv&amp;quot;) %&amp;gt;%
+  janitor::clean_names()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   ID = col_double(),
+##   Price = col_double(),
+##   neighbourhood = col_character(),
+##   accommodates = col_double(),
+##   `Number of bathrooms` = col_double(),
+##   `Number of Bedrooms` = col_double(),
+##   `n beds` = col_double(),
+##   `Review Scores Rating` = col_double(),
+##   `Number of reviews` = col_double(),
+##   listing_url = col_character()
+## )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;names(edibnb_clean_names)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;id&amp;quot;                   &amp;quot;price&amp;quot;                &amp;quot;neighbourhood&amp;quot;       
+##  [4] &amp;quot;accommodates&amp;quot;         &amp;quot;number_of_bathrooms&amp;quot;  &amp;quot;number_of_bedrooms&amp;quot;  
+##  [7] &amp;quot;n_beds&amp;quot;               &amp;quot;review_scores_rating&amp;quot; &amp;quot;number_of_reviews&amp;quot;   
+## [10] &amp;quot;listing_url&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;read-df-na.csv&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Read df-na.csv&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#read_csv(&amp;quot;df-na.csv&amp;quot;) 
+read_csv(&amp;quot;df-na.csv&amp;quot;, 
+         na = c(&amp;quot;&amp;quot;, &amp;quot;NA&amp;quot;, &amp;quot;.&amp;quot;, &amp;quot;9999&amp;quot;, &amp;quot;Not applicable&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   x = col_double(),
+##   y = col_character(),
+##   z = col_character()
+## )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 9 x 3
+##       x y     z     
+##   &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; 
+## 1     1 a     hi    
+## 2    NA b     hello 
+## 3     3 &amp;lt;NA&amp;gt;  &amp;lt;NA&amp;gt;  
+## 4     4 d     ola   
+## 5     5 e     hola  
+## 6    NA f     whatup
+## 7     7 g     wassup
+## 8     8 h     sup   
+## 9     9 i     &amp;lt;NA&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;reading-an-xlsx-file&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Reading an xlsx file&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readxl)
+fav_food &amp;lt;- read_excel(&amp;quot;favourite-food.xlsx&amp;quot;,
+                               na = c(&amp;quot;N/A&amp;quot;, &amp;quot;99999&amp;quot;)) %&amp;gt;%
+janitor::clean_names()
+fav_food&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 6
+##   student_id full_name        favourite_food     meal_plan           age   ses  
+##        &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;              &amp;lt;chr&amp;gt;               &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;
+## 1          1 Sunil Huffmann   Strawberry yoghurt Lunch only          4     High 
+## 2          2 Barclay Lynn     French fries       Lunch only          5     Midd~
+## 3          3 Jayendra Lyne    &amp;lt;NA&amp;gt;               Breakfast and lunch 7     Low  
+## 4          4 Leon Rossini     Anchovies          Lunch only          &amp;lt;NA&amp;gt;  Midd~
+## 5          5 Chidiegwu Dunkel Pizza              Breakfast and lunch five  High&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fav_food &amp;lt;- fav_food %&amp;gt;%
+  mutate(
+    age = if_else(age == &amp;quot;five&amp;quot;, &amp;quot;5&amp;quot;, age),
+    age = as.numeric(age)
+    )
+
+fav_food&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 6
+##   student_id full_name        favourite_food     meal_plan             age ses  
+##        &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;              &amp;lt;chr&amp;gt;               &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;
+## 1          1 Sunil Huffmann   Strawberry yoghurt Lunch only              4 High 
+## 2          2 Barclay Lynn     French fries       Lunch only              5 Midd~
+## 3          3 Jayendra Lyne    &amp;lt;NA&amp;gt;               Breakfast and lunch     7 Low  
+## 4          4 Leon Rossini     Anchovies          Lunch only             NA Midd~
+## 5          5 Chidiegwu Dunkel Pizza              Breakfast and lunch     5 High&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;glimpse(fav_food)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 5
+## Columns: 6
+## $ student_id     &amp;lt;dbl&amp;gt; 1, 2, 3, 4, 5
+## $ full_name      &amp;lt;chr&amp;gt; &amp;quot;Sunil Huffmann&amp;quot;, &amp;quot;Barclay Lynn&amp;quot;, &amp;quot;Jayendra Lyne&amp;quot;, &amp;quot;Leo~
+## $ favourite_food &amp;lt;chr&amp;gt; &amp;quot;Strawberry yoghurt&amp;quot;, &amp;quot;French fries&amp;quot;, NA, &amp;quot;Anchovies&amp;quot;, ~
+## $ meal_plan      &amp;lt;chr&amp;gt; &amp;quot;Lunch only&amp;quot;, &amp;quot;Lunch only&amp;quot;, &amp;quot;Breakfast and lunch&amp;quot;, &amp;quot;Lun~
+## $ age            &amp;lt;dbl&amp;gt; 4, 5, 7, NA, 5
+## $ ses            &amp;lt;chr&amp;gt; &amp;quot;High&amp;quot;, &amp;quot;Middle&amp;quot;, &amp;quot;Low&amp;quot;, &amp;quot;Middle&amp;quot;, &amp;quot;High&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;etl-of-ses-varaible&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;ETL of SES varaible&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fav_food %&amp;gt;%
+  count(ses)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 2
+##   ses        n
+##   &amp;lt;chr&amp;gt;  &amp;lt;int&amp;gt;
+## 1 High       2
+## 2 Low        1
+## 3 Middle     2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fav_food &amp;lt;- fav_food %&amp;gt;%
+  mutate(ses = fct_relevel(ses, &amp;quot;Low&amp;quot;, &amp;quot;Middle&amp;quot;, &amp;quot;High&amp;quot;))
+fav_food %&amp;gt;%
+  count(ses)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 2
+##   ses        n
+##   &amp;lt;fct&amp;gt;  &amp;lt;int&amp;gt;
+## 1 Low        1
+## 2 Middle     2
+## 3 High       2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fav_food&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 6
+##   student_id full_name        favourite_food     meal_plan             age ses  
+##        &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;              &amp;lt;chr&amp;gt;               &amp;lt;dbl&amp;gt; &amp;lt;fct&amp;gt;
+## 1          1 Sunil Huffmann   Strawberry yoghurt Lunch only              4 High 
+## 2          2 Barclay Lynn     French fries       Lunch only              5 Midd~
+## 3          3 Jayendra Lyne    &amp;lt;NA&amp;gt;               Breakfast and lunch     7 Low  
+## 4          4 Leon Rossini     Anchovies          Lunch only             NA Midd~
+## 5          5 Chidiegwu Dunkel Pizza              Breakfast and lunch     5 High&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;putting-it-altogether&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Putting it altogether&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fav_food &amp;lt;- read_excel(&amp;quot;favourite-food.xlsx&amp;quot;, na = c(&amp;quot;N/A&amp;quot;, &amp;quot;99999&amp;quot;)) %&amp;gt;%
+  janitor::clean_names() %&amp;gt;%
+  mutate(
+    age = if_else(age == &amp;quot;five&amp;quot;, &amp;quot;5&amp;quot;, age), 
+    age = as.numeric(age),
+    ses = fct_relevel(ses, &amp;quot;Low&amp;quot;, &amp;quot;Middle&amp;quot;, &amp;quot;High&amp;quot;)
+  )
+fav_food&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 6
+##   student_id full_name        favourite_food     meal_plan             age ses  
+##        &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;              &amp;lt;chr&amp;gt;               &amp;lt;dbl&amp;gt; &amp;lt;fct&amp;gt;
+## 1          1 Sunil Huffmann   Strawberry yoghurt Lunch only              4 High 
+## 2          2 Barclay Lynn     French fries       Lunch only              5 Midd~
+## 3          3 Jayendra Lyne    &amp;lt;NA&amp;gt;               Breakfast and lunch     7 Low  
+## 4          4 Leon Rossini     Anchovies          Lunch only             NA Midd~
+## 5          5 Chidiegwu Dunkel Pizza              Breakfast and lunch     5 High&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Assignment A02: TIDYVERSE</title>
+      <link>/post/assignment-a02-tidyverse/</link>
+      <pubDate>Thu, 27 May 2021 00:00:00 +0000</pubDate>
+      <guid>/post/assignment-a02-tidyverse/</guid>
+      <description>
+&lt;script src=&#34;/post/assignment-a02-tidyverse/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;covid-19-world-vaccination-progress&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;COVID-19 World Vaccination Progress&lt;/h2&gt;
+&lt;p&gt;Daily and Total Vaccination for COVID-19 in the World from Our World in Data, Data is collected daily from Our World in Data GitHub repository for covid-19, merged and uploaded.
+the used data set in this blog is updated version (119) and it was released in may 26th,2021.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.3     v purrr   0.3.4
+## v tibble  3.1.1     v dplyr   1.0.6
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+
+
+# reading the CSV file after placing it in the same directory where getdw() was used to determine the current directory
+country_vacc &amp;lt;- read_csv(&amp;quot;country_vaccinations.csv&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   country = col_character(),
+##   iso_code = col_character(),
+##   date = col_date(format = &amp;quot;&amp;quot;),
+##   total_vaccinations = col_double(),
+##   people_vaccinated = col_double(),
+##   people_fully_vaccinated = col_double(),
+##   daily_vaccinations_raw = col_double(),
+##   daily_vaccinations = col_double(),
+##   total_vaccinations_per_hundred = col_double(),
+##   people_vaccinated_per_hundred = col_double(),
+##   people_fully_vaccinated_per_hundred = col_double(),
+##   daily_vaccinations_per_million = col_double(),
+##   vaccines = col_character(),
+##   source_name = col_character(),
+##   source_website = col_character()
+## )&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-two-tables-from-the-country_vaccinations-dataset&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Creating two tables from the country_vaccinations dataset&lt;/h2&gt;
+&lt;p&gt;table_1 includes the following variables:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;country: this is the country for which the vaccination information is provided&lt;/li&gt;
+&lt;li&gt;iso_code: ISO code for the country&lt;/li&gt;
+&lt;li&gt;date: Date of observation&lt;/li&gt;
+&lt;li&gt;people_vaccinated: Total number of people who received at least one vaccine dose&lt;/li&gt;
+&lt;li&gt;daily_vaccinations:for a certain data entry, the number of vaccination for that date/country&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;table_2 includes the following variables:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;country: this is the country for which the vaccination information is provided&lt;/li&gt;
+&lt;li&gt;iso_code: ISO code for the country&lt;/li&gt;
+&lt;li&gt;date: Date of observation&lt;/li&gt;
+&lt;li&gt;people_fully_vaccinated: this is the number of people that received the entire set of immunization according to the immunization scheme (typically 2)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Creating the first table (table_1)
+table_1 &amp;lt;- country_vacc %&amp;gt;%
+select (country,iso_code,date,people_vaccinated,daily_vaccinations)
+
+table_1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 20,390 x 5
+##    country     iso_code date       people_vaccinated daily_vaccinations
+##    &amp;lt;chr&amp;gt;       &amp;lt;chr&amp;gt;    &amp;lt;date&amp;gt;                 &amp;lt;dbl&amp;gt;              &amp;lt;dbl&amp;gt;
+##  1 Afghanistan AFG      2021-02-22                 0                 NA
+##  2 Afghanistan AFG      2021-02-23                NA               1367
+##  3 Afghanistan AFG      2021-02-24                NA               1367
+##  4 Afghanistan AFG      2021-02-25                NA               1367
+##  5 Afghanistan AFG      2021-02-26                NA               1367
+##  6 Afghanistan AFG      2021-02-27                NA               1367
+##  7 Afghanistan AFG      2021-02-28              8200               1367
+##  8 Afghanistan AFG      2021-03-01                NA               1580
+##  9 Afghanistan AFG      2021-03-02                NA               1794
+## 10 Afghanistan AFG      2021-03-03                NA               2008
+## # ... with 20,380 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Creating the second table (table_2)
+table_2 &amp;lt;- country_vacc %&amp;gt;%
+select (country,iso_code,date, people_fully_vaccinated) 
+table_2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 20,390 x 4
+##    country     iso_code date       people_fully_vaccinated
+##    &amp;lt;chr&amp;gt;       &amp;lt;chr&amp;gt;    &amp;lt;date&amp;gt;                       &amp;lt;dbl&amp;gt;
+##  1 Afghanistan AFG      2021-02-22                      NA
+##  2 Afghanistan AFG      2021-02-23                      NA
+##  3 Afghanistan AFG      2021-02-24                      NA
+##  4 Afghanistan AFG      2021-02-25                      NA
+##  5 Afghanistan AFG      2021-02-26                      NA
+##  6 Afghanistan AFG      2021-02-27                      NA
+##  7 Afghanistan AFG      2021-02-28                      NA
+##  8 Afghanistan AFG      2021-03-01                      NA
+##  9 Afghanistan AFG      2021-03-02                      NA
+## 10 Afghanistan AFG      2021-03-03                      NA
+## # ... with 20,380 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;calculating-the-percentage-of-people-who-are-fully-vaccinated-in-canada&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Calculating the percentage of people who are fully vaccinated in Canada&lt;/h2&gt;
+&lt;p&gt;to calculate the percentage of people who are fully vaccinated we need first to join table_1 and table_2, then applying filter to pick only the Canada data set thenWe can calculate the percentage of people who are fully vaccinated by dividing the number of fully vaccinated people by the total number of vaccinations per day and multiply the result by 100.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;percent_of_fully_vacc &amp;lt;- table_1 %&amp;gt;%
+  left_join(table_2)%&amp;gt;%
+  filter(country==&amp;quot;Canada&amp;quot;) %&amp;gt;%
+  mutate(percent_of_fully_vaccinated_people=people_fully_vaccinated/daily_vaccinations*100)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Joining, by = c(&amp;quot;country&amp;quot;, &amp;quot;iso_code&amp;quot;, &amp;quot;date&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(percent_of_fully_vacc,aes(date,percent_of_fully_vaccinated_people))+
+  geom_col()+
+  labs(title=&amp;quot;              Percetage of fully vaccinated people from the daily vaccination&amp;quot;,x=&amp;quot;Date&amp;quot;,y=&amp;quot;percentage of fully vaccinated&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 23 rows containing missing values (position_stack).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/assignment-a02-tidyverse/index_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;percent_of_fully_vacc&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 163 x 7
+##    country iso_code date       people_vaccinated daily_vaccinations
+##    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;    &amp;lt;date&amp;gt;                 &amp;lt;dbl&amp;gt;              &amp;lt;dbl&amp;gt;
+##  1 Canada  CAN      2020-12-14                NA                 NA
+##  2 Canada  CAN      2020-12-15                NA                718
+##  3 Canada  CAN      2020-12-16                NA               1509
+##  4 Canada  CAN      2020-12-17                NA               2399
+##  5 Canada  CAN      2020-12-18                NA               2792
+##  6 Canada  CAN      2020-12-19                NA               2378
+##  7 Canada  CAN      2020-12-20                NA               2122
+##  8 Canada  CAN      2020-12-21                NA               2980
+##  9 Canada  CAN      2020-12-22                NA               3697
+## 10 Canada  CAN      2020-12-23                NA               4581
+## # ... with 153 more rows, and 2 more variables: people_fully_vaccinated &amp;lt;dbl&amp;gt;,
+## #   percent_of_fully_vaccinated_people &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-a-summary-table-for-canada-vaccination-records&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Creating a summary table for Canada vaccination records&lt;/h2&gt;
+&lt;p&gt;The Can_vacc table will be created after fully joining the two tables which are table country_vacc and percent_of_fully_vacc, then filter Canada data and from the filtered data select and rearrange the date, daily_vaccinations, vaccines, percent_of_fully_vaccinated_people variables&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Can_vacc &amp;lt;- country_vacc  %&amp;gt;%
+full_join(percent_of_fully_vacc)  %&amp;gt;%
+filter(country==&amp;quot;Canada&amp;quot;) %&amp;gt;%
+select(date,daily_vaccinations,vaccines,percent_of_fully_vaccinated_people)%&amp;gt;%
+relocate(percent_of_fully_vaccinated_people, .after =daily_vaccinations )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Joining, by = c(&amp;quot;country&amp;quot;, &amp;quot;iso_code&amp;quot;, &amp;quot;date&amp;quot;, &amp;quot;people_vaccinated&amp;quot;, &amp;quot;people_fully_vaccinated&amp;quot;, &amp;quot;daily_vaccinations&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt; Can_vacc&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 163 x 4
+##    date       daily_vaccinatio~ percent_of_fully_vaccin~ vaccines               
+##    &amp;lt;date&amp;gt;                 &amp;lt;dbl&amp;gt;                    &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;                  
+##  1 2020-12-14                NA                       NA Moderna, Oxford/AstraZ~
+##  2 2020-12-15               718                       NA Moderna, Oxford/AstraZ~
+##  3 2020-12-16              1509                       NA Moderna, Oxford/AstraZ~
+##  4 2020-12-17              2399                       NA Moderna, Oxford/AstraZ~
+##  5 2020-12-18              2792                       NA Moderna, Oxford/AstraZ~
+##  6 2020-12-19              2378                       NA Moderna, Oxford/AstraZ~
+##  7 2020-12-20              2122                       NA Moderna, Oxford/AstraZ~
+##  8 2020-12-21              2980                       NA Moderna, Oxford/AstraZ~
+##  9 2020-12-22              3697                       NA Moderna, Oxford/AstraZ~
+## 10 2020-12-23              4581                       NA Moderna, Oxford/AstraZ~
+## # ... with 153 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;grouping-the-data-by-the-vaccine-scheme&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;grouping the data by the vaccine scheme&lt;/h2&gt;
+&lt;p&gt;we will group our data based on the Vaccines scheme and calculate the mean of the daily_vaccinations and arrange the result in descending order to know the most used vaccine scheme&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Vaccine_scheme&amp;lt;- country_vacc %&amp;gt;% group_by(vaccines) %&amp;gt;% 
+  drop_na() %&amp;gt;% 
+  summarise(mean_daily_vacc=mean(daily_vaccinations))%&amp;gt;%
+  arrange(desc(mean_daily_vacc))
+
+Vaccine_scheme&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 35 x 2
+##    vaccines                                                      mean_daily_vacc
+##    &amp;lt;chr&amp;gt;                                                                   &amp;lt;dbl&amp;gt;
+##  1 Johnson&amp;amp;Johnson, Moderna, Pfizer/BioNTech                            2129707.
+##  2 Covaxin, Oxford/AstraZeneca                                          1825083.
+##  3 EpiVacCorona, Sputnik V                                               260009.
+##  4 CanSino, Oxford/AstraZeneca, Pfizer/BioNTech, Sinovac, Sputn~         200752.
+##  5 Pfizer/BioNTech, Sinovac                                              144037.
+##  6 CanSino, Oxford/AstraZeneca, Sinopharm/Beijing, Sinovac, Spu~         141494 
+##  7 Oxford/AstraZeneca, Pfizer/BioNTech, Sinovac                          140997.
+##  8 Moderna, Oxford/AstraZeneca, Pfizer/BioNTech                          134150.
+##  9 Oxford/AstraZeneca, Sinovac                                           129134.
+## 10 Johnson&amp;amp;Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech          80371.
+## # ... with 25 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;grouping-the-data-by-the-source-of-that-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;grouping the data by the source of that data&lt;/h2&gt;
+&lt;p&gt;we will group our data based on the source of the data and showing the number of data obtained from each source and then ranking the sources to determine the most source used to collect the data&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Source&amp;lt;-country_vacc %&amp;gt;% 
+  group_by(source_name)  %&amp;gt;% 
+  summarize(n=n())  %&amp;gt;% 
+  arrange(desc(n))
+Source&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 98 x 2
+##    source_name                                            n
+##    &amp;lt;chr&amp;gt;                                              &amp;lt;int&amp;gt;
+##  1 Ministry of Health                                  5984
+##  2 World Health Organization                           2248
+##  3 Government of the United Kingdom                     725
+##  4 SPC Public Health Division                           510
+##  5 Federal Office of Public Health                      273
+##  6 Ministry of Public Health                            255
+##  7 Norwegian Institute of Public Health                 175
+##  8 Official data from provinces via covid19tracker.ca   163
+##  9 National Health Commission                           162
+## 10 Official data from local governments via gogov.ru    162
+## # ... with 88 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-a-monthly-vaccination-records&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Creating a monthly vaccination records&lt;/h2&gt;
+&lt;p&gt;monthly_vacc table includes the vaccination records at the end of Jan., Feb., Mach , April and May for each of Australia, Bahamas, Canada and United Kingdom.&lt;/p&gt;
+&lt;p&gt;In monthly_vacc_wider table we dropped any NA data and rearranged the variables to have a wider table&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;monthly_vacc &amp;lt;- country_vacc   %&amp;gt;%
+filter(date==&amp;quot;2021-01-31&amp;quot;| date==&amp;quot;2021-02-28&amp;quot;|date==&amp;quot;2021-03-31&amp;quot;|date==&amp;quot;2021-04-30&amp;quot;|date==&amp;quot;2021-05-20&amp;quot;) %&amp;gt;%
+  select(country,date,total_vaccinations)%&amp;gt;%
+  filter(country==&amp;quot;Canada&amp;quot;|country==&amp;quot;Australia&amp;quot; |country==&amp;quot;United Kingdom&amp;quot;|country==&amp;quot;Bahamas&amp;quot;)
+
+monthly_vacc_wider &amp;lt;- monthly_vacc %&amp;gt;% drop_na()  %&amp;gt;% 
+  pivot_wider(names_from = date,values_from = total_vaccinations)
+
+monthly_vacc&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 17 x 3
+##    country        date       total_vaccinations
+##    &amp;lt;chr&amp;gt;          &amp;lt;date&amp;gt;                  &amp;lt;dbl&amp;gt;
+##  1 Australia      2021-02-28              31894
+##  2 Australia      2021-03-31             670349
+##  3 Australia      2021-04-30            2179544
+##  4 Australia      2021-05-20            3371728
+##  5 Bahamas        2021-03-31                 NA
+##  6 Bahamas        2021-04-30                 NA
+##  7 Bahamas        2021-05-20                 NA
+##  8 Canada         2021-01-31             957229
+##  9 Canada         2021-02-28            1887059
+## 10 Canada         2021-03-31            5690380
+## 11 Canada         2021-04-30           13420198
+## 12 Canada         2021-05-20           19841562
+## 13 United Kingdom 2021-01-31            9790576
+## 14 United Kingdom 2021-02-28           21091267
+## 15 United Kingdom 2021-03-31           35660902
+## 16 United Kingdom 2021-04-30           49319518
+## 17 United Kingdom 2021-05-20           59178397&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;monthly_vacc_wider&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 6
+##   country       `2021-02-28` `2021-03-31` `2021-04-30` `2021-05-20` `2021-01-31`
+##   &amp;lt;chr&amp;gt;                &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt;
+## 1 Australia            31894       670349      2179544      3371728           NA
+## 2 Canada             1887059      5690380     13420198     19841562       957229
+## 3 United Kingd~     21091267     35660902     49319518     59178397      9790576&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-april-vaccination-records&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Creating April vaccination records&lt;/h2&gt;
+&lt;p&gt;April_vacc table includes the vaccination records of April for each of Australia, Bahamas, Canada, United Kingdom, Hong Kong, Luxembourg, Russia, Scotland, Switzerland, United States and Turkey&lt;/p&gt;
+&lt;p&gt;In April_vacc_longer table the variables were rearranged to have a longer table and any NA values have been replaced by 0.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;April_vacc &amp;lt;- country_vacc   %&amp;gt;%
+filter(date==&amp;quot;2021-04-30&amp;quot;) %&amp;gt;%
+  select(country,date,total_vaccinations)%&amp;gt;%
+  filter(country==&amp;quot;Canada&amp;quot;|country==&amp;quot;Australia&amp;quot; |country==&amp;quot;United Kingdom&amp;quot;|country==&amp;quot;Bahamas&amp;quot;|country==&amp;quot;Hong Kong&amp;quot;|country==&amp;quot;Luxembourg&amp;quot;|country==&amp;quot;Russia&amp;quot;|country==&amp;quot;Scotland&amp;quot;|country==&amp;quot;Switzerland&amp;quot;|country==&amp;quot;United States&amp;quot;|country==&amp;quot;Turkey&amp;quot;) %&amp;gt;%
+  pivot_wider(names_from = country,values_from = total_vaccinations)
+
+
+April_vacc_longer &amp;lt;- April_vacc %&amp;gt;%
+  pivot_longer(cols=&amp;quot;Australia&amp;quot;:&amp;quot;United States&amp;quot;,names_to = &amp;quot;Country&amp;quot;,values_to = &amp;quot;Total_vaccinations&amp;quot;) %&amp;gt;%
+  replace_na(list(Total_vaccinations=0))
+
+April_vacc&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 12
+##   date       Australia Bahamas   Canada `Hong Kong` Luxembourg   Russia Scotland
+##   &amp;lt;date&amp;gt;         &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;       &amp;lt;dbl&amp;gt;      &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1 2021-04-30   2179544      NA 13420198     1413788         NA 19834392  4075205
+## # ... with 4 more variables: Switzerland &amp;lt;dbl&amp;gt;, Turkey &amp;lt;dbl&amp;gt;,
+## #   United Kingdom &amp;lt;dbl&amp;gt;, United States &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;April_vacc_longer&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 11 x 3
+##    date       Country        Total_vaccinations
+##    &amp;lt;date&amp;gt;     &amp;lt;chr&amp;gt;                       &amp;lt;dbl&amp;gt;
+##  1 2021-04-30 Australia                 2179544
+##  2 2021-04-30 Bahamas                         0
+##  3 2021-04-30 Canada                   13420198
+##  4 2021-04-30 Hong Kong                 1413788
+##  5 2021-04-30 Luxembourg                      0
+##  6 2021-04-30 Russia                   19834392
+##  7 2021-04-30 Scotland                  4075205
+##  8 2021-04-30 Switzerland               2769526
+##  9 2021-04-30 Turkey                   22816891
+## 10 2021-04-30 United Kingdom           49319518
+## 11 2021-04-30 United States           240159677&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Data Wrangling using Tidyverse</title>
+      <link>/post/data-wrangling-using-tidyverse/</link>
+      <pubDate>Tue, 25 May 2021 00:00:00 +0000</pubDate>
+      <guid>/post/data-wrangling-using-tidyverse/</guid>
+      <description>
+&lt;script src=&#34;/post/data-wrangling-using-tidyverse/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;import-the-hotels.cvs-file&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Import the Hotels.cvs file&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.3     v purrr   0.3.4
+## v tibble  3.1.1     v dplyr   1.0.6
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;hotels &amp;lt;- read_csv(&amp;quot;hotels.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   .default = col_double(),
+##   hotel = col_character(),
+##   arrival_date_month = col_character(),
+##   meal = col_character(),
+##   country = col_character(),
+##   market_segment = col_character(),
+##   distribution_channel = col_character(),
+##   reserved_room_type = col_character(),
+##   assigned_room_type = col_character(),
+##   deposit_type = col_character(),
+##   agent = col_character(),
+##   company = col_character(),
+##   customer_type = col_character(),
+##   reservation_status = col_character(),
+##   reservation_status_date = col_date(format = &amp;quot;&amp;quot;)
+## )
+## i Use `spec()` for the full column specifications.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(hotels)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 32
+##   hotel is_canceled lead_time arrival_date_ye~ arrival_date_mo~ arrival_date_we~
+##   &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;            &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;                       &amp;lt;dbl&amp;gt;
+## 1 Reso~           0       342             2015 July                           27
+## 2 Reso~           0       737             2015 July                           27
+## 3 Reso~           0         7             2015 July                           27
+## 4 Reso~           0        13             2015 July                           27
+## 5 Reso~           0        14             2015 July                           27
+## 6 Reso~           0        14             2015 July                           27
+## # ... with 26 more variables: arrival_date_day_of_month &amp;lt;dbl&amp;gt;,
+## #   stays_in_weekend_nights &amp;lt;dbl&amp;gt;, stays_in_week_nights &amp;lt;dbl&amp;gt;, adults &amp;lt;dbl&amp;gt;,
+## #   children &amp;lt;dbl&amp;gt;, babies &amp;lt;dbl&amp;gt;, meal &amp;lt;chr&amp;gt;, country &amp;lt;chr&amp;gt;,
+## #   market_segment &amp;lt;chr&amp;gt;, distribution_channel &amp;lt;chr&amp;gt;, is_repeated_guest &amp;lt;dbl&amp;gt;,
+## #   previous_cancellations &amp;lt;dbl&amp;gt;, previous_bookings_not_canceled &amp;lt;dbl&amp;gt;,
+## #   reserved_room_type &amp;lt;chr&amp;gt;, assigned_room_type &amp;lt;chr&amp;gt;, booking_changes &amp;lt;dbl&amp;gt;,
+## #   deposit_type &amp;lt;chr&amp;gt;, agent &amp;lt;chr&amp;gt;, company &amp;lt;chr&amp;gt;, days_in_waiting_list &amp;lt;dbl&amp;gt;,
+## #   customer_type &amp;lt;chr&amp;gt;, adr &amp;lt;dbl&amp;gt;, required_car_parking_spaces &amp;lt;dbl&amp;gt;,
+## #   total_of_special_requests &amp;lt;dbl&amp;gt;, reservation_status &amp;lt;chr&amp;gt;,
+## #   reservation_status_date &amp;lt;date&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;names(hotels)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;hotel&amp;quot;                          &amp;quot;is_canceled&amp;quot;                   
+##  [3] &amp;quot;lead_time&amp;quot;                      &amp;quot;arrival_date_year&amp;quot;             
+##  [5] &amp;quot;arrival_date_month&amp;quot;             &amp;quot;arrival_date_week_number&amp;quot;      
+##  [7] &amp;quot;arrival_date_day_of_month&amp;quot;      &amp;quot;stays_in_weekend_nights&amp;quot;       
+##  [9] &amp;quot;stays_in_week_nights&amp;quot;           &amp;quot;adults&amp;quot;                        
+## [11] &amp;quot;children&amp;quot;                       &amp;quot;babies&amp;quot;                        
+## [13] &amp;quot;meal&amp;quot;                           &amp;quot;country&amp;quot;                       
+## [15] &amp;quot;market_segment&amp;quot;                 &amp;quot;distribution_channel&amp;quot;          
+## [17] &amp;quot;is_repeated_guest&amp;quot;              &amp;quot;previous_cancellations&amp;quot;        
+## [19] &amp;quot;previous_bookings_not_canceled&amp;quot; &amp;quot;reserved_room_type&amp;quot;            
+## [21] &amp;quot;assigned_room_type&amp;quot;             &amp;quot;booking_changes&amp;quot;               
+## [23] &amp;quot;deposit_type&amp;quot;                   &amp;quot;agent&amp;quot;                         
+## [25] &amp;quot;company&amp;quot;                        &amp;quot;days_in_waiting_list&amp;quot;          
+## [27] &amp;quot;customer_type&amp;quot;                  &amp;quot;adr&amp;quot;                           
+## [29] &amp;quot;required_car_parking_spaces&amp;quot;    &amp;quot;total_of_special_requests&amp;quot;     
+## [31] &amp;quot;reservation_status&amp;quot;             &amp;quot;reservation_status_date&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;select-a-variable&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Select a variable&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# select(hotels, lead_time)
+# select(hotels, hotel,lead_time)
+hotels %&amp;gt;%
+  select(hotel, lead_time) %&amp;gt;%
+  arrange(desc(lead_time))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 119,390 x 2
+##    hotel        lead_time
+##    &amp;lt;chr&amp;gt;            &amp;lt;dbl&amp;gt;
+##  1 Resort Hotel       737
+##  2 Resort Hotel       709
+##  3 City Hotel         629
+##  4 City Hotel         629
+##  5 City Hotel         629
+##  6 City Hotel         629
+##  7 City Hotel         629
+##  8 City Hotel         629
+##  9 City Hotel         629
+## 10 City Hotel         629
+## # ... with 119,380 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;select-a-range-of-variable&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Select a range of variable&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;hotels %&amp;gt;%
+  select(hotel, lead_time)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 119,390 x 2
+##    hotel        lead_time
+##    &amp;lt;chr&amp;gt;            &amp;lt;dbl&amp;gt;
+##  1 Resort Hotel       342
+##  2 Resort Hotel       737
+##  3 Resort Hotel         7
+##  4 Resort Hotel        13
+##  5 Resort Hotel        14
+##  6 Resort Hotel        14
+##  7 Resort Hotel         0
+##  8 Resort Hotel         9
+##  9 Resort Hotel        85
+## 10 Resort Hotel        75
+## # ... with 119,380 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;hotels %&amp;gt;%
+  select(starts_with(&amp;quot;arrival&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 119,390 x 4
+##    arrival_date_year arrival_date_mon~ arrival_date_week_n~ arrival_date_day_of~
+##                &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;                            &amp;lt;dbl&amp;gt;                &amp;lt;dbl&amp;gt;
+##  1              2015 July                                27                    1
+##  2              2015 July                                27                    1
+##  3              2015 July                                27                    1
+##  4              2015 July                                27                    1
+##  5              2015 July                                27                    1
+##  6              2015 July                                27                    1
+##  7              2015 July                                27                    1
+##  8              2015 July                                27                    1
+##  9              2015 July                                27                    1
+## 10              2015 July                                27                    1
+## # ... with 119,380 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;select-a-range-of-rows-cases&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;select a range of rows /cases&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;hotels %&amp;gt;%
+  # we will select 1st, 5th, 8th and 10th rows
+  slice(c(1,5,8, 10))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 x 32
+##   hotel is_canceled lead_time arrival_date_ye~ arrival_date_mo~ arrival_date_we~
+##   &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;            &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;                       &amp;lt;dbl&amp;gt;
+## 1 Reso~           0       342             2015 July                           27
+## 2 Reso~           0        14             2015 July                           27
+## 3 Reso~           0         9             2015 July                           27
+## 4 Reso~           1        75             2015 July                           27
+## # ... with 26 more variables: arrival_date_day_of_month &amp;lt;dbl&amp;gt;,
+## #   stays_in_weekend_nights &amp;lt;dbl&amp;gt;, stays_in_week_nights &amp;lt;dbl&amp;gt;, adults &amp;lt;dbl&amp;gt;,
+## #   children &amp;lt;dbl&amp;gt;, babies &amp;lt;dbl&amp;gt;, meal &amp;lt;chr&amp;gt;, country &amp;lt;chr&amp;gt;,
+## #   market_segment &amp;lt;chr&amp;gt;, distribution_channel &amp;lt;chr&amp;gt;, is_repeated_guest &amp;lt;dbl&amp;gt;,
+## #   previous_cancellations &amp;lt;dbl&amp;gt;, previous_bookings_not_canceled &amp;lt;dbl&amp;gt;,
+## #   reserved_room_type &amp;lt;chr&amp;gt;, assigned_room_type &amp;lt;chr&amp;gt;, booking_changes &amp;lt;dbl&amp;gt;,
+## #   deposit_type &amp;lt;chr&amp;gt;, agent &amp;lt;chr&amp;gt;, company &amp;lt;chr&amp;gt;, days_in_waiting_list &amp;lt;dbl&amp;gt;,
+## #   customer_type &amp;lt;chr&amp;gt;, adr &amp;lt;dbl&amp;gt;, required_car_parking_spaces &amp;lt;dbl&amp;gt;,
+## #   total_of_special_requests &amp;lt;dbl&amp;gt;, reservation_status &amp;lt;chr&amp;gt;,
+## #   reservation_status_date &amp;lt;date&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;hotels %&amp;gt;%
+  filter(hotel == &amp;quot;City Hotel&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 79,330 x 32
+##    hotel      is_canceled lead_time arrival_date_year arrival_date_month
+##    &amp;lt;chr&amp;gt;            &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;             &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;             
+##  1 City Hotel           0         6              2015 July              
+##  2 City Hotel           1        88              2015 July              
+##  3 City Hotel           1        65              2015 July              
+##  4 City Hotel           1        92              2015 July              
+##  5 City Hotel           1       100              2015 July              
+##  6 City Hotel           1        79              2015 July              
+##  7 City Hotel           0         3              2015 July              
+##  8 City Hotel           1        63              2015 July              
+##  9 City Hotel           1        62              2015 July              
+## 10 City Hotel           1        62              2015 July              
+## # ... with 79,320 more rows, and 27 more variables:
+## #   arrival_date_week_number &amp;lt;dbl&amp;gt;, arrival_date_day_of_month &amp;lt;dbl&amp;gt;,
+## #   stays_in_weekend_nights &amp;lt;dbl&amp;gt;, stays_in_week_nights &amp;lt;dbl&amp;gt;, adults &amp;lt;dbl&amp;gt;,
+## #   children &amp;lt;dbl&amp;gt;, babies &amp;lt;dbl&amp;gt;, meal &amp;lt;chr&amp;gt;, country &amp;lt;chr&amp;gt;,
+## #   market_segment &amp;lt;chr&amp;gt;, distribution_channel &amp;lt;chr&amp;gt;, is_repeated_guest &amp;lt;dbl&amp;gt;,
+## #   previous_cancellations &amp;lt;dbl&amp;gt;, previous_bookings_not_canceled &amp;lt;dbl&amp;gt;,
+## #   reserved_room_type &amp;lt;chr&amp;gt;, assigned_room_type &amp;lt;chr&amp;gt;, booking_changes &amp;lt;dbl&amp;gt;,
+## #   deposit_type &amp;lt;chr&amp;gt;, agent &amp;lt;chr&amp;gt;, company &amp;lt;chr&amp;gt;, days_in_waiting_list &amp;lt;dbl&amp;gt;,
+## #   customer_type &amp;lt;chr&amp;gt;, adr &amp;lt;dbl&amp;gt;, required_car_parking_spaces &amp;lt;dbl&amp;gt;,
+## #   total_of_special_requests &amp;lt;dbl&amp;gt;, reservation_status &amp;lt;chr&amp;gt;,
+## #   reservation_status_date &amp;lt;date&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;hotels %&amp;gt;%
+  filter( 
+    adults == 0,
+    children &amp;gt;= 1
+    ) %&amp;gt;% 
+  select(adults, babies, children)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 223 x 3
+##    adults babies children
+##     &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+##  1      0      0        3
+##  2      0      0        2
+##  3      0      0        2
+##  4      0      0        2
+##  5      0      0        2
+##  6      0      0        3
+##  7      0      1        2
+##  8      0      0        2
+##  9      0      0        2
+## 10      0      0        2
+## # ... with 213 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;hotels %&amp;gt;%
+  filter( 
+    adults == 0,     
+    children &amp;gt;= 1 &amp;amp; babies &amp;gt;= 1     # &amp;amp; means and
+    ) %&amp;gt;%
+  select(adults, babies, children)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 3
+##   adults babies children
+##    &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1      0      1        2
+## 2      0      1        2
+## 3      0      1        2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;summarizing&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;summarizing&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;hotels %&amp;gt;%
+  count(hotel,market_segment)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 14 x 3
+##    hotel        market_segment     n
+##    &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;          &amp;lt;int&amp;gt;
+##  1 City Hotel   Aviation         237
+##  2 City Hotel   Complementary    542
+##  3 City Hotel   Corporate       2986
+##  4 City Hotel   Direct          6093
+##  5 City Hotel   Groups         13975
+##  6 City Hotel   Offline TA/TO  16747
+##  7 City Hotel   Online TA      38748
+##  8 City Hotel   Undefined          2
+##  9 Resort Hotel Complementary    201
+## 10 Resort Hotel Corporate       2309
+## 11 Resort Hotel Direct          6513
+## 12 Resort Hotel Groups          5836
+## 13 Resort Hotel Offline TA/TO   7472
+## 14 Resort Hotel Online TA      17729&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;mutation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;mutation&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;little_ones&amp;lt;- hotels
+little_ones %&amp;lt;&amp;gt;%
+  mutate(little_ones = children + babies) %&amp;gt;%
+  select(children, babies, little_ones) %&amp;gt;%
+  arrange(desc(little_ones))&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;summary&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary&amp;lt;- hotels %&amp;gt;%
+  group_by(hotel) %&amp;gt;%
+  summarise(mean_adr = mean(adr))
+summary&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 x 2
+##   hotel        mean_adr
+##   &amp;lt;chr&amp;gt;           &amp;lt;dbl&amp;gt;
+## 1 City Hotel      105. 
+## 2 Resort Hotel     95.0&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

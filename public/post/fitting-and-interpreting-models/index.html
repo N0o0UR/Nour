@@ -1,0 +1,1584 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.2.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Nouran Mostafa" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Import LibrariesImport Data: Paris Paintingspp &lt;- read_csv(&quot;paris-paintings.csv&quot;, na = c(&quot;n/a&quot;, &quot;&quot;, &quot;NA&quot;))## ## -- Column specification --------------------------------------------------------## cols(## .default = col_double(),## name = col_character(),## sale = col_character(),## lot = col_character(),## dealer = col_character(),## origin_author = col_character(),## origin_cat = col_character(),## school_pntg = col_character(),## price = col_number(),## subject = col_character(),## authorstandard = col_character(),## authorstyle = col_character(),## author = col_character(),## winningbidder = col_character(),## winningbiddertype = col_character(),## endbuyer = col_character(),## type_intermed = col_character(),## Shape = col_character(),## material = col_character(),## mat = col_character(),## materialCat = col_character()## )## i Use `spec()` for the full column specifications." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/fitting-and-interpreting-models/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.7145a9a307b7b6e0cf40149bdecd66b5.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/post/fitting-and-interpreting-models/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+  <meta property="og:site_name" content="HOME" />
+  <meta property="og:url" content="/post/fitting-and-interpreting-models/" />
+  <meta property="og:title" content="Fitting and Interpreting models  | HOME" />
+  <meta property="og:description" content="Import LibrariesImport Data: Paris Paintingspp &lt;- read_csv(&quot;paris-paintings.csv&quot;, na = c(&quot;n/a&quot;, &quot;&quot;, &quot;NA&quot;))## ## -- Column specification --------------------------------------------------------## cols(## .default = col_double(),## name = col_character(),## sale = col_character(),## lot = col_character(),## dealer = col_character(),## origin_author = col_character(),## origin_cat = col_character(),## school_pntg = col_character(),## price = col_number(),## subject = col_character(),## authorstandard = col_character(),## authorstyle = col_character(),## author = col_character(),## winningbidder = col_character(),## winningbiddertype = col_character(),## endbuyer = col_character(),## type_intermed = col_character(),## Shape = col_character(),## material = col_character(),## mat = col_character(),## materialCat = col_character()## )## i Use `spec()` for the full column specifications." /><meta property="og:image" content="/post/fitting-and-interpreting-models/featured.jpg" />
+    <meta property="twitter:image" content="/post/fitting-and-interpreting-models/featured.jpg" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-06-15T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-06-15T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/fitting-and-interpreting-models/"
+  },
+  "headline": "Fitting and Interpreting models ",
+  
+  "image": [
+    "/post/fitting-and-interpreting-models/featured.jpg"
+  ],
+  
+  "datePublished": "2021-06-15T00:00:00Z",
+  "dateModified": "2021-06-15T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Nouran Mostafa"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "HOME",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Import Libraries\r\rImport Data: Paris Paintings\rpp \u0026lt;- read_csv(\u0026quot;paris-paintings.csv\u0026quot;, na = c(\u0026quot;n/a\u0026quot;, \u0026quot;\u0026quot;, \u0026quot;NA\u0026quot;))\r## ## -- Column specification --------------------------------------------------------\r## cols(\r## .default = col_double(),\r## name = col_character(),\r## sale = col_character(),\r## lot = col_character(),\r## dealer = col_character(),\r## origin_author = col_character(),\r## origin_cat = col_character(),\r## school_pntg = col_character(),\r## price = col_number(),\r## subject = col_character(),\r## authorstandard = col_character(),\r## authorstyle = col_character(),\r## author = col_character(),\r## winningbidder = col_character(),\r## winningbiddertype = col_character(),\r## endbuyer = col_character(),\r## type_intermed = col_character(),\r## Shape = col_character(),\r## material = col_character(),\r## mat = col_character(),\r## materialCat = col_character()\r## )\r## i Use `spec()` for the full column specifications."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Fitting and Interpreting models  | HOME</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="40b1b830c2a42f8fe6eb996f85fded68" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.b8153d4570dcbb34350a2a846dba8c03.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">HOME</a>
+    </div>
+    
+
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">HOME</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="https://twitter.com/NouranM85487915" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+
+      
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="article-container pt-3">
+  <h1>Fitting and Interpreting models </h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jun 15, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    7 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/tidymodels/">tidymodels</a></span>
+  
+
+</div>
+
+  
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 380px; max-height: 501px;">
+  <div style="position: relative">
+    <img src="/post/fitting-and-interpreting-models/featured.jpg" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/post/fitting-and-interpreting-models/index_files/header-attrs/header-attrs.js"></script>
+<script src="/post/fitting-and-interpreting-models/index_files/kePrint/kePrint.js"></script>
+<link href="/post/fitting-and-interpreting-models/index_files/lightable/lightable.css" rel="stylesheet" />
+
+
+<div id="import-libraries" class="section level2">
+<h2>Import Libraries</h2>
+</div>
+<div id="import-data-paris-paintings" class="section level2">
+<h2>Import Data: Paris Paintings</h2>
+<pre class="r"><code>pp &lt;- read_csv(&quot;paris-paintings.csv&quot;, na = c(&quot;n/a&quot;, &quot;&quot;, &quot;NA&quot;))</code></pre>
+<pre><code>## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   .default = col_double(),
+##   name = col_character(),
+##   sale = col_character(),
+##   lot = col_character(),
+##   dealer = col_character(),
+##   origin_author = col_character(),
+##   origin_cat = col_character(),
+##   school_pntg = col_character(),
+##   price = col_number(),
+##   subject = col_character(),
+##   authorstandard = col_character(),
+##   authorstyle = col_character(),
+##   author = col_character(),
+##   winningbidder = col_character(),
+##   winningbiddertype = col_character(),
+##   endbuyer = col_character(),
+##   type_intermed = col_character(),
+##   Shape = col_character(),
+##   material = col_character(),
+##   mat = col_character(),
+##   materialCat = col_character()
+## )
+## i Use `spec()` for the full column specifications.</code></pre>
+</div>
+<div id="goal-predict-height-from-width" class="section level2">
+<h2>Goal: Predict height from width</h2>
+<p><span class="math display">\[\widehat{height}_{i} = \beta_0 + \beta_1 \times width_{i}\]</span></p>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="/post/fitting-and-interpreting-models/index_files/figure-html/height-width-plot-1.png" width="672" /></p>
+<hr />
+<p><img src="tidymodels.png" width="98%" /></p>
+<hr />
+</div>
+<div id="step-1-specify-model" class="section level2">
+<h2>Step 1: Specify model</h2>
+<pre class="r"><code>linear_reg()</code></pre>
+<pre><code>## Linear Regression Model Specification (regression)</code></pre>
+<hr />
+</div>
+<div id="step-2-set-model-fitting-engine" class="section level2">
+<h2>Step 2: Set model fitting <em>engine</em></h2>
+<pre class="r"><code>linear_reg() %&gt;%
+  set_engine(&quot;lm&quot;) # lm: linear model</code></pre>
+<pre><code>## Linear Regression Model Specification (regression)
+## 
+## Computational engine: lm</code></pre>
+<hr />
+</div>
+<div id="step-3-fit-model-estimate-parameters" class="section level2">
+<h2>Step 3: Fit model &amp; estimate parameters</h2>
+<p>… using <strong>formula syntax</strong></p>
+<pre class="r"><code>linear_reg() %&gt;%
+  set_engine(&quot;lm&quot;) %&gt;%
+  fit(Height_in ~ Width_in, data = pp)</code></pre>
+<pre><code>## parsnip model object
+## 
+## Fit time:  0ms 
+## 
+## Call:
+## stats::lm(formula = Height_in ~ Width_in, data = data)
+## 
+## Coefficients:
+## (Intercept)     Width_in  
+##      3.6214       0.7808</code></pre>
+<hr />
+</div>
+<div id="a-closer-look-at-model-output" class="section level2">
+<h2>A closer look at model output</h2>
+<pre><code>## parsnip model object
+## 
+## Fit time:  0ms 
+## 
+## Call:
+## stats::lm(formula = Height_in ~ Width_in, data = data)
+## 
+## Coefficients:
+## (Intercept)     Width_in  
+##      3.6214       0.7808</code></pre>
+<p>.large[
+<span class="math display">\[\widehat{height}_{i} = 3.6214 + 0.7808 \times width_{i}\]</span>]</p>
+<hr />
+</div>
+<div id="a-tidy-look-at-model-output" class="section level2">
+<h2>A tidy look at model output</h2>
+<pre class="r"><code>linear_reg() %&gt;%
+  set_engine(&quot;lm&quot;) %&gt;%
+  fit(Height_in ~ Width_in, data = pp) %&gt;%
+  tidy()</code></pre>
+<pre><code>## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    3.62    0.254        14.3 8.82e-45
+## 2 Width_in       0.781   0.00950      82.1 0</code></pre>
+<p>.large[
+<span class="math display">\[\widehat{height}_{i} = 3.62 + 0.781 \times width_{i}\]</span>]</p>
+<hr />
+</div>
+<div id="slope-and-intercept" class="section level2">
+<h2>Slope and intercept</h2>
+<p>.large[
+<span class="math display">\[\widehat{height}_{i} = 3.62 + 0.781 \times width_{i}\]</span>]</p>
+<p>–</p>
+<ul>
+<li><strong>Slope:</strong> For each additional inch the painting is wider, the height is expected to be higher, on average, by 0.781 inches.</li>
+</ul>
+<table style="width:4%;">
+<colgroup>
+<col width="4%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>- <strong>Intercept:</strong> Paintings that are 0 inches wide are expected to be 3.62 inches high, on average. (Does this make sense?)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="correlation-does-not-imply-causation" class="section level2">
+<h2>Correlation does not imply causation</h2>
+<p>Remember this when interpreting model coefficients</p>
+<p><img src="cell_phones.png" width="90%" /></p>
+<p>.footnote[
+Source: XKCD, <a href="https://xkcd.com/925/">Cell phones</a>]</p>
+<hr />
+<p>class: middle</p>
+</div>
+<div id="parameter-estimation" class="section level1">
+<h1>Parameter estimation</h1>
+<hr />
+<div id="linear-model-with-a-single-predictor" class="section level2">
+<h2>Linear model with a single predictor</h2>
+<ul>
+<li>We’re interested in <span class="math inline">\(\beta_0\)</span> (population parameter for the intercept) and <span class="math inline">\(\beta_1\)</span> (population parameter for the slope) in the following model:</li>
+</ul>
+<p><span class="math display">\[\hat{y}_{i} = \beta_0 + \beta_1~x_{i}\]</span></p>
+<table style="width:4%;">
+<colgroup>
+<col width="4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>- Tough luck, you can’t have them…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>- So we use sample statistics to estimate them:</td>
+</tr>
+<tr class="even">
+<td><span class="math display">\[\hat{y}_{i} = b_0 + b_1~x_{i}\]</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="least-squares-regression" class="section level2">
+<h2>Least squares regression</h2>
+<ul>
+<li>The regression line minimizes the sum of squared residuals.</li>
+</ul>
+<table style="width:4%;">
+<colgroup>
+<col width="4%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>- If <span class="math inline">\(e_i = y_i - \hat{y}_i\)</span>, then, the regression line minimizes
+<span class="math inline">\(\sum_{i = 1}^n e_i^2\)</span>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="visualizing-residuals" class="section level2">
+<h2>Visualizing residuals</h2>
+<p><img src="/post/fitting-and-interpreting-models/index_files/figure-html/vis-res-1-1.png" width="70%" /></p>
+<hr />
+</div>
+<div id="visualizing-residuals-cont." class="section level2">
+<h2>Visualizing residuals (cont.)</h2>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="/post/fitting-and-interpreting-models/index_files/figure-html/vis-res-2-1.png" width="70%" /></p>
+<hr />
+</div>
+<div id="visualizing-residuals-cont.-1" class="section level2">
+<h2>Visualizing residuals (cont.)</h2>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="/post/fitting-and-interpreting-models/index_files/figure-html/vis-res-3-1.png" width="70%" /></p>
+<hr />
+</div>
+<div id="properties-of-least-squares-regression" class="section level2">
+<h2>Properties of least squares regression</h2>
+<ul>
+<li>The regression line goes through the center of mass point, the coordinates corresponding to average <span class="math inline">\(x\)</span> and average <span class="math inline">\(y\)</span>, <span class="math inline">\((\bar{x}, \bar{y})\)</span>:</li>
+</ul>
+<p><span class="math display">\[\bar{y} = b_0 + b_1 \bar{x} ~ \rightarrow ~ b_0 = \bar{y} - b_1 \bar{x}\]</span></p>
+<table style="width:4%;">
+<colgroup>
+<col width="4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>- The slope has the same sign as the correlation coefficient: <span class="math inline">\(b_1 = r \frac{s_y}{s_x}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>- The sum of the residuals is zero: <span class="math inline">\(\sum_{i = 1}^n e_i = 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The residuals and <span class="math inline">\(x\)</span> values are uncorrelated</li>
+</ul>
+<hr />
+<p>class: middle</p>
+</div>
+</div>
+<div id="models-with-categorical-explanatory-variables" class="section level1">
+<h1>Models with categorical explanatory variables</h1>
+<hr />
+<div id="categorical-predictor-with-2-levels" class="section level2">
+<h2>Categorical predictor with 2 levels</h2>
+<p>.pull-left-narrow[
+.small[</p>
+<pre><code>## # A tibble: 3,393 x 3
+##    name      Height_in landsALL
+##    &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;
+##  1 L1764-2          37        0
+##  2 L1764-3          18        0
+##  3 L1764-4          13        1
+##  4 L1764-5a         14        1
+##  5 L1764-5b         14        1
+##  6 L1764-6           7        0
+##  7 L1764-7a          6        0
+##  8 L1764-7b          6        0
+##  9 L1764-8          15        0
+## 10 L1764-9a          9        0
+## 11 L1764-9b          9        0
+## 12 L1764-10a        16        1
+## 13 L1764-10b        16        1
+## 14 L1764-10c        16        1
+## 15 L1764-11         20        0
+## 16 L1764-12a        14        1
+## 17 L1764-12b        14        1
+## 18 L1764-13a        15        1
+## 19 L1764-13b        15        1
+## 20 L1764-14         37        0
+## # ... with 3,373 more rows</code></pre>
+<p>]
+]
+.pull-right-wide[
+- <code>landsALL = 0</code>: No landscape features
+- <code>landsALL = 1</code>: Some landscape features]</p>
+<hr />
+</div>
+<div id="height-landscape-features" class="section level2">
+<h2>Height &amp; landscape features</h2>
+<pre class="r"><code>linear_reg() %&gt;%
+  set_engine(&quot;lm&quot;) %&gt;%
+  fit(Height_in ~ factor(landsALL), data = pp) %&gt;%
+  tidy()</code></pre>
+<pre><code>## # A tibble: 2 x 5
+##   term              estimate std.error statistic  p.value
+##   &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)          22.7      0.328      69.1 0       
+## 2 factor(landsALL)1    -5.65     0.532     -10.6 7.97e-26</code></pre>
+<hr />
+</div>
+<div id="height-landscape-features-1" class="section level2">
+<h2>Height &amp; landscape features</h2>
+<p><span class="math display">\[\widehat{Height_{in}} = 22.7 - 5.645~landsALL\]</span></p>
+<ul>
+<li><strong>Slope:</strong> Paintings with landscape features are expected, on average, to be 5.645 inches shorter than paintings that without landscape features
+<ul>
+<li>Compares baseline level (<code>landsALL = 0</code>) to the other level (<code>landsALL = 1</code>)</li>
+</ul></li>
+<li><strong>Intercept:</strong> Paintings that don’t have landscape features are expected, on average, to be 22.7 inches tall</li>
+</ul>
+<hr />
+</div>
+<div id="relationship-between-height-and-school" class="section level2">
+<h2>Relationship between height and school</h2>
+<pre class="r"><code>linear_reg() %&gt;%
+  set_engine(&quot;lm&quot;) %&gt;%
+  fit(Height_in ~ school_pntg, data = pp) %&gt;%
+  tidy()</code></pre>
+<pre><code>## # A tibble: 7 x 5
+##   term            estimate std.error statistic p.value
+##   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)        14.0       10.0     1.40  0.162  
+## 2 school_pntgD/FL     2.33      10.0     0.232 0.816  
+## 3 school_pntgF       10.2       10.0     1.02  0.309  
+## 4 school_pntgG        1.65      11.9     0.139 0.889  
+## 5 school_pntgI       10.3       10.0     1.02  0.306  
+## 6 school_pntgS       30.4       11.4     2.68  0.00744
+## 7 school_pntgX        2.87      10.3     0.279 0.780</code></pre>
+<hr />
+</div>
+<div id="dummy-variables" class="section level2">
+<h2>Dummy variables</h2>
+<pre><code>## # A tibble: 7 x 5
+##   term            estimate std.error statistic p.value
+##   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)        14.0       10.0     1.40  0.162  
+## 2 school_pntgD/FL     2.33      10.0     0.232 0.816  
+## 3 school_pntgF       10.2       10.0     1.02  0.309  
+## 4 school_pntgG        1.65      11.9     0.139 0.889  
+## 5 school_pntgI       10.3       10.0     1.02  0.306  
+## 6 school_pntgS       30.4       11.4     2.68  0.00744
+## 7 school_pntgX        2.87      10.3     0.279 0.780</code></pre>
+<ul>
+<li>When the categorical explanatory variable has many levels, they’re encoded to <strong>dummy variables</strong></li>
+<li>Each coefficient describes the expected difference between heights in that particular school compared to the baseline level</li>
+</ul>
+<hr />
+</div>
+<div id="categorical-predictor-with-3-levels" class="section level2">
+<h2>Categorical predictor with 3+ levels</h2>
+.pull-left-wide[
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+school_pntg
+</th>
+<th style="text-align:center;">
+D_FL
+</th>
+<th style="text-align:center;">
+F
+</th>
+<th style="text-align:center;">
+G
+</th>
+<th style="text-align:center;">
+I
+</th>
+<th style="text-align:center;">
+S
+</th>
+<th style="text-align:center;">
+X
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+D/FL
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 1) !important;">
+1
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 1) !important;">
+1
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 1) !important;">
+1
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 1) !important;">
+1
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 1) !important;">
+1
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;">
+0
+</td>
+<td style="text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 1) !important;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<p>]
+.pull-right-narrow[
+.small[</p>
+<pre><code>## # A tibble: 3,393 x 3
+##    name      Height_in school_pntg
+##    &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      
+##  1 L1764-2          37 F          
+##  2 L1764-3          18 I          
+##  3 L1764-4          13 D/FL       
+##  4 L1764-5a         14 F          
+##  5 L1764-5b         14 F          
+##  6 L1764-6           7 I          
+##  7 L1764-7a          6 F          
+##  8 L1764-7b          6 F          
+##  9 L1764-8          15 I          
+## 10 L1764-9a          9 D/FL       
+## 11 L1764-9b          9 D/FL       
+## 12 L1764-10a        16 X          
+## 13 L1764-10b        16 X          
+## 14 L1764-10c        16 X          
+## 15 L1764-11         20 D/FL       
+## 16 L1764-12a        14 D/FL       
+## 17 L1764-12b        14 D/FL       
+## 18 L1764-13a        15 D/FL       
+## 19 L1764-13b        15 D/FL       
+## 20 L1764-14         37 F          
+## # ... with 3,373 more rows</code></pre>
+<p>]
+]</p>
+<hr />
+</div>
+<div id="relationship-between-height-and-school-1" class="section level2">
+<h2>Relationship between height and school</h2>
+<p>.small[</p>
+<pre><code>## # A tibble: 7 x 5
+##   term            estimate std.error statistic p.value
+##   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)        14.0       10.0     1.40  0.162  
+## 2 school_pntgD/FL     2.33      10.0     0.232 0.816  
+## 3 school_pntgF       10.2       10.0     1.02  0.309  
+## 4 school_pntgG        1.65      11.9     0.139 0.889  
+## 5 school_pntgI       10.3       10.0     1.02  0.306  
+## 6 school_pntgS       30.4       11.4     2.68  0.00744
+## 7 school_pntgX        2.87      10.3     0.279 0.780</code></pre>
+<ul>
+<li><strong>Austrian school (A)</strong> paintings are expected, on average, to be <strong>14 inches</strong> tall.</li>
+<li><strong>Dutch/Flemish school (D/FL)</strong> paintings are expected, on average, to be <strong>2.33 inches taller</strong> than <em>Austrian school</em> paintings.</li>
+<li><strong>French school (F)</strong> paintings are expected, on average, to be <strong>10.2 inches taller</strong> than <em>Austrian school</em> paintings.</li>
+<li><strong>German school (G)</strong> paintings are expected, on average, to be <strong>1.65 inches taller</strong> than <em>Austrian school</em> paintings.</li>
+<li><strong>Italian school (I)</strong> paintings are expected, on average, to be <strong>10.3 inches taller</strong> than <em>Austrian school</em> paintings.</li>
+<li><strong>Spanish school (S)</strong> paintings are expected, on average, to be <strong>30.4 inches taller</strong> than <em>Austrian school</em> paintings.</li>
+<li>Paintings whose school is <strong>unknown (X)</strong> are expected, on average, to be <strong>2.87 inches taller</strong> than <em>Austrian school</em> paintings.
+]</li>
+</ul>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/fitting-and-interpreting-models/&amp;text=Fitting%20and%20Interpreting%20models%20" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/fitting-and-interpreting-models/&amp;t=Fitting%20and%20Interpreting%20models%20" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Fitting%20and%20Interpreting%20models%20&amp;body=/post/fitting-and-interpreting-models/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/fitting-and-interpreting-models/&amp;title=Fitting%20and%20Interpreting%20models%20" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Fitting%20and%20Interpreting%20models%20%20/post/fitting-and-interpreting-models/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/fitting-and-interpreting-models/&amp;title=Fitting%20and%20Interpreting%20models%20" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/author/nouran-mostafa/avatar_hu87b681ad54a12849109b4b507d9003fa_46844_270x270_fill_q75_lanczos_center.jpg" alt="Nouran Mostafa">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">Nouran Mostafa</h5>
+      
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/NouranM85487915" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/N0o0UR" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/nouran-mostafa/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.4bba0826db6409c865d2e7b99039d6d0.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

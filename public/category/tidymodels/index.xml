@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tidymodels | HOME</title>
+    <link>/category/tidymodels/</link>
+      <atom:link href="/category/tidymodels/index.xml" rel="self" type="application/rss+xml" />
+    <description>tidymodels</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 21 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>tidymodels</title>
+      <link>/category/tidymodels/</link>
+    </image>
+    
+    <item>
+      <title>Project </title>
+      <link>/post/the-project/</link>
+      <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>/post/the-project/</guid>
+      <description>
+&lt;script src=&#34;/post/the-project/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;section-the-dataset&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The dataset&lt;/h2&gt;
+&lt;p&gt;The used data set in this project composed of a record of 7 common different fish species in fish market sales. For each fish participated on this record, a certain measurements were taken, which are the fish species, the weight in Gram g, vertical length in cm, diagonal length in cm, cross length in cm, height in cm and diagonal width in cm.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;fish.png&#34; width=&#34;98%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The data was obtained from &lt;strong&gt;Kaggle &lt;/strong&gt; website, to access the source of the data use the link below&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.kaggle.com/aungpyaeap/fish-market&#34; target=&#34;_blank&#34;&gt;Link to the dataset&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-explanatory-data-analysis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Explanatory data analysis&lt;/h2&gt;
+&lt;p&gt;In this part we are going to create a data profiling report, in this report we can get an overview of the shape and structure of our dataset by summarizing their main characters and use statistical graphics and other data visualization methods.&lt;/p&gt;
+&lt;iframe height=&#34;800&#34; width=&#34;100%&#34; frameborder=&#34;no&#34; src=&#34;./report.html/&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;Based on the data profiling report, specifically in the Univariate Distribution Histogram part , We can see that there are some fishes in our data set with zero weights, we need to remove the rows where the weight equal to zero.&lt;/p&gt;
+&lt;p&gt;To access the &lt;strong&gt;Data Profiling Report&lt;/strong&gt; in a new window please press the link below
+&lt;a href=&#34;./report.html&#34; target=&#34;_blank&#34;&gt;Link to open the data profiling report in a new window&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In this part we can interactively perform further exploration to our data set.&lt;/p&gt;
+&lt;iframe height=&#34;1000&#34; width=&#34;100%&#34; frameborder=&#34;no&#34; src=&#34;https://nouran.shinyapps.io/2021-06-21-project/&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;To open the &lt;strong&gt;Shiny app&lt;/strong&gt; in a new window please press the link below
+&lt;a href=&#34;https://nouran.shinyapps.io/2021-06-21-project/&#34; target=&#34;_blank&#34;&gt;Link to open the Shiny app in a new window&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-fitting-a-model-to-predict-the-fish-height-based-on-its-cross-length&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Fitting a model to predict the fish height based on it’s cross length&lt;/h1&gt;
+&lt;div id=&#34;section-linear-regression-model&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Linear Regression Model&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;To create a liner regression model to predict the height of a fish given its cross length, we need to determine the value of &lt;span class=&#34;math inline&#34;&gt;\(\beta_0\)&lt;/span&gt; that is the population parameter for the intercept and the value of &lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt; that is the population parameter for the slope as shown in the following model:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\widehat{Height}_{i} = \beta_0 + \beta_1 \times Cross Length_{i}\]&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Using liner regression model enables us to determine the values of both &lt;span class=&#34;math inline&#34;&gt;\(\beta_0\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt;, updating the model with the values we get the following updated model:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\widehat{Height}_{i} = 0.87 + 0.26 \times Cross Length_{i}\]&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/the-project/index_files/figure-html/height-cross_length-plot-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/the-project/index_files/figure-html/heightcross_length-plot-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/the-project/index_files/figure-html/vis-res-1-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Fitting and Interpreting models </title>
+      <link>/post/fitting-and-interpreting-models/</link>
+      <pubDate>Tue, 15 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>/post/fitting-and-interpreting-models/</guid>
+      <description>
+&lt;script src=&#34;/post/fitting-and-interpreting-models/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/post/fitting-and-interpreting-models/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/post/fitting-and-interpreting-models/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+
+
+&lt;div id=&#34;import-libraries&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Import Libraries&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div id=&#34;import-data-paris-paintings&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Import Data: Paris Paintings&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pp &amp;lt;- read_csv(&amp;quot;paris-paintings.csv&amp;quot;, na = c(&amp;quot;n/a&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;NA&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   .default = col_double(),
+##   name = col_character(),
+##   sale = col_character(),
+##   lot = col_character(),
+##   dealer = col_character(),
+##   origin_author = col_character(),
+##   origin_cat = col_character(),
+##   school_pntg = col_character(),
+##   price = col_number(),
+##   subject = col_character(),
+##   authorstandard = col_character(),
+##   authorstyle = col_character(),
+##   author = col_character(),
+##   winningbidder = col_character(),
+##   winningbiddertype = col_character(),
+##   endbuyer = col_character(),
+##   type_intermed = col_character(),
+##   Shape = col_character(),
+##   material = col_character(),
+##   mat = col_character(),
+##   materialCat = col_character()
+## )
+## i Use `spec()` for the full column specifications.&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;goal-predict-height-from-width&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Goal: Predict height from width&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\widehat{height}_{i} = \beta_0 + \beta_1 \times width_{i}\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/fitting-and-interpreting-models/index_files/figure-html/height-width-plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;img src=&#34;tidymodels.png&#34; width=&#34;98%&#34; /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-1-specify-model&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Step 1: Specify model&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;linear_reg()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Linear Regression Model Specification (regression)&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-2-set-model-fitting-engine&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Step 2: Set model fitting &lt;em&gt;engine&lt;/em&gt;&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;linear_reg() %&amp;gt;%
+  set_engine(&amp;quot;lm&amp;quot;) # lm: linear model&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Linear Regression Model Specification (regression)
+## 
+## Computational engine: lm&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-3-fit-model-estimate-parameters&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Step 3: Fit model &amp;amp; estimate parameters&lt;/h2&gt;
+&lt;p&gt;… using &lt;strong&gt;formula syntax&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;linear_reg() %&amp;gt;%
+  set_engine(&amp;quot;lm&amp;quot;) %&amp;gt;%
+  fit(Height_in ~ Width_in, data = pp)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## parsnip model object
+## 
+## Fit time:  0ms 
+## 
+## Call:
+## stats::lm(formula = Height_in ~ Width_in, data = data)
+## 
+## Coefficients:
+## (Intercept)     Width_in  
+##      3.6214       0.7808&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-closer-look-at-model-output&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;A closer look at model output&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;## parsnip model object
+## 
+## Fit time:  0ms 
+## 
+## Call:
+## stats::lm(formula = Height_in ~ Width_in, data = data)
+## 
+## Coefficients:
+## (Intercept)     Width_in  
+##      3.6214       0.7808&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;.large[
+&lt;span class=&#34;math display&#34;&gt;\[\widehat{height}_{i} = 3.6214 + 0.7808 \times width_{i}\]&lt;/span&gt;]&lt;/p&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-tidy-look-at-model-output&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;A tidy look at model output&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;linear_reg() %&amp;gt;%
+  set_engine(&amp;quot;lm&amp;quot;) %&amp;gt;%
+  fit(Height_in ~ Width_in, data = pp) %&amp;gt;%
+  tidy()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1 (Intercept)    3.62    0.254        14.3 8.82e-45
+## 2 Width_in       0.781   0.00950      82.1 0&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;.large[
+&lt;span class=&#34;math display&#34;&gt;\[\widehat{height}_{i} = 3.62 + 0.781 \times width_{i}\]&lt;/span&gt;]&lt;/p&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;slope-and-intercept&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Slope and intercept&lt;/h2&gt;
+&lt;p&gt;.large[
+&lt;span class=&#34;math display&#34;&gt;\[\widehat{height}_{i} = 3.62 + 0.781 \times width_{i}\]&lt;/span&gt;]&lt;/p&gt;
+&lt;p&gt;–&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Slope:&lt;/strong&gt; For each additional inch the painting is wider, the height is expected to be higher, on average, by 0.781 inches.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table style=&#34;width:4%;&#34;&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;4%&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;- &lt;strong&gt;Intercept:&lt;/strong&gt; Paintings that are 0 inches wide are expected to be 3.62 inches high, on average. (Does this make sense?)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;correlation-does-not-imply-causation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Correlation does not imply causation&lt;/h2&gt;
+&lt;p&gt;Remember this when interpreting model coefficients&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;cell_phones.png&#34; width=&#34;90%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;.footnote[
+Source: XKCD, &lt;a href=&#34;https://xkcd.com/925/&#34;&gt;Cell phones&lt;/a&gt;]&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;class: middle&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;parameter-estimation&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Parameter estimation&lt;/h1&gt;
+&lt;hr /&gt;
+&lt;div id=&#34;linear-model-with-a-single-predictor&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Linear model with a single predictor&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;We’re interested in &lt;span class=&#34;math inline&#34;&gt;\(\beta_0\)&lt;/span&gt; (population parameter for the intercept) and &lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt; (population parameter for the slope) in the following model:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat{y}_{i} = \beta_0 + \beta_1~x_{i}\]&lt;/span&gt;&lt;/p&gt;
+&lt;table style=&#34;width:4%;&#34;&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;4%&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;- Tough luck, you can’t have them…&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;- So we use sample statistics to estimate them:&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat{y}_{i} = b_0 + b_1~x_{i}\]&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;least-squares-regression&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Least squares regression&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The regression line minimizes the sum of squared residuals.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table style=&#34;width:4%;&#34;&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;4%&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;- If &lt;span class=&#34;math inline&#34;&gt;\(e_i = y_i - \hat{y}_i\)&lt;/span&gt;, then, the regression line minimizes
+&lt;span class=&#34;math inline&#34;&gt;\(\sum_{i = 1}^n e_i^2\)&lt;/span&gt;.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;visualizing-residuals&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Visualizing residuals&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/fitting-and-interpreting-models/index_files/figure-html/vis-res-1-1.png&#34; width=&#34;70%&#34; /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;visualizing-residuals-cont.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Visualizing residuals (cont.)&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/fitting-and-interpreting-models/index_files/figure-html/vis-res-2-1.png&#34; width=&#34;70%&#34; /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;visualizing-residuals-cont.-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Visualizing residuals (cont.)&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/fitting-and-interpreting-models/index_files/figure-html/vis-res-3-1.png&#34; width=&#34;70%&#34; /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;properties-of-least-squares-regression&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Properties of least squares regression&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The regression line goes through the center of mass point, the coordinates corresponding to average &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; and average &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\((\bar{x}, \bar{y})\)&lt;/span&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\bar{y} = b_0 + b_1 \bar{x} ~ \rightarrow ~ b_0 = \bar{y} - b_1 \bar{x}\]&lt;/span&gt;&lt;/p&gt;
+&lt;table style=&#34;width:4%;&#34;&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;4%&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;- The slope has the same sign as the correlation coefficient: &lt;span class=&#34;math inline&#34;&gt;\(b_1 = r \frac{s_y}{s_x}\)&lt;/span&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;- The sum of the residuals is zero: &lt;span class=&#34;math inline&#34;&gt;\(\sum_{i = 1}^n e_i = 0\)&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;The residuals and &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; values are uncorrelated&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;class: middle&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;models-with-categorical-explanatory-variables&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Models with categorical explanatory variables&lt;/h1&gt;
+&lt;hr /&gt;
+&lt;div id=&#34;categorical-predictor-with-2-levels&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Categorical predictor with 2 levels&lt;/h2&gt;
+&lt;p&gt;.pull-left-narrow[
+.small[&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3,393 x 3
+##    name      Height_in landsALL
+##    &amp;lt;chr&amp;gt;         &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+##  1 L1764-2          37        0
+##  2 L1764-3          18        0
+##  3 L1764-4          13        1
+##  4 L1764-5a         14        1
+##  5 L1764-5b         14        1
+##  6 L1764-6           7        0
+##  7 L1764-7a          6        0
+##  8 L1764-7b          6        0
+##  9 L1764-8          15        0
+## 10 L1764-9a          9        0
+## 11 L1764-9b          9        0
+## 12 L1764-10a        16        1
+## 13 L1764-10b        16        1
+## 14 L1764-10c        16        1
+## 15 L1764-11         20        0
+## 16 L1764-12a        14        1
+## 17 L1764-12b        14        1
+## 18 L1764-13a        15        1
+## 19 L1764-13b        15        1
+## 20 L1764-14         37        0
+## # ... with 3,373 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;]
+]
+.pull-right-wide[
+- &lt;code&gt;landsALL = 0&lt;/code&gt;: No landscape features
+- &lt;code&gt;landsALL = 1&lt;/code&gt;: Some landscape features]&lt;/p&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;height-landscape-features&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Height &amp;amp; landscape features&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;linear_reg() %&amp;gt;%
+  set_engine(&amp;quot;lm&amp;quot;) %&amp;gt;%
+  fit(Height_in ~ factor(landsALL), data = pp) %&amp;gt;%
+  tidy()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 x 5
+##   term              estimate std.error statistic  p.value
+##   &amp;lt;chr&amp;gt;                &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1 (Intercept)          22.7      0.328      69.1 0       
+## 2 factor(landsALL)1    -5.65     0.532     -10.6 7.97e-26&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;height-landscape-features-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Height &amp;amp; landscape features&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\widehat{Height_{in}} = 22.7 - 5.645~landsALL\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Slope:&lt;/strong&gt; Paintings with landscape features are expected, on average, to be 5.645 inches shorter than paintings that without landscape features
+&lt;ul&gt;
+&lt;li&gt;Compares baseline level (&lt;code&gt;landsALL = 0&lt;/code&gt;) to the other level (&lt;code&gt;landsALL = 1&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intercept:&lt;/strong&gt; Paintings that don’t have landscape features are expected, on average, to be 22.7 inches tall&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;relationship-between-height-and-school&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Relationship between height and school&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;linear_reg() %&amp;gt;%
+  set_engine(&amp;quot;lm&amp;quot;) %&amp;gt;%
+  fit(Height_in ~ school_pntg, data = pp) %&amp;gt;%
+  tidy()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 7 x 5
+##   term            estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;              &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)        14.0       10.0     1.40  0.162  
+## 2 school_pntgD/FL     2.33      10.0     0.232 0.816  
+## 3 school_pntgF       10.2       10.0     1.02  0.309  
+## 4 school_pntgG        1.65      11.9     0.139 0.889  
+## 5 school_pntgI       10.3       10.0     1.02  0.306  
+## 6 school_pntgS       30.4       11.4     2.68  0.00744
+## 7 school_pntgX        2.87      10.3     0.279 0.780&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;dummy-variables&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Dummy variables&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 7 x 5
+##   term            estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;              &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)        14.0       10.0     1.40  0.162  
+## 2 school_pntgD/FL     2.33      10.0     0.232 0.816  
+## 3 school_pntgF       10.2       10.0     1.02  0.309  
+## 4 school_pntgG        1.65      11.9     0.139 0.889  
+## 5 school_pntgI       10.3       10.0     1.02  0.306  
+## 6 school_pntgS       30.4       11.4     2.68  0.00744
+## 7 school_pntgX        2.87      10.3     0.279 0.780&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;When the categorical explanatory variable has many levels, they’re encoded to &lt;strong&gt;dummy variables&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Each coefficient describes the expected difference between heights in that particular school compared to the baseline level&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;categorical-predictor-with-3-levels&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Categorical predictor with 3+ levels&lt;/h2&gt;
+.pull-left-wide[
+&lt;table class=&#34;table&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+school_pntg
+&lt;/th&gt;
+&lt;th style=&#34;text-align:center;&#34;&gt;
+D_FL
+&lt;/th&gt;
+&lt;th style=&#34;text-align:center;&#34;&gt;
+F
+&lt;/th&gt;
+&lt;th style=&#34;text-align:center;&#34;&gt;
+G
+&lt;/th&gt;
+&lt;th style=&#34;text-align:center;&#34;&gt;
+I
+&lt;/th&gt;
+&lt;th style=&#34;text-align:center;&#34;&gt;
+S
+&lt;/th&gt;
+&lt;th style=&#34;text-align:center;&#34;&gt;
+X
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+A
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+D/FL
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 1) !important;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+F
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 1) !important;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+G
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 1) !important;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+I
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 1) !important;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+S
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 1) !important;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+X
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 1) !important;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;]
+.pull-right-narrow[
+.small[&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3,393 x 3
+##    name      Height_in school_pntg
+##    &amp;lt;chr&amp;gt;         &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;      
+##  1 L1764-2          37 F          
+##  2 L1764-3          18 I          
+##  3 L1764-4          13 D/FL       
+##  4 L1764-5a         14 F          
+##  5 L1764-5b         14 F          
+##  6 L1764-6           7 I          
+##  7 L1764-7a          6 F          
+##  8 L1764-7b          6 F          
+##  9 L1764-8          15 I          
+## 10 L1764-9a          9 D/FL       
+## 11 L1764-9b          9 D/FL       
+## 12 L1764-10a        16 X          
+## 13 L1764-10b        16 X          
+## 14 L1764-10c        16 X          
+## 15 L1764-11         20 D/FL       
+## 16 L1764-12a        14 D/FL       
+## 17 L1764-12b        14 D/FL       
+## 18 L1764-13a        15 D/FL       
+## 19 L1764-13b        15 D/FL       
+## 20 L1764-14         37 F          
+## # ... with 3,373 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;]
+]&lt;/p&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;relationship-between-height-and-school-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Relationship between height and school&lt;/h2&gt;
+&lt;p&gt;.small[&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 7 x 5
+##   term            estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;              &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)        14.0       10.0     1.40  0.162  
+## 2 school_pntgD/FL     2.33      10.0     0.232 0.816  
+## 3 school_pntgF       10.2       10.0     1.02  0.309  
+## 4 school_pntgG        1.65      11.9     0.139 0.889  
+## 5 school_pntgI       10.3       10.0     1.02  0.306  
+## 6 school_pntgS       30.4       11.4     2.68  0.00744
+## 7 school_pntgX        2.87      10.3     0.279 0.780&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Austrian school (A)&lt;/strong&gt; paintings are expected, on average, to be &lt;strong&gt;14 inches&lt;/strong&gt; tall.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dutch/Flemish school (D/FL)&lt;/strong&gt; paintings are expected, on average, to be &lt;strong&gt;2.33 inches taller&lt;/strong&gt; than &lt;em&gt;Austrian school&lt;/em&gt; paintings.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;French school (F)&lt;/strong&gt; paintings are expected, on average, to be &lt;strong&gt;10.2 inches taller&lt;/strong&gt; than &lt;em&gt;Austrian school&lt;/em&gt; paintings.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;German school (G)&lt;/strong&gt; paintings are expected, on average, to be &lt;strong&gt;1.65 inches taller&lt;/strong&gt; than &lt;em&gt;Austrian school&lt;/em&gt; paintings.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Italian school (I)&lt;/strong&gt; paintings are expected, on average, to be &lt;strong&gt;10.3 inches taller&lt;/strong&gt; than &lt;em&gt;Austrian school&lt;/em&gt; paintings.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Spanish school (S)&lt;/strong&gt; paintings are expected, on average, to be &lt;strong&gt;30.4 inches taller&lt;/strong&gt; than &lt;em&gt;Austrian school&lt;/em&gt; paintings.&lt;/li&gt;
+&lt;li&gt;Paintings whose school is &lt;strong&gt;unknown (X)&lt;/strong&gt; are expected, on average, to be &lt;strong&gt;2.87 inches taller&lt;/strong&gt; than &lt;em&gt;Austrian school&lt;/em&gt; paintings.
+]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
