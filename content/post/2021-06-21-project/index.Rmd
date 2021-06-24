@@ -63,8 +63,8 @@ dataset <- read_csv("Fish.csv") %>%
 
  In this part we are going to create a data profiling report, in this report we can get an overview of the shape and structure of our dataset by summarizing their main characters and use  statistical graphics and other data visualization methods.
 
-```{r,echo = FALSE, message=FALSE, warning=FALSE}
- #create_report(dataset)
+```{r,echo = FALSE, message=FALSE, warning=FALSE, eval=FALSE}
+ create_report(dataset)
 ```
 
 <iframe height="800" width="100%" frameborder="no"src="./report.html/"> </iframe>
