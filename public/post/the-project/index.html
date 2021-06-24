@@ -291,16 +291,15 @@
   
   
     
-    
   
   
-  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:card" content="summary_large_image" />
   
   <meta property="og:site_name" content="HOME" />
   <meta property="og:url" content="/post/the-project/" />
   <meta property="og:title" content="Project  | HOME" />
-  <meta property="og:description" content="The datasetThe used data set in this project composed of a record of 7 common different fish species in fish market sales. For each fish participated on this record, a certain measurements were taken, which are the fish species, the weight in Gram g, vertical length in cm, diagonal length in cm, cross length in cm, height in cm and diagonal width in cm." /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
-    <meta property="twitter:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:description" content="The datasetThe used data set in this project composed of a record of 7 common different fish species in fish market sales. For each fish participated on this record, a certain measurements were taken, which are the fish species, the weight in Gram g, vertical length in cm, diagonal length in cm, cross length in cm, height in cm and diagonal width in cm." /><meta property="og:image" content="/post/the-project/featured.jpg" />
+    <meta property="twitter:image" content="/post/the-project/featured.jpg" /><meta property="og:locale" content="en-us" />
   
     
       <meta
@@ -335,6 +334,10 @@
     "@id": "/post/the-project/"
   },
   "headline": "Project ",
+  
+  "image": [
+    "/post/the-project/featured.jpg"
+  ],
   
   "datePublished": "2021-06-21T00:00:00Z",
   "dateModified": "2021-06-21T00:00:00Z",
@@ -372,7 +375,7 @@
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="58bcb863b57204638bb5305501b40816" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="62487835d8b2a044e1fad80bf2440cea" >
 
   
   
@@ -536,18 +539,24 @@
 
 
 
-  
+
+
+
+
+
+
+
 
   
   
-  
+
+
 <div class="article-container pt-3">
   <h1>Project </h1>
 
   
 
   
-    
 
 
 <div class="article-metadata">
@@ -570,7 +579,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    3 min read
+    2 min read
   </span>
   
 
@@ -590,13 +599,20 @@
 
 </div>
 
-    
-
-
-
-
-
   
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 500px; max-height: 667px;">
+  <div style="position: relative">
+    <img src="/post/the-project/featured.jpg" alt="" class="featured-image">
+    
+  </div>
 </div>
 
 
@@ -638,25 +654,11 @@
 </ul>
 <p><span class="math display">\[\widehat{Height}_{i} = \beta_0 + \beta_1 \times Cross Length_{i}\]</span></p>
 <hr />
-<p>After determining the values of both <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, the updated linear regression model with the values of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> is shown as follow:</p>
+<p>Using liner regression model enables us to determine the values of both <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, updating the model with the values we get the following updated model:</p>
 <p><span class="math display">\[\widehat{Height}_{i} = 0.87 + 0.26 \times Cross Length_{i}\]</span></p>
 <hr />
-<p>From the above model we can see that :</p>
-<ul>
-<li>Slope: For each additional cm the fish is longer, the height is expected to be higher, on average, by 0.26 cm.</li>
-<li>Intercept: fish that is 8.8 cm tall (minimum cross length value among the dataset) is expected to be 3.2 cm high, on average.</li>
-</ul>
-</div>
-<div id="section-the-data-is-shown-in-the-following-plot" class="section level3">
-<h3>The data is shown in the following plot:</h3>
 <p><img src="/post/the-project/index_files/figure-html/height-cross_length-plot-1.png" width="100%" /></p>
-</div>
-<div id="section-the-data-and-the-least-square-line-are-shown-in-the-following-plot" class="section level3">
-<h3>The data and the least square line are shown in the following plot:</h3>
 <p><img src="/post/the-project/index_files/figure-html/heightcross_length-plot-1.png" width="100%" /></p>
-</div>
-<div id="section-the-data-the-least-square-line-and-the-residuales-are-shown-in-the-following-plot" class="section level3">
-<h3>The data, the least square line and the residuales are shown in the following plot:</h3>
 <p><img src="/post/the-project/index_files/figure-html/vis-res-1-1.png" width="100%" /></p>
 </div>
 </div>
@@ -866,8 +868,6 @@
   <div class="article-widget content-widget-hr">
     <h3>Related</h3>
     <ul>
-      
-      <li><a href="/post/the-project/">Project </a></li>
       
       <li><a href="/post/a05-exploratory-data-analysis/">A05  Exploratory Data Analysis</a></li>
       
