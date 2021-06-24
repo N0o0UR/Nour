@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/post/cheking-latex/</loc>
-    <lastmod>2021-06-24T10:54:34-03:00</lastmod>
-  </url><url>
-    <loc>/</loc>
-    <lastmod>2021-06-24T10:54:34-03:00</lastmod>
-  </url><url>
-    <loc>/post/</loc>
-    <lastmod>2021-06-24T10:54:34-03:00</lastmod>
-  </url><url>
     <loc>/category/basics/</loc>
     <lastmod>2021-06-21T00:00:00+00:00</lastmod>
   </url><url>
@@ -18,6 +9,15 @@
     <lastmod>2021-06-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/category/ggplot2/</loc>
+    <lastmod>2021-06-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/</loc>
+    <lastmod>2021-06-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/post/</loc>
+    <lastmod>2021-06-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/post/the-project/</loc>
     <lastmod>2021-06-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/post/the-project/</loc>
