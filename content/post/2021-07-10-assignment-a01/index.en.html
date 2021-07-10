@@ -1,0 +1,671 @@
+---
+title: 'Assignment A01  '
+author: 'Nouran '
+date: '2021-07-10'
+slug: assignment-a01
+categories:
+  - ggplot2
+  - Basics
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-07-10T12:54:21-03:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<pre class="r"><code>library(&quot;readxl&quot;)
+library(&quot;janitor&quot;)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;janitor&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     chisq.test, fisher.test</code></pre>
+<pre class="r"><code>library(&quot;tidyverse&quot;)</code></pre>
+<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --</code></pre>
+<pre><code>## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.1     v dplyr   1.0.6
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(&quot;dplyr&quot;)</code></pre>
+<div id="the-diamond-ring-data" class="section level2">
+<h2>The diamond ring data</h2>
+<p>In this blog we used the diamond ring data. Getting a glimpse into the data we can see that it is composed of 440 rows where each row represents a diamond ring and for each ring the diamond characteristics are provided that are Color, Cut, Carat Weight, Clarity , Polish, Symmetry, and certification in addition to the price.</p>
+<pre class="r"><code>data&lt;-read_excel(&quot;diamonds.xlsx&quot;,col_types = c(&quot;guess&quot;,&quot;guess&quot;,&quot;guess&quot;,&quot;guess&quot;,&quot;guess&quot;,&quot;guess&quot;,&quot;guess&quot;,&quot;numeric&quot;,&quot;guess&quot;))%&gt;%
+  clean_names()
+ glimpse(data)</code></pre>
+<pre><code>## Rows: 440
+## Columns: 9
+## $ carat         &lt;dbl&gt; 0.92, 0.92, 0.82, 0.81, 0.90, 0.87, 0.80, 0.84, 0.80, 0.~
+## $ colour        &lt;chr&gt; &quot;I&quot;, &quot;I&quot;, &quot;F&quot;, &quot;G&quot;, &quot;J&quot;, &quot;F&quot;, &quot;D&quot;, &quot;F&quot;, &quot;D&quot;, &quot;D&quot;, &quot;G&quot;, &quot;~
+## $ clarity       &lt;chr&gt; &quot;SI2&quot;, &quot;SI2&quot;, &quot;SI2&quot;, &quot;SI1&quot;, &quot;VS2&quot;, &quot;SI2&quot;, &quot;SI2&quot;, &quot;SI1&quot;, ~
+## $ cut           &lt;chr&gt; &quot;G&quot;, &quot;V&quot;, &quot;I&quot;, &quot;I&quot;, &quot;V&quot;, &quot;I&quot;, &quot;I&quot;, &quot;G&quot;, &quot;V&quot;, &quot;V&quot;, &quot;I&quot;, &quot;~
+## $ certification &lt;chr&gt; &quot;AGS&quot;, &quot;AGS&quot;, &quot;GIA&quot;, &quot;GIA&quot;, &quot;GIA&quot;, &quot;AGS&quot;, &quot;GIA&quot;, &quot;GIA&quot;, ~
+## $ polish        &lt;chr&gt; &quot;V&quot;, &quot;G&quot;, &quot;X&quot;, &quot;X&quot;, &quot;V&quot;, &quot;G&quot;, &quot;V&quot;, &quot;V&quot;, &quot;V&quot;, &quot;V&quot;, &quot;V&quot;, &quot;~
+## $ symmetry      &lt;chr&gt; &quot;V&quot;, &quot;G&quot;, &quot;X&quot;, &quot;V&quot;, &quot;V&quot;, &quot;V&quot;, &quot;V&quot;, &quot;V&quot;, &quot;V&quot;, &quot;X&quot;, &quot;V&quot;, &quot;~
+## $ price         &lt;dbl&gt; 3000, 3000, 3004, 3004, 3006, 3007, 3008, 3010, 3012, 30~
+## $ wholesaler    &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,~</code></pre>
+</div>
+<div id="the-univriate-analysis" class="section level2">
+<h2>The Univriate Analysis</h2>
+<p>we will start our analysis with the metric data which are the price and the carat mass of the daimond ring</p>
+<div id="the-price" class="section level3">
+<h3>The Price</h3>
+<pre class="r"><code>### The histogram of the price :
+ggplot(data,aes(price))+
+  geom_histogram()+
+  labs(
+    title = &quot;Histogram of the Price&quot;,
+    subtitle = &quot; &quot;,
+    x = &quot;Price&quot;
+  )+
+ theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>### The boxplot of the price 
+ggplot(data,aes(price))+
+  geom_boxplot()+
+  labs(
+    title = &quot;The Price &quot;,
+    subtitle = &quot; &quot;,
+    x = &quot;Price&quot;
+  )+
+ theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<pre class="r"><code>### summary of the price o get the min, max, Q1,Q3, mean and median 
+ summary(data$price)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     160     520    2169    1717    3012    3145</code></pre>
+<pre class="r"><code>### The variance and standard deviation of the price 
+var(data$price)</code></pre>
+<pre><code>## [1] 1382245</code></pre>
+<pre class="r"><code>sd(data$price)</code></pre>
+<pre><code>## [1] 1175.689</code></pre>
+<pre class="r"><code>### The mode of the price 
+mode_price&lt;- data %&gt;%
+  count(price)%&gt;%
+  arrange(desc(n))%&gt;%
+  head(1)
+
+
+### The IQR of the price 
+iqr_price=quantile(data$price, 0.75) - quantile(data$price, 0.25)</code></pre>
+</div>
+<div id="the-carat-mass" class="section level3">
+<h3>The Carat mass</h3>
+<pre class="r"><code>### The histogram of the Carat :
+ggplot(data,aes(carat))+
+  geom_histogram()+
+  labs(
+    title = &quot;Histogram of the Carat&quot;,
+    subtitle = &quot; &quot;,
+    x = &quot;The Carat Mass&quot;
+  )+
+ theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>### The boxplot of the carat 
+ggplot(data,aes(carat))+
+  geom_boxplot()+
+  labs(
+    title = &quot;The Carat Mass &quot;,
+    subtitle = &quot; &quot;,
+    x = &quot;Carat Mass&quot;
+  )+
+ theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<pre class="r"><code>### summary of the carat mass to get the min, max, Q1,Q3, mean and median 
+ summary(data$carat)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0900  0.3000  0.8100  0.6693  1.0100  1.5800</code></pre>
+<pre class="r"><code>### The variance and standard deviation of the carat mass 
+var(data$carat)</code></pre>
+<pre><code>## [1] 0.144248</code></pre>
+<pre class="r"><code>sd(data$carat)</code></pre>
+<pre><code>## [1] 0.3797999</code></pre>
+<pre class="r"><code>### The mode of the carat mass 
+mode_carat&lt;- data %&gt;%
+  count(carat)%&gt;%
+  arrange(desc(n))%&gt;%
+  head(1)
+
+
+### The IQR of the carat mass
+iqr_carat=quantile(data$carat, 0.75) - quantile(data$carat, 0.25)</code></pre>
+</div>
+<div id="the-colour" class="section level3">
+<h3>The Colour</h3>
+<pre class="r"><code>ggplot(data,aes(colour))+
+  geom_bar()+
+  labs(
+    title = &quot;Histogram of the Colour&quot;,
+    subtitle = &quot; &quot;,
+    x = &quot;Colour&quot;
+  )+
+ theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="the-clarity" class="section level3">
+<h3>The Clarity</h3>
+<pre class="r"><code>ggplot(data,aes(clarity))+
+  geom_bar()+
+  labs(
+    title = &quot;Histogram of the Clarity&quot;,
+    subtitle = &quot; &quot;,
+    x = &quot;Clarity&quot;
+  )+
+ theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="the-cut" class="section level3">
+<h3>The Cut</h3>
+<pre class="r"><code>ggplot(data,aes(cut))+
+  geom_bar()+
+  labs(
+    title = &quot;Histogram of the Cut&quot;,
+    subtitle = &quot; &quot;,
+    x = &quot;Cut&quot;
+  )+
+ theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="the-certification" class="section level3">
+<h3>The Certification</h3>
+<pre class="r"><code>ggplot(data,aes(certification))+
+  geom_bar()+
+  labs(
+    title = &quot;Histogram of the Certification&quot;,
+    subtitle = &quot; &quot;,
+    x = &quot;Certification&quot;
+  )+
+ theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="the-polish" class="section level3">
+<h3>The Polish</h3>
+<pre class="r"><code>ggplot(data,aes(polish))+
+  geom_bar()+
+  labs(
+    title = &quot;Histogram of the Polish&quot;,
+    subtitle = &quot; &quot;,
+    x = &quot;polish&quot;
+  )+
+ theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="the-symmetry" class="section level3">
+<h3>The Symmetry</h3>
+<pre class="r"><code>ggplot(data,aes(symmetry))+
+  geom_bar()+
+  labs(
+    title = &quot;Histogram of the Symmetry&quot;,
+    subtitle = &quot; &quot;,
+    x = &quot;Symmetry&quot;
+  )+
+ theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="wholesaler" class="section level3">
+<h3>Wholesaler</h3>
+<pre class="r"><code>ggplot(data,aes(wholesaler))+
+  geom_bar()+
+  labs(
+    title = &quot;Histogram of the Wholesaler&quot;,
+    subtitle = &quot; &quot;,
+    x = &quot;Wholesaler&quot;
+  )+
+ theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+</div>
+<div id="the-bivariate-analysis" class="section level2">
+<h2>The Bivariate Analysis</h2>
+<div id="the-price-and-the-carat-mass" class="section level3">
+<h3>The price and the carat mass</h3>
+<pre class="r"><code>ggplot(data,aes(carat,price))+
+  geom_boxplot()+
+  labs(
+    title = &quot;Price Vs. Carat&quot;,
+    subtitle = &quot; &quot;,
+    y= &quot; price &quot;,
+    x = &quot;Carat&quot;
+  )+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+  theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+  theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<pre><code>## Warning: Continuous x aesthetic -- did you forget aes(group=...)?</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<pre class="r"><code>cor (data$carat,data$price)</code></pre>
+<pre><code>## [1] 0.925436</code></pre>
+<pre class="r"><code>cov(data$carat,data$price)</code></pre>
+<pre><code>## [1] 413.2318</code></pre>
+</div>
+<div id="the-price-and-the-colour" class="section level3">
+<h3>The price and the colour</h3>
+<pre class="r"><code>ggplot(data,aes(colour,price))+
+  geom_boxplot()+
+  labs(
+    title = &quot;Price Vs. Colour&quot;,
+    subtitle = &quot; &quot;,
+    y= &quot; price &quot;,
+    x = &quot;Colour&quot;
+  )+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+  theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+  theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<pre class="r"><code># Compute the analysis of variance through Anova 
+res.aov_colour &lt;- aov(price ~ colour, data = data)
+# Summary of the analysis
+summary(res.aov_colour)</code></pre>
+<pre><code>##              Df    Sum Sq Mean Sq F value   Pr(&gt;F)    
+## colour        8  51620143 6452518   5.009 5.87e-06 ***
+## Residuals   431 555185378 1288133                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="the-price-and-the-clarity" class="section level3">
+<h3>The price and the clarity</h3>
+<pre class="r"><code>ggplot(data,aes(clarity,price))+
+  geom_boxplot()+
+  labs(
+    title = &quot;Price Vs. Clarity&quot;,
+    subtitle = &quot; &quot;,
+    y= &quot; price &quot;,
+    x = &quot;Clarity&quot;
+  )+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+  theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+  theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code># Compute the analysis of variance through Anova 
+res.aov_clarity &lt;- aov(price ~ clarity, data = data)
+# Summary of the analysis
+summary(res.aov_clarity)</code></pre>
+<pre><code>##              Df    Sum Sq  Mean Sq F value Pr(&gt;F)    
+## clarity       8 194938677 24367335    25.5 &lt;2e-16 ***
+## Residuals   431 411866844   955608                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="the-price-and-the-cut" class="section level3">
+<h3>The price and the cut</h3>
+<pre class="r"><code>ggplot(data,aes(cut,price))+
+  geom_boxplot()+
+  labs(
+    title = &quot;Price Vs. Cut&quot;,
+    subtitle = &quot; &quot;,
+    y= &quot; price &quot;,
+    x = &quot;Cut&quot;
+  )+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+  theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+  theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<pre class="r"><code># Compute the analysis of variance through Anova 
+res.aov_cut&lt;- aov(price ~ cut, data = data)
+# Summary of the analysis
+summary(res.aov_cut)</code></pre>
+<pre><code>##              Df    Sum Sq  Mean Sq F value   Pr(&gt;F)    
+## cut           4  66164570 16541142   13.31 3.07e-10 ***
+## Residuals   435 540640951  1242853                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="the-price-and-the-certification" class="section level3">
+<h3>The price and the certification</h3>
+<pre class="r"><code>ggplot(data,aes(certification,price))+
+  geom_boxplot()+
+  labs(
+    title = &quot;Price Vs. Certification&quot;,
+    subtitle = &quot; &quot;,
+    y= &quot; price &quot;,
+    x = &quot;Certification&quot;
+  )+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+  theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+  theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<pre class="r"><code># Compute the analysis of variance through Anova 
+res.aov_certification &lt;- aov(price ~ certification, data = data)
+# Summary of the analysis
+summary(res.aov_certification)</code></pre>
+<pre><code>##                Df    Sum Sq  Mean Sq F value Pr(&gt;F)    
+## certification   4 238869617 59717404    70.6 &lt;2e-16 ***
+## Residuals     435 367935903   845830                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="the-price-and-the-polish" class="section level3">
+<h3>The price and the polish</h3>
+<pre class="r"><code>ggplot(data,aes(polish,price))+
+  geom_boxplot()+
+  labs(
+    title = &quot;Price Vs. Polish&quot;,
+    subtitle = &quot; &quot;,
+    y= &quot; price&quot;,
+    x = &quot;Polish&quot;
+  )+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+  theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+  theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<pre class="r"><code># Compute the analysis of variance through Anova 
+res.aov_polish &lt;- aov(price ~ polish, data = data)
+# Summary of the analysis
+summary(res.aov_polish)</code></pre>
+<pre><code>##              Df    Sum Sq Mean Sq F value   Pr(&gt;F)    
+## polish        5  28574143 5714829   4.289 0.000808 ***
+## Residuals   434 578231378 1332330                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="the-price-and-the-symmetry" class="section level3">
+<h3>The price and the symmetry</h3>
+<pre class="r"><code>ggplot(data,aes(symmetry,price))+
+  geom_boxplot()+
+  labs(
+    title = &quot;Price Vs. Symmetry&quot;,
+    subtitle = &quot; &quot;,
+    y= &quot; price &quot;,
+    x = &quot;Symmetry&quot;
+  )+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+  theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+  theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<pre class="r"><code># Compute the analysis of variance through Anova 
+res.aov_symmetry &lt;- aov(price ~ symmetry, data = data)
+# Summary of the analysis
+summary(res.aov_symmetry)</code></pre>
+<pre><code>##              Df    Sum Sq Mean Sq F value   Pr(&gt;F)    
+## symmetry      4  37655698 9413925   7.195 1.29e-05 ***
+## Residuals   435 569149823 1308390                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="the-price-and-the-wholesaler" class="section level3">
+<h3>The price and the wholesaler</h3>
+<pre class="r"><code>ggplot(data,aes(wholesaler,price))+
+  geom_point()+
+  labs(
+    title = &quot;Price Vs. Wholesaler&quot;,
+    subtitle = &quot; &quot;,
+    y= &quot; price &quot;,
+    x = &quot;Wholesaler&quot;
+  )+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+  theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+  theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<pre class="r"><code># Compute the analysis of variance through Anova 
+res.aov_wholesaler &lt;- aov(price ~ wholesaler, data = data)
+# Summary of the analysis
+summary(res.aov_wholesaler)</code></pre>
+<pre><code>##              Df    Sum Sq   Mean Sq F value Pr(&gt;F)    
+## wholesaler    1 503348112 503348112    2131 &lt;2e-16 ***
+## Residuals   438 103457409    236204                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+<div id="the-regression-model" class="section level2">
+<h2>The Regression Model</h2>
+<div id="the-simple-regression-model-for-the-price-vs.-the-carat-mass" class="section level3">
+<h3>The simple regression model for the price Vs. the carat mass</h3>
+<pre class="r"><code>ggplot(data,aes(carat,price))+
+  geom_point()+
+  geom_smooth(method=&quot;lm&quot;, se=FALSE)+
+  labs(
+    title = &quot;Fitting Linear Model for the Price Vs. Carat Mass&quot;,
+    subtitle = &quot; &quot;,
+    y= &quot; price &quot;,
+    x = &quot;Carat Mass&quot;
+  )+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+  theme_bw()+
+  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
+  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
+  theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
+  theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<pre class="r"><code>  lm(price ~ carat, data = data)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = price ~ carat, data = data)
+## 
+## Coefficients:
+## (Intercept)        carat  
+##      -200.5       2864.7</code></pre>
+</div>
+<div id="the-simple-regression-model-for-the-price-vs.-the-colour" class="section level3">
+<h3>The simple regression model for the price Vs. the colour</h3>
+<pre class="r"><code>lm(price ~ colour, data = data)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = price ~ colour, data = data)
+## 
+## Coefficients:
+## (Intercept)      colourE      colourF      colourG      colourH      colourI  
+##     2316.20      -764.29      -982.36      -147.73      -873.92      -765.88  
+##     colourJ      colourK      colourL  
+##     -535.28        42.06        52.30</code></pre>
+</div>
+<div id="the-simple-regression-model-for-the-price-vs.-clarity" class="section level3">
+<h3>The simple regression model for the price Vs. clarity</h3>
+<pre class="r"><code>lm(price ~ clarity, data = data)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = price ~ clarity, data = data)
+## 
+## Coefficients:
+## (Intercept)    clarityI2   claritySI1   claritySI2   claritySI3   clarityVS1  
+##     2543.15      -201.22     -1495.53      -568.95        76.24     -1405.38  
+##  clarityVS2  clarityVVS1  clarityVVS2  
+##    -1654.95     -1996.15     -1978.95</code></pre>
+</div>
+<div id="the-simple-regression-model-for-the-price-vs.-cut" class="section level3">
+<h3>The simple regression model for the price Vs. cut</h3>
+<pre class="r"><code>lm(price ~ cut, data = data)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = price ~ cut, data = data)
+## 
+## Coefficients:
+## (Intercept)         cutG         cutI         cutV         cutX  
+##      2455.2       -409.2       -723.5      -1277.1       -797.2</code></pre>
+</div>
+<div id="the-simple-regression-model-for-the-price-vs.-the-certification" class="section level3">
+<h3>The simple regression model for the price Vs. the certification</h3>
+<pre class="r"><code>lm(price ~ certification, data = data)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = price ~ certification, data = data)
+## 
+## Coefficients:
+##      (Intercept)  certificationDOW  certificationEGL  certificationGIA  
+##           3033.4           -1002.4            -355.6           -1573.6  
+## certificationIGI  
+##          -2767.9</code></pre>
+</div>
+<div id="the-simple-regression-model-for-the-price-vs.-the-polish" class="section level3">
+<h3>The simple regression model for the price Vs. the polish</h3>
+<pre class="r"><code>lm(price ~ polish, data = data)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = price ~ polish, data = data)
+## 
+## Coefficients:
+## (Intercept)      polishG      polishI      polishv      polishV      polishX  
+##      2318.6       -404.0        728.8        762.4       -715.5       -939.8</code></pre>
+</div>
+<div id="the-simple-regression-model-for-the-price-vs.-the-symmetry" class="section level3">
+<h3>The simple regression model for the price Vs. the symmetry</h3>
+<pre class="r"><code>lm(price ~ symmetry, data = data)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = price ~ symmetry, data = data)
+## 
+## Coefficients:
+## (Intercept)    symmetryG    symmetryI    symmetryV    symmetryX  
+##      2432.3       -537.9        615.1       -966.8       -673.0</code></pre>
+</div>
+<div id="the-simple-regression-model-for-the-price-vs.-the-wholsaler" class="section level3">
+<h3>The simple regression model for the price Vs. the wholsaler</h3>
+<pre class="r"><code>lm(price ~ factor(wholesaler), data = data)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = price ~ factor(wholesaler), data = data)
+## 
+## Coefficients:
+##         (Intercept)  factor(wholesaler)2  factor(wholesaler)3  
+##              3043.2               -381.2              -2575.1</code></pre>
+</div>
+<div id="the-multiple-linear-regression" class="section level3">
+<h3>The multiple linear regression:</h3>
+<pre class="r"><code>lm(price ~ carat+ colour+ clarity + cut+ certification + polish + symmetry +factor(wholesaler), data = data)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = price ~ carat + colour + clarity + cut + certification + 
+##     polish + symmetry + factor(wholesaler), data = data)
+## 
+## Coefficients:
+##         (Intercept)                carat              colourE  
+##              788.88              1885.30              -166.61  
+##             colourF              colourG              colourH  
+##             -247.15              -229.60              -299.84  
+##             colourI              colourJ              colourK  
+##             -337.63              -434.39              -696.43  
+##             colourL            clarityI2           claritySI1  
+##             -895.44              -590.10               652.28  
+##          claritySI2           claritySI3           clarityVS1  
+##              560.51               290.46               743.08  
+##          clarityVS2          clarityVVS1          clarityVVS2  
+##              689.50              1015.21               760.50  
+##                cutG                 cutI                 cutV  
+##               48.82                84.51                78.45  
+##                cutX     certificationDOW     certificationEGL  
+##               93.37              -271.24              -307.29  
+##    certificationGIA     certificationIGI              polishG  
+##               12.16              -118.27                66.57  
+##             polishI              polishv              polishV  
+##              247.70               136.45                78.40  
+##             polishX            symmetryG            symmetryI  
+##               84.85               133.37                   NA  
+##           symmetryV            symmetryX  factor(wholesaler)2  
+##              151.49               137.40               112.07  
+## factor(wholesaler)3  
+##            -1460.67</code></pre>
+</div>
+</div>
