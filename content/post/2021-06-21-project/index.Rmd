@@ -171,7 +171,7 @@ ggplot(data = dataset, aes(x = cross_length,y = height )) +
    theme(plot.subtitle = element_text(colour = "#E48957", face = "bold", size = rel(1.5)))
 ```
 
----
+
 
 ### The data, the least square line and the residuales are shown in the following plot:
 
