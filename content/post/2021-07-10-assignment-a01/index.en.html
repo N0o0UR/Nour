@@ -22,29 +22,9 @@ projects: []
 <script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
 
 
-<pre class="r"><code>library(&quot;readxl&quot;)
-library(&quot;janitor&quot;)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;janitor&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     chisq.test, fisher.test</code></pre>
-<pre class="r"><code>library(&quot;tidyverse&quot;)</code></pre>
-<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --</code></pre>
-<pre><code>## v ggplot2 3.3.5     v purrr   0.3.4
-## v tibble  3.1.1     v dplyr   1.0.6
-## v tidyr   1.1.3     v stringr 1.4.0
-## v readr   1.4.0     v forcats 0.5.1</code></pre>
-<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(&quot;dplyr&quot;)</code></pre>
 <div id="the-diamond-ring-data" class="section level2">
 <h2>The diamond ring data</h2>
 <p>In this blog we used the diamond ring data. Getting a glimpse into the data we can see that it is composed of 440 rows where each row represents a diamond ring and for each ring the diamond characteristics are provided that are Color, Cut, Carat Weight, Clarity , Polish, Symmetry, and certification in addition to the price.</p>
-<pre class="r"><code>data&lt;-read_excel(&quot;diamonds.xlsx&quot;,col_types = c(&quot;guess&quot;,&quot;guess&quot;,&quot;guess&quot;,&quot;guess&quot;,&quot;guess&quot;,&quot;guess&quot;,&quot;guess&quot;,&quot;numeric&quot;,&quot;guess&quot;))%&gt;%
-  clean_names()
- glimpse(data)</code></pre>
 <pre><code>## Rows: 440
 ## Columns: 9
 ## $ carat         &lt;dbl&gt; 0.92, 0.92, 0.82, 0.81, 0.90, 0.87, 0.80, 0.84, 0.80, 0.~
@@ -59,488 +39,80 @@ library(&quot;janitor&quot;)</code></pre>
 </div>
 <div id="the-univriate-analysis" class="section level2">
 <h2>The Univriate Analysis</h2>
-<p>we will start our analysis with the metric data which are the price and the carat mass of the daimond ring</p>
+<p>we will start our analysis with the metric data which are the price and the carat mass of the diamond ring then we will analyse the non metric data which are the colour, clarity, cut, certification, polish, symmetry, and wholesaler.</p>
 <div id="the-price" class="section level3">
 <h3>The Price</h3>
-<pre class="r"><code>### The histogram of the price :
-ggplot(data,aes(price))+
-  geom_histogram()+
-  labs(
-    title = &quot;Histogram of the Price&quot;,
-    subtitle = &quot; &quot;,
-    x = &quot;Price&quot;
-  )+
- theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre class="r"><code>### The boxplot of the price 
-ggplot(data,aes(price))+
-  geom_boxplot()+
-  labs(
-    title = &quot;The Price &quot;,
-    subtitle = &quot; &quot;,
-    x = &quot;Price&quot;
-  )+
- theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
-<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
-<pre class="r"><code>### summary of the price o get the min, max, Q1,Q3, mean and median 
- summary(data$price)</code></pre>
+<p>From the following plots and provided summary, we can see that the diamond ring price ranges from minimum value of $160 to maximum value of $3145, the mean of the price is $1717, where in most of the diamond ring purchases (mode) the price was $520 and we can also see that the first quartile is $520, the third quartile is $3012 and the IQR is $2429 with median price of $2169.</p>
+<p>The price dispersion can be evaluated through a variance of $1382245 and standard deviation of $1175.689.</p>
+<p>The data distribution has no specific shape but we can notice that there is no diamond ring was sold in the price range from $700 to $1700 similarly at price of $2900.</p>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-3-1.png" width="672" /><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##     160     520    2169    1717    3012    3145</code></pre>
-<pre class="r"><code>### The variance and standard deviation of the price 
-var(data$price)</code></pre>
 <pre><code>## [1] 1382245</code></pre>
-<pre class="r"><code>sd(data$price)</code></pre>
 <pre><code>## [1] 1175.689</code></pre>
-<pre class="r"><code>### The mode of the price 
-mode_price&lt;- data %&gt;%
-  count(price)%&gt;%
-  arrange(desc(n))%&gt;%
-  head(1)
-
-
-### The IQR of the price 
-iqr_price=quantile(data$price, 0.75) - quantile(data$price, 0.25)</code></pre>
 </div>
 <div id="the-carat-mass" class="section level3">
 <h3>The Carat mass</h3>
-<pre class="r"><code>### The histogram of the Carat :
-ggplot(data,aes(carat))+
-  geom_histogram()+
-  labs(
-    title = &quot;Histogram of the Carat&quot;,
-    subtitle = &quot; &quot;,
-    x = &quot;The Carat Mass&quot;
-  )+
- theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<pre class="r"><code>### The boxplot of the carat 
-ggplot(data,aes(carat))+
-  geom_boxplot()+
-  labs(
-    title = &quot;The Carat Mass &quot;,
-    subtitle = &quot; &quot;,
-    x = &quot;Carat Mass&quot;
-  )+
- theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
-<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
-<pre class="r"><code>### summary of the carat mass to get the min, max, Q1,Q3, mean and median 
- summary(data$carat)</code></pre>
+<p>From the following plots and provided summary, we can see that the diamond ring carat mass ranges from minimum value of 0.09 gram to maximum value of 1.58 gram, the mean of the carat mass is 0.6693 gram, where in most of the diamond ring purchases (mode) the carat mass was 0.3 gram and we can also see that the first quartile is 0.3 gram, the third quartile is 1.01 gram and the IQR is 0.71 gram with median carat mass of 0.81 gram.</p>
+<p>The carat mass dispersion can be evaluated through a variance of 0.144248 grams and standard deviation of 0.3797999 grams.</p>
+<p>The data distribution has no specific shape but we can notice that there is no carat mass was sold in the carat mass range from 0.4 gram to 0.7 gram similarly at carat mass of 1.5 grams.</p>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-4-1.png" width="672" /><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.0900  0.3000  0.8100  0.6693  1.0100  1.5800</code></pre>
-<pre class="r"><code>### The variance and standard deviation of the carat mass 
-var(data$carat)</code></pre>
 <pre><code>## [1] 0.144248</code></pre>
-<pre class="r"><code>sd(data$carat)</code></pre>
 <pre><code>## [1] 0.3797999</code></pre>
-<pre class="r"><code>### The mode of the carat mass 
-mode_carat&lt;- data %&gt;%
-  count(carat)%&gt;%
-  arrange(desc(n))%&gt;%
-  head(1)
-
-
-### The IQR of the carat mass
-iqr_carat=quantile(data$carat, 0.75) - quantile(data$carat, 0.25)</code></pre>
 </div>
 <div id="the-colour" class="section level3">
 <h3>The Colour</h3>
-<pre class="r"><code>ggplot(data,aes(colour))+
-  geom_bar()+
-  labs(
-    title = &quot;Histogram of the Colour&quot;,
-    subtitle = &quot; &quot;,
-    x = &quot;Colour&quot;
-  )+
- theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p>From the histogram plot of the color, we can see that the most purchased color for the diamond rings is the color I and after that are color J and color H and the least purchased are color L and color D.</p>
 <p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 <div id="the-clarity" class="section level3">
 <h3>The Clarity</h3>
-<pre class="r"><code>ggplot(data,aes(clarity))+
-  geom_bar()+
-  labs(
-    title = &quot;Histogram of the Clarity&quot;,
-    subtitle = &quot; &quot;,
-    x = &quot;Clarity&quot;
-  )+
- theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p>From the histogram plot of the clarity, we can see that the most purchased clarity type for the diamond rings is the clarity Sl1 and after that is clarity Sl2 and the least purchased are WS1 and Ws2.</p>
 <p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
 <div id="the-cut" class="section level3">
 <h3>The Cut</h3>
-<pre class="r"><code>ggplot(data,aes(cut))+
-  geom_bar()+
-  labs(
-    title = &quot;Histogram of the Cut&quot;,
-    subtitle = &quot; &quot;,
-    x = &quot;Cut&quot;
-  )+
- theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p>From the histogram plot of the diamond ring cut, we can see that the most purchased cut type for the diamond rings is X and after that is cut V then cut I while the least purchased cuts are cut G and cut F.</p>
 <p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div id="the-certification" class="section level3">
 <h3>The Certification</h3>
-<pre class="r"><code>ggplot(data,aes(certification))+
-  geom_bar()+
-  labs(
-    title = &quot;Histogram of the Certification&quot;,
-    subtitle = &quot; &quot;,
-    x = &quot;Certification&quot;
-  )+
- theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p>From the histogram plot of the diamond ring certification, we can see that the most purchased certification type for the diamond rings is GIA and after that is EGL then IGI while the least purchased certifications are DOW and AGS.</p>
 <p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 <div id="the-polish" class="section level3">
 <h3>The Polish</h3>
-<pre class="r"><code>ggplot(data,aes(polish))+
-  geom_bar()+
-  labs(
-    title = &quot;Histogram of the Polish&quot;,
-    subtitle = &quot; &quot;,
-    x = &quot;polish&quot;
-  )+
- theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p>From the histogram plot of the diamond ring polish, we can see that the most purchased polish type for the diamond rings is V and after that is G then X while the least purchased polish types are V,I and F.</p>
 <p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 <div id="the-symmetry" class="section level3">
 <h3>The Symmetry</h3>
-<pre class="r"><code>ggplot(data,aes(symmetry))+
-  geom_bar()+
-  labs(
-    title = &quot;Histogram of the Symmetry&quot;,
-    subtitle = &quot; &quot;,
-    x = &quot;Symmetry&quot;
-  )+
- theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p>From the histogram plot of the diamond ring symmetry, we can see that the most purchased symmetry type for the diamond rings is V and after that is G then X while the least purchased symmetry types are I and F.</p>
 <p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 </div>
 <div id="wholesaler" class="section level3">
 <h3>Wholesaler</h3>
-<pre class="r"><code>ggplot(data,aes(wholesaler))+
-  geom_bar()+
-  labs(
-    title = &quot;Histogram of the Wholesaler&quot;,
-    subtitle = &quot; &quot;,
-    x = &quot;Wholesaler&quot;
-  )+
- theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-    theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-      theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
+<p>From the histogram plot of the diamond ring wholesaler, we can see that the most of the purchased diamond rings were purchased from wholesaler number 3 then wholesaler number 2, while the fewer purchases done at the wholesaler number 1.</p>
 <p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 </div>
 </div>
-<div id="the-bivariate-analysis" class="section level2">
-<h2>The Bivariate Analysis</h2>
-<div id="the-price-and-the-carat-mass" class="section level3">
-<h3>The price and the carat mass</h3>
-<pre class="r"><code>ggplot(data,aes(carat,price))+
-  geom_boxplot()+
-  labs(
-    title = &quot;Price Vs. Carat&quot;,
-    subtitle = &quot; &quot;,
-    y= &quot; price &quot;,
-    x = &quot;Carat&quot;
-  )+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-  theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-  theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
-<pre><code>## Warning: Continuous x aesthetic -- did you forget aes(group=...)?</code></pre>
-<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<pre class="r"><code>cor (data$carat,data$price)</code></pre>
-<pre><code>## [1] 0.925436</code></pre>
-<pre class="r"><code>cov(data$carat,data$price)</code></pre>
-<pre><code>## [1] 413.2318</code></pre>
-</div>
-<div id="the-price-and-the-colour" class="section level3">
-<h3>The price and the colour</h3>
-<pre class="r"><code>ggplot(data,aes(colour,price))+
-  geom_boxplot()+
-  labs(
-    title = &quot;Price Vs. Colour&quot;,
-    subtitle = &quot; &quot;,
-    y= &quot; price &quot;,
-    x = &quot;Colour&quot;
-  )+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-  theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-  theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
-<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<pre class="r"><code># Compute the analysis of variance through Anova 
-res.aov_colour &lt;- aov(price ~ colour, data = data)
-# Summary of the analysis
-summary(res.aov_colour)</code></pre>
-<pre><code>##              Df    Sum Sq Mean Sq F value   Pr(&gt;F)    
-## colour        8  51620143 6452518   5.009 5.87e-06 ***
-## Residuals   431 555185378 1288133                     
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-</div>
-<div id="the-price-and-the-clarity" class="section level3">
-<h3>The price and the clarity</h3>
-<pre class="r"><code>ggplot(data,aes(clarity,price))+
-  geom_boxplot()+
-  labs(
-    title = &quot;Price Vs. Clarity&quot;,
-    subtitle = &quot; &quot;,
-    y= &quot; price &quot;,
-    x = &quot;Clarity&quot;
-  )+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-  theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-  theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
-<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<pre class="r"><code># Compute the analysis of variance through Anova 
-res.aov_clarity &lt;- aov(price ~ clarity, data = data)
-# Summary of the analysis
-summary(res.aov_clarity)</code></pre>
-<pre><code>##              Df    Sum Sq  Mean Sq F value Pr(&gt;F)    
-## clarity       8 194938677 24367335    25.5 &lt;2e-16 ***
-## Residuals   431 411866844   955608                   
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-</div>
-<div id="the-price-and-the-cut" class="section level3">
-<h3>The price and the cut</h3>
-<pre class="r"><code>ggplot(data,aes(cut,price))+
-  geom_boxplot()+
-  labs(
-    title = &quot;Price Vs. Cut&quot;,
-    subtitle = &quot; &quot;,
-    y= &quot; price &quot;,
-    x = &quot;Cut&quot;
-  )+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-  theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-  theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
-<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<pre class="r"><code># Compute the analysis of variance through Anova 
-res.aov_cut&lt;- aov(price ~ cut, data = data)
-# Summary of the analysis
-summary(res.aov_cut)</code></pre>
-<pre><code>##              Df    Sum Sq  Mean Sq F value   Pr(&gt;F)    
-## cut           4  66164570 16541142   13.31 3.07e-10 ***
-## Residuals   435 540640951  1242853                     
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-</div>
-<div id="the-price-and-the-certification" class="section level3">
-<h3>The price and the certification</h3>
-<pre class="r"><code>ggplot(data,aes(certification,price))+
-  geom_boxplot()+
-  labs(
-    title = &quot;Price Vs. Certification&quot;,
-    subtitle = &quot; &quot;,
-    y= &quot; price &quot;,
-    x = &quot;Certification&quot;
-  )+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-  theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-  theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
-<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<pre class="r"><code># Compute the analysis of variance through Anova 
-res.aov_certification &lt;- aov(price ~ certification, data = data)
-# Summary of the analysis
-summary(res.aov_certification)</code></pre>
-<pre><code>##                Df    Sum Sq  Mean Sq F value Pr(&gt;F)    
-## certification   4 238869617 59717404    70.6 &lt;2e-16 ***
-## Residuals     435 367935903   845830                   
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-</div>
-<div id="the-price-and-the-polish" class="section level3">
-<h3>The price and the polish</h3>
-<pre class="r"><code>ggplot(data,aes(polish,price))+
-  geom_boxplot()+
-  labs(
-    title = &quot;Price Vs. Polish&quot;,
-    subtitle = &quot; &quot;,
-    y= &quot; price&quot;,
-    x = &quot;Polish&quot;
-  )+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-  theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-  theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
-<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<pre class="r"><code># Compute the analysis of variance through Anova 
-res.aov_polish &lt;- aov(price ~ polish, data = data)
-# Summary of the analysis
-summary(res.aov_polish)</code></pre>
-<pre><code>##              Df    Sum Sq Mean Sq F value   Pr(&gt;F)    
-## polish        5  28574143 5714829   4.289 0.000808 ***
-## Residuals   434 578231378 1332330                     
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-</div>
-<div id="the-price-and-the-symmetry" class="section level3">
-<h3>The price and the symmetry</h3>
-<pre class="r"><code>ggplot(data,aes(symmetry,price))+
-  geom_boxplot()+
-  labs(
-    title = &quot;Price Vs. Symmetry&quot;,
-    subtitle = &quot; &quot;,
-    y= &quot; price &quot;,
-    x = &quot;Symmetry&quot;
-  )+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-  theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-  theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
-<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
-<pre class="r"><code># Compute the analysis of variance through Anova 
-res.aov_symmetry &lt;- aov(price ~ symmetry, data = data)
-# Summary of the analysis
-summary(res.aov_symmetry)</code></pre>
-<pre><code>##              Df    Sum Sq Mean Sq F value   Pr(&gt;F)    
-## symmetry      4  37655698 9413925   7.195 1.29e-05 ***
-## Residuals   435 569149823 1308390                     
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-</div>
-<div id="the-price-and-the-wholesaler" class="section level3">
-<h3>The price and the wholesaler</h3>
-<pre class="r"><code>ggplot(data,aes(wholesaler,price))+
-  geom_point()+
-  labs(
-    title = &quot;Price Vs. Wholesaler&quot;,
-    subtitle = &quot; &quot;,
-    y= &quot; price &quot;,
-    x = &quot;Wholesaler&quot;
-  )+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-  theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-  theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
-<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-<pre class="r"><code># Compute the analysis of variance through Anova 
-res.aov_wholesaler &lt;- aov(price ~ wholesaler, data = data)
-# Summary of the analysis
-summary(res.aov_wholesaler)</code></pre>
-<pre><code>##              Df    Sum Sq   Mean Sq F value Pr(&gt;F)    
-## wholesaler    1 503348112 503348112    2131 &lt;2e-16 ***
-## Residuals   438 103457409    236204                   
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-</div>
-</div>
-<div id="the-regression-model" class="section level2">
-<h2>The Regression Model</h2>
+<div id="the-bivariate-analysis-and-regressision-models" class="section level2">
+<h2>The Bivariate Analysis and regressision models</h2>
 <div id="the-simple-regression-model-for-the-price-vs.-the-carat-mass" class="section level3">
 <h3>The simple regression model for the price Vs. the carat mass</h3>
-<pre class="r"><code>ggplot(data,aes(carat,price))+
-  geom_point()+
-  geom_smooth(method=&quot;lm&quot;, se=FALSE)+
-  labs(
-    title = &quot;Fitting Linear Model for the Price Vs. Carat Mass&quot;,
-    subtitle = &quot; &quot;,
-    y= &quot; price &quot;,
-    x = &quot;Carat Mass&quot;
-  )+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-  theme_bw()+
-  theme(axis.text.x=element_text(color = &quot;red&quot;, size=9, vjust=.5, hjust=0.7)) +
-  theme(plot.background = element_rect(fill = &quot;#BFD5E3&quot;))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.title = element_text(hjust = 0.5))+
-  theme(plot.caption  = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))+
-  theme(plot.subtitle = element_text(colour = &quot;#E48957&quot;, face = &quot;bold&quot;, size = rel(1.5)))</code></pre>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-<pre class="r"><code>  lm(price ~ carat, data = data)</code></pre>
+<p>The correlation between the price and the carat mass of the diamond ring is 0.925436 that means that the two variables have a perfect positive relationship so that when the carat mass increases the price increase and vice versa.</p>
+<p>The covariance between the price and the carat mass of the diamond ring is 413.2318 which shows the extent to which the two variables change in tandem.</p>
+<pre><code>## [1] 0.925436</code></pre>
+<pre><code>## [1] 413.2318</code></pre>
+<p>In the following plot, a simple linear regression model has been fitted that can help in the prediction of the price of the diamond ring based on the carat mass.</p>
+<p>The simple linear regression model of the price Vs. the carat mass can be represented by:</p>
+<p><span class="math display">\[\widehat{Y}_{i} = \beta_0 + \beta_1 \times CaratMass_{i}\]</span>
+<span class="math display">\[\widehat{Price} =-200.5 + 2864.7 \times Carat Mass\]</span></p>
+<pre><code>## [1] 0.925436</code></pre>
+<pre><code>## [1] 413.2318</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <pre><code>## 
 ## Call:
 ## lm(formula = price ~ carat, data = data)
@@ -551,7 +123,15 @@ summary(res.aov_wholesaler)</code></pre>
 </div>
 <div id="the-simple-regression-model-for-the-price-vs.-the-colour" class="section level3">
 <h3>The simple regression model for the price Vs. the colour</h3>
-<pre class="r"><code>lm(price ~ colour, data = data)</code></pre>
+<p>The correlation between the price and the color of the diamond ring is shown below, based on the shown P-value we can see that the relationship between the price and the colour of the diamond ring is very weak.</p>
+<pre><code>##              Df    Sum Sq Mean Sq F value   Pr(&gt;F)    
+## colour        8  51620143 6452518   5.009 5.87e-06 ***
+## Residuals   431 555185378 1288133                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The simple linear regression model of the price Vs. the color can be represented by:</p>
+<p><span class="math display">\[\widehat{Y} = \beta_0 + \beta_1 \times colorE+ \beta_2 \times colorF+ \beta_3 \times colorG+ \beta_4\times colorH+ \beta_5 \times colorI+ \beta_6 \times colorJ+ \beta_7 \times colorK+ \beta_8 \times colorL\]</span>
+<span class="math display">\[\widehat{Price} =2316.20 -764.29 \times colorE -982.36 \times colorF -147.73 \times colorG -873.92\times colorH -765.88 \times colorI -535.28 \times colorJ+ 42.06 \times colorK+  52.30\times colorL\]</span></p>
 <pre><code>## 
 ## Call:
 ## lm(formula = price ~ colour, data = data)
@@ -562,8 +142,17 @@ summary(res.aov_wholesaler)</code></pre>
 ##     colourJ      colourK      colourL  
 ##     -535.28        42.06        52.30</code></pre>
 </div>
-<div id="the-simple-regression-model-for-the-price-vs.-clarity" class="section level3">
-<h3>The simple regression model for the price Vs. clarity</h3>
+<div id="the-simple-regression-model-for-the-price-vs.-the-clarity" class="section level3">
+<h3>The simple regression model for the price Vs. the clarity</h3>
+<p>The correlation between the price and the clarity of the diamond ring is shown below, based on the shown P-value we can see that the relationship between the price and the clarity of the diamond ring is very weak.</p>
+<pre><code>##              Df    Sum Sq  Mean Sq F value Pr(&gt;F)    
+## clarity       8 194938677 24367335    25.5 &lt;2e-16 ***
+## Residuals   431 411866844   955608                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The simple linear regression model of the price Vs. the clarity can be represented by:</p>
+<p><span class="math display">\[\widehat{Y} = \beta_0 + \beta_1 \times clarityI2 + \beta_2 \times claritySI1+ \beta_3 \times claritySI2+ \beta_4\times claritySI3 + \beta_5 \times clarityVS1+ \beta_6 \times clarityVS2+ \beta_7 \times clarityVVS1 + \beta_8 \times clarityVVS2\]</span></p>
+<p><span class="math display">\[\widehat{Price} = 2543.15 -201.22 \times clarityI2 -1495.53  \times claritySI1-568.95 \times claritySI2+ 76.24\times claritySI3 -1405.38 \times clarityVS1-1654.95 \times clarityVS2-1996.15 \times clarityVVS1 -1978.95 \times clarityVVS2\]</span></p>
 <pre class="r"><code>lm(price ~ clarity, data = data)</code></pre>
 <pre><code>## 
 ## Call:
@@ -577,7 +166,15 @@ summary(res.aov_wholesaler)</code></pre>
 </div>
 <div id="the-simple-regression-model-for-the-price-vs.-cut" class="section level3">
 <h3>The simple regression model for the price Vs. cut</h3>
-<pre class="r"><code>lm(price ~ cut, data = data)</code></pre>
+<p>The correlation between the price and the cut of the diamond ring is shown below, based on the shown P-value we can see that the relationship between the price and the cut of the diamond ring is very weak.</p>
+<pre><code>##              Df    Sum Sq  Mean Sq F value   Pr(&gt;F)    
+## cut           4  66164570 16541142   13.31 3.07e-10 ***
+## Residuals   435 540640951  1242853                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The simple linear regression model of the price Vs. the cut can be represented by:</p>
+<p><span class="math display">\[\widehat{Y} = \beta_0 + \beta_1 \times Cut G+ \beta_2 \times Cut I+ \beta_3 \times Cut V+ \beta_4\times Cut X\]</span></p>
+<p><span class="math display">\[\widehat{Price} =2455.2-409.2  \times Cut G -723.5 \times Cut I-1277.1 \times Cut V -797.2\times Cut X \]</span></p>
 <pre><code>## 
 ## Call:
 ## lm(formula = price ~ cut, data = data)
@@ -588,7 +185,15 @@ summary(res.aov_wholesaler)</code></pre>
 </div>
 <div id="the-simple-regression-model-for-the-price-vs.-the-certification" class="section level3">
 <h3>The simple regression model for the price Vs. the certification</h3>
-<pre class="r"><code>lm(price ~ certification, data = data)</code></pre>
+<p>The correlation between the price and the certification of the diamond ring is shown below, based on the shown P-value we can see that the relationship between the price and the certification of the diamond ring is very weak.</p>
+<pre><code>##                Df    Sum Sq  Mean Sq F value Pr(&gt;F)    
+## certification   4 238869617 59717404    70.6 &lt;2e-16 ***
+## Residuals     435 367935903   845830                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The simple linear regression model of the price Vs. the certification can be represented by:</p>
+<p><span class="math display">\[\widehat{Y} = \beta_0 + \beta_1 \times certificationDOW  + \beta_2 \times certificationEGL  + \beta_3 \times certificationGIA  + \beta_4\times certificationIGI  \]</span></p>
+<p><span class="math display">\[\widehat{Price} = 3033.4 -1002.4 \times certificationDOW  -355.6 \times certificationEGL  -1573.6 \times certificationGIA  -2767.9 \times certificationIGI  \]</span></p>
 <pre><code>## 
 ## Call:
 ## lm(formula = price ~ certification, data = data)
@@ -601,6 +206,15 @@ summary(res.aov_wholesaler)</code></pre>
 </div>
 <div id="the-simple-regression-model-for-the-price-vs.-the-polish" class="section level3">
 <h3>The simple regression model for the price Vs. the polish</h3>
+<p>The correlation between the price and the polish of the diamond ring is shown below, based on the shown P-value we can see that the relationship between the price and the certification of the diamond ring is very weak.</p>
+<pre><code>##              Df    Sum Sq Mean Sq F value   Pr(&gt;F)    
+## polish        5  28574143 5714829   4.289 0.000808 ***
+## Residuals   434 578231378 1332330                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The simple linear regression model of the price Vs. the polish can be represented by:</p>
+<p><span class="math display">\[\widehat{Y} = \beta_0 + \beta_1 \times  polishG   + \beta_2 \times  polishI   + \beta_3 \times  polishV   + \beta_4\times  polishV + \beta_5\times  polishX  \]</span>
+<span class="math display">\[\widehat{Price} =  2318.6 -404.0 \times  polishG   + 728.8 \times  polishI   + 762.4  \times  polishV   -715.5\times  polishV -939.8 \times  polishX  \]</span></p>
 <pre class="r"><code>lm(price ~ polish, data = data)</code></pre>
 <pre><code>## 
 ## Call:
@@ -612,7 +226,15 @@ summary(res.aov_wholesaler)</code></pre>
 </div>
 <div id="the-simple-regression-model-for-the-price-vs.-the-symmetry" class="section level3">
 <h3>The simple regression model for the price Vs. the symmetry</h3>
-<pre class="r"><code>lm(price ~ symmetry, data = data)</code></pre>
+<p>The correlation between the price and the symmetry of the diamond ring is shown below, based on the shown P-value we can see that the relationship between the price and the symmetry of the diamond ring is very weak.</p>
+<pre><code>##              Df    Sum Sq Mean Sq F value   Pr(&gt;F)    
+## symmetry      4  37655698 9413925   7.195 1.29e-05 ***
+## Residuals   435 569149823 1308390                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The simple linear regression model of the price Vs. the symmetry can be represented by:</p>
+<p><span class="math display">\[\widehat{Y} = \beta_0 + \beta_1 \times symmetryG  + \beta_2 \times  symmetryI   + \beta_3 \times  symmetryV   + \beta_4\times  symmetryX\]</span></p>
+<p><span class="math display">\[\widehat{Price} = 2432.3 -537.9 \times symmetryG+615.1 \times  symmetryI -966.8 \times  symmetryV  -673.0\times  symmetryX\]</span></p>
 <pre><code>## 
 ## Call:
 ## lm(formula = price ~ symmetry, data = data)
@@ -621,9 +243,17 @@ summary(res.aov_wholesaler)</code></pre>
 ## (Intercept)    symmetryG    symmetryI    symmetryV    symmetryX  
 ##      2432.3       -537.9        615.1       -966.8       -673.0</code></pre>
 </div>
-<div id="the-simple-regression-model-for-the-price-vs.-the-wholsaler" class="section level3">
-<h3>The simple regression model for the price Vs. the wholsaler</h3>
-<pre class="r"><code>lm(price ~ factor(wholesaler), data = data)</code></pre>
+<div id="the-simple-regression-model-for-the-price-vs.-the-wholesaler" class="section level3">
+<h3>The simple regression model for the price Vs. the wholesaler</h3>
+<p>The correlation between the price and the wholesaler of the diamond ring is shown below, based on the shown P-value we can see that the relationship between the price and the certification of the diamond ring is very weak.</p>
+<pre><code>##                     Df    Sum Sq   Mean Sq F value Pr(&gt;F)    
+## factor(wholesaler)   2 578213494 289106747    4419 &lt;2e-16 ***
+## Residuals          437  28592027     65428                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The simple linear regression model of the price Vs. the wholesaler can be represented by:</p>
+<p><span class="math display">\[\widehat{Y} = \beta_0 + \beta_1 \times wholesaler1  + \beta_2 \times  wholesaler2 \]</span>
+<span class="math display">\[\widehat{Price} =  3043.2 -381.2 \times wholesaler1  -2575.1 \times  wholesaler2 \]</span></p>
 <pre><code>## 
 ## Call:
 ## lm(formula = price ~ factor(wholesaler), data = data)
@@ -634,7 +264,7 @@ summary(res.aov_wholesaler)</code></pre>
 </div>
 <div id="the-multiple-linear-regression" class="section level3">
 <h3>The multiple linear regression:</h3>
-<pre class="r"><code>lm(price ~ carat+ colour+ clarity + cut+ certification + polish + symmetry +factor(wholesaler), data = data)</code></pre>
+<p>The multiple linear regression model can be achieved by using the following betas, so that we can predict the price of the diamond ring taking in consideration the all the variables either metric or non metric.</p>
 <pre><code>## 
 ## Call:
 ## lm(formula = price ~ carat + colour + clarity + cut + certification + 
@@ -667,5 +297,10 @@ summary(res.aov_wholesaler)</code></pre>
 ##              151.49               137.40               112.07  
 ## factor(wholesaler)3  
 ##            -1460.67</code></pre>
+<p>From the above analysis, we can see that the price of the diamond ring depends mainly on the carat mass and the relationship between these two variables are strong and positive so that as the carat mass increase as the price of the diamond ring increase and vice versa.</p>
+<p>To evaluate the professor’s ring that he is interested on buying it we can use the multiple regression model mentioned above that result in estimated price of :</p>
+<p><span class="math display">\[\widehat{Price} = 788.88 + 1885.30\times 0.9(carat) -434.39  (colorJ)+560.51  (ClaritySL2)+78.45  (Cut V)+ 12.16(Certification GIA)+ 66.57(Polish G) + 151.49(symmetry V)\]</span>
+<span class="math display">\[\widehat{Price} = $ 2920.44 \]</span></p>
+<p>The estimated price based on our model is less than the price of the ring with around 180 dollars.</p>
 </div>
 </div>
