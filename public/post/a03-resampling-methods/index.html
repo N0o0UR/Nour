@@ -1,0 +1,1141 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.2.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Nouran Mostafa" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="The GoalThe goal behind this study is to use the cross-validation method to evaluate the performance of our logistic regression model.
+The dataThe data used in this study was obtained from UCI website and we specifically used the Bank-full." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/a03-resampling-methods/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.7145a9a307b7b6e0cf40149bdecd66b5.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/post/a03-resampling-methods/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="HOME" />
+  <meta property="og:url" content="/post/a03-resampling-methods/" />
+  <meta property="og:title" content="A03 Resampling Methods | HOME" />
+  <meta property="og:description" content="The GoalThe goal behind this study is to use the cross-validation method to evaluate the performance of our logistic regression model.
+The dataThe data used in this study was obtained from UCI website and we specifically used the Bank-full." /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-07-22T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-07-22T09:31:53-03:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/a03-resampling-methods/"
+  },
+  "headline": "A03 Resampling Methods",
+  
+  "datePublished": "2021-07-22T00:00:00Z",
+  "dateModified": "2021-07-22T09:31:53-03:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Nouran Mostafa"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "HOME",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "The Goal\rThe goal behind this study is to use the cross-validation method to evaluate the performance of our logistic regression model.\n\rThe data\rThe data used in this study was obtained from UCI website and we specifically used the Bank-full."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>A03 Resampling Methods | HOME</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="9f0cc6489905ed71be1e3a1268234ba3" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.b8153d4570dcbb34350a2a846dba8c03.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">HOME</a>
+    </div>
+    
+
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">HOME</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="https://twitter.com/NouranM85487915" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+
+      
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>A03 Resampling Methods</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Jul 22, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    4 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/ggplot2/">ggplot2</a>, <a href="/category/tidymodels/">tidymodels</a>, <a href="/category/tideverse/">Tideverse</a>, <a href="/category/caret/">caret</a>, <a href="/category/yardstick/">yardstick</a>, <a href="/category/dplyr/">dplyr</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/post/a03-resampling-methods/index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="the-goal" class="section level3">
+<h3>The Goal</h3>
+<p>The goal behind this study is to use the cross-validation method to evaluate the performance of our logistic regression model.</p>
+</div>
+<div id="the-data" class="section level3">
+<h3>The data</h3>
+<p>The data used in this study was obtained from UCI website and we specifically used the Bank-full.csv dataset.</p>
+</div>
+<div id="splitting-the-data-to-training-and-testing-splits" class="section level2">
+<h2>splitting the data to training and testing splits</h2>
+<p>In this step we are going to split the data on hands so that 3/4 of the data would be assigned for training and 1/4 of the data would be assigned for testing.</p>
+<div id="create-the-logistic-regression-model" class="section level3">
+<h3>create the logistic regression model</h3>
+<p>Creating the logistic regression model that will be used to identify whether a customer will subscribe to a term deposit or not.</p>
+</div>
+<div id="creating-the-recipie" class="section level3">
+<h3>creating the recipie</h3>
+<p>creating the suitable recipie to apply feature engineering to our data</p>
+</div>
+<div id="create-workflow" class="section level3">
+<h3>Create workflow</h3>
+<p>Create a workflow that combine the model and the recipe.</p>
+</div>
+<div id="fit-the-model" class="section level3">
+<h3>Fit the model</h3>
+<p>Train and fitting the model using the training split of the data.</p>
+<pre><code>## # A tibble: 72 x 5
+##    term             estimate std.error statistic  p.value
+##    &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+##  1 (Intercept)      -1.46       0.236     -6.18  6.45e-10
+##  2 age              -0.0267     0.0272    -0.982 3.26e- 1
+##  3 balance           0.0312     0.0185     1.69  9.06e- 2
+##  4 duration          1.07       0.0191    56.2   0       
+##  5 campaign         -0.275      0.0363    -7.58  3.51e-14
+##  6 pdays             0.00805    0.0357     0.226 8.21e- 1
+##  7 previous          0.0220     0.0159     1.38  1.67e- 1
+##  8 job_blue.collar  -0.303      0.0843    -3.60  3.22e- 4
+##  9 job_entrepreneur -0.265      0.144     -1.84  6.55e- 2
+## 10 job_housemaid    -0.378      0.151     -2.50  1.25e- 2
+## 11 job_management   -0.192      0.0848    -2.26  2.35e- 2
+## 12 job_retired       0.282      0.113      2.49  1.29e- 2
+## # ... with 60 more rows</code></pre>
+</div>
+<div id="make-predictions-for-training-data" class="section level3">
+<h3>Make predictions for training data</h3>
+<p>Using the trained model for prediction where the training data is used.</p>
+<pre><code>## # A tibble: 33,907 x 18
+##    .pred_class   age job         marital education default balance housing loan 
+##    &lt;fct&gt;       &lt;int&gt; &lt;fct&gt;       &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt; &lt;fct&gt;   &lt;fct&gt;
+##  1 no             58 management  married tertiary  no         2143 yes     no   
+##  2 no             33 entreprene~ married secondary no            2 yes     yes  
+##  3 no             47 blue-collar married unknown   no         1506 yes     no   
+##  4 no             33 unknown     single  unknown   no            1 no      no   
+##  5 no             35 management  married tertiary  no          231 yes     no   
+##  6 no             43 technician  single  secondary no          593 yes     no   
+##  7 no             29 admin.      single  secondary no          390 yes     no   
+##  8 no             53 technician  married secondary no            6 yes     no   
+##  9 no             58 technician  married unknown   no           71 yes     no   
+## 10 no             57 services    married secondary no          162 yes     no   
+## # ... with 33,897 more rows, and 9 more variables: contact &lt;fct&gt;, day &lt;chr&gt;,
+## #   month &lt;fct&gt;, duration &lt;int&gt;, campaign &lt;int&gt;, pdays &lt;int&gt;, previous &lt;int&gt;,
+## #   poutcome &lt;fct&gt;, y &lt;fct&gt;</code></pre>
+</div>
+<div id="evaluate-performance-on-tarining-data" class="section level3">
+<h3>Evaluate performance on tarining data</h3>
+<p>Evaluate the performance of the model on the training data.</p>
+<pre><code>##           Truth
+## Prediction    no   yes
+##        no  29186  2557
+##        yes   755  1409</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy binary         0.902
+## 2 sens     binary         0.975
+## 3 spec     binary         0.355</code></pre>
+</div>
+<div id="make-predictions-for-testing-data" class="section level3">
+<h3>Make predictions for testing data</h3>
+<p>Using the trained model for prediction where the testing data is used.</p>
+<pre><code>## # A tibble: 11,304 x 18
+##    .pred_class   age job         marital education default balance housing loan 
+##    &lt;fct&gt;       &lt;int&gt; &lt;fct&gt;       &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt; &lt;fct&gt;   &lt;fct&gt;
+##  1 no             44 technician  single  secondary no           29 yes     no   
+##  2 no             28 management  single  tertiary  no          447 yes     yes  
+##  3 no             42 entreprene~ divorc~ tertiary  yes           2 yes     no   
+##  4 no             58 retired     married primary   no          121 yes     no   
+##  5 no             41 admin.      divorc~ secondary no          270 yes     no   
+##  6 no             51 retired     married primary   no          229 yes     no   
+##  7 no             45 admin.      single  unknown   no           13 yes     no   
+##  8 no             57 blue-collar married primary   no           52 yes     no   
+##  9 no             60 retired     married primary   no           60 yes     no   
+## 10 no             36 technician  single  secondary no          265 yes     yes  
+## # ... with 11,294 more rows, and 9 more variables: contact &lt;fct&gt;, day &lt;chr&gt;,
+## #   month &lt;fct&gt;, duration &lt;int&gt;, campaign &lt;int&gt;, pdays &lt;int&gt;, previous &lt;int&gt;,
+## #   poutcome &lt;fct&gt;, y &lt;fct&gt;</code></pre>
+</div>
+<div id="evaluate-performance-on-testing-data" class="section level3">
+<h3>Evaluate performance on testing data</h3>
+<p>Evaluate the performance of the model on the testing data.</p>
+<pre><code>##           Truth
+## Prediction   no  yes
+##        no  9752  860
+##        yes  229  463</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy binary         0.904
+## 2 sens     binary         0.977
+## 3 spec     binary         0.350</code></pre>
+</div>
+</div>
+<div id="apply-cross-validation-method-for-model-evaluation" class="section level2">
+<h2>Apply Cross Validation method for model evaluation</h2>
+<div id="split-data-into-folds" class="section level3">
+<h3>Split data into folds</h3>
+<p>The train data is split-ted into 10 folds</p>
+</div>
+<div id="fit-resamples" class="section level3">
+<h3>Fit resamples</h3>
+<p>Fit the folds into the workflow.</p>
+</div>
+<div id="collect-cv-metrics" class="section level3">
+<h3>Collect CV metrics</h3>
+<p>Show the metrics resulted from Cross-Validation process</p>
+<pre><code>## # A tibble: 2 x 6
+##   .metric  .estimator  mean     n std_err .config             
+##   &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
+## 1 accuracy binary     0.901     5 0.00122 Preprocessor1_Model1
+## 2 roc_auc  binary     0.906     5 0.00255 Preprocessor1_Model1</code></pre>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/a03-resampling-methods/&amp;text=A03%20Resampling%20Methods" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/a03-resampling-methods/&amp;t=A03%20Resampling%20Methods" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=A03%20Resampling%20Methods&amp;body=/post/a03-resampling-methods/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/a03-resampling-methods/&amp;title=A03%20Resampling%20Methods" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=A03%20Resampling%20Methods%20/post/a03-resampling-methods/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/a03-resampling-methods/&amp;title=A03%20Resampling%20Methods" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/author/nouran-mostafa/avatar_hu87b681ad54a12849109b4b507d9003fa_46844_270x270_fill_q75_lanczos_center.jpg" alt="Nouran Mostafa">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">Nouran Mostafa</h5>
+      
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/NouranM85487915" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/N0o0UR" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/nouran-mostafa/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/the-project/">Project </a></li>
+      
+      <li><a href="/post/a05-exploratory-data-analysis/">A05  Exploratory Data Analysis</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.4bba0826db6409c865d2e7b99039d6d0.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

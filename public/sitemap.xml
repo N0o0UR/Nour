@@ -2,22 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>/post/a03-resampling-methods/</loc>
+    <lastmod>2021-07-22T09:31:53-03:00</lastmod>
+  </url><url>
+    <loc>/category/caret/</loc>
+    <lastmod>2021-07-22T09:31:53-03:00</lastmod>
+  </url><url>
+    <loc>/categories/</loc>
+    <lastmod>2021-07-22T09:31:53-03:00</lastmod>
+  </url><url>
+    <loc>/category/dplyr/</loc>
+    <lastmod>2021-07-22T09:31:53-03:00</lastmod>
+  </url><url>
+    <loc>/category/ggplot2/</loc>
+    <lastmod>2021-07-22T09:31:53-03:00</lastmod>
+  </url><url>
+    <loc>/</loc>
+    <lastmod>2021-07-22T09:31:53-03:00</lastmod>
+  </url><url>
+    <loc>/post/</loc>
+    <lastmod>2021-07-22T09:31:53-03:00</lastmod>
+  </url><url>
+    <loc>/category/tideverse/</loc>
+    <lastmod>2021-07-22T09:31:53-03:00</lastmod>
+  </url><url>
+    <loc>/category/tidymodels/</loc>
+    <lastmod>2021-07-22T09:31:53-03:00</lastmod>
+  </url><url>
+    <loc>/category/yardstick/</loc>
+    <lastmod>2021-07-22T09:31:53-03:00</lastmod>
+  </url><url>
     <loc>/post/a02-classification-model/</loc>
     <lastmod>2021-07-17T11:51:24-03:00</lastmod>
   </url><url>
     <loc>/category/basics/</loc>
-    <lastmod>2021-07-17T11:51:24-03:00</lastmod>
-  </url><url>
-    <loc>/categories/</loc>
-    <lastmod>2021-07-17T11:51:24-03:00</lastmod>
-  </url><url>
-    <loc>/category/ggplot2/</loc>
-    <lastmod>2021-07-17T11:51:24-03:00</lastmod>
-  </url><url>
-    <loc>/</loc>
-    <lastmod>2021-07-17T11:51:24-03:00</lastmod>
-  </url><url>
-    <loc>/post/</loc>
     <lastmod>2021-07-17T11:51:24-03:00</lastmod>
   </url><url>
     <loc>/post/assignment-a01/</loc>
@@ -27,12 +45,6 @@
     <lastmod>2021-06-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/category/shiny/</loc>
-    <lastmod>2021-06-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/category/tideverse/</loc>
-    <lastmod>2021-06-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/category/tidymodels/</loc>
     <lastmod>2021-06-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/post/a05-exploratory-data-analysis/</loc>

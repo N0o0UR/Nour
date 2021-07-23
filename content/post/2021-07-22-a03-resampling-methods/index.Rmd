@@ -1,0 +1,473 @@
+---
+title: A03 Resampling Methods
+author: Nouran
+date: '2021-07-22'
+slug: a03-resampling-methods
+categories:
+  - ggplot2
+  - tidymodels
+  - Tideverse
+  - caret
+  - yardstick
+  - dplyr
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-07-22T09:31:53-03:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE,results=FALSE}
+library("DataExplorer")
+library("janitor")
+library("tidyr")
+library("tidyverse")
+library("dplyr")
+library("yardstick")
+library("ggplot2")
+library("caret")
+library("tidymodels")
+library("readxl")
+library("boot")
+
+```
+
+## Part 1 Cross- Validation for Logistic and linear Regression model:
+
+### The Goal
+
+The goal behind this study is to use the cross-validation method to evaluate the performance of our logistic and linear regression models.
+
+## First For Logistic Regression Model:
+
+
+### The data
+The data used in this study was obtained from UCI website and we specifically used the Bank-full.csv dataset.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE,results=FALSE}
+
+bank_data<-read.csv2 ("bank-full.csv",stringsAsFactors=T)
+
+bank_data<- bank_data %>%
+mutate(day=as.character(day))
+
+#create_report(data)
+
+```
+
+
+## splitting the data to training and testing splits
+
+In this step we are going to split the data on hands so that 3/4 of the data would be assigned for training and 1/4 of the data would be assigned for testing.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+set.seed(12)
+
+
+data_split <- initial_split(bank_data,prop = 0.75,strata = y)
+
+train_data<- data_split%>%
+  training()
+
+test_data <- data_split%>%
+  testing()
+
+```
+
+
+
+### create the logistic regression model
+
+Creating the logistic regression model that will be used to identify whether a customer will subscribe to a term deposit or not.
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+logistic_model <- logistic_reg() %>%
+  # Specify the engine
+  set_engine('glm') %>%
+  # Specify the mode
+  set_mode('classification')
+
+```
+
+### creating the recipe
+
+creating the suitable recipe to apply feature engineering to our data
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+the_recipe <- recipe(y ~ .,data = train_data) %>%
+step_corr(all_numeric(), threshold = 0.9) %>%
+step_normalize(all_numeric()) %>%
+step_dummy(all_nominal(), -all_outcomes())%>%
+  # remove zero variance predictors
+  step_zv(all_predictors())
+```
+
+
+### Create workflow
+
+Create a workflow that combine the model and the recipe.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+logistic_wkfl <- workflow() %>%
+  # Add model
+  add_model(logistic_model) %>%
+  # Add recipe
+  add_recipe(the_recipe)
+
+```
+
+
+### Fit the model
+
+Train and fitting the model using the training split of the data.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+mdl_fit <- logistic_wkfl %>%
+  fit(data=train_data)
+
+
+tidy(mdl_fit) %>%
+  print(n = 12)
+```
+
+
+### Make predictions for training data
+
+Using the trained model for prediction where the training data is used.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+train_pred<-predict(mdl_fit, train_data,type = 'class') %>%
+  bind_cols(train_data %>% select(everything()))
+
+train_pred
+
+
+```
+### Evaluate performance on tarining data
+
+Evaluate the performance of the model on the training data.
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+conf_mat(train_pred, truth = y, estimate = .pred_class)
+
+custom_metrics <-
+metric_set(accuracy, sens, spec)
+
+custom_metrics(train_pred,
+truth = y,
+estimate = .pred_class)
+
+```
+### Make predictions for testing data
+
+Using the trained model for prediction where the testing data is used.
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+test_pred <- predict(mdl_fit, test_data) %>%
+  bind_cols(test_data %>% select(everything()))
+test_pred
+
+```
+### Evaluate performance on testing data
+
+Evaluate the performance of the model on the testing data.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+conf_mat(test_pred, truth = y, estimate = .pred_class)
+
+
+test_metric<- custom_metrics(test_pred,
+truth = y,
+estimate = .pred_class)
+
+test_metric
+
+```
+## Apply Cross Validation method for model evaluation
+
+### Split data into folds
+
+The train data is split-ted into 5 folds
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+
+set.seed(2)
+
+folds <- vfold_cv(train_data,v = 5,strata = y)
+
+
+```
+
+
+### Fit resamples
+
+Fit the folds into the workflow.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+
+cv_fit<- logistic_wkfl%>%
+  fit_resamples(folds)
+
+```
+
+### Collect CV metrics
+
+Show the metrics resulted from Cross-Validation process
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+collect_metrics(cv_fit)
+```
+### Conclusion
+
+The accuracy associated with the model on the training data is 0.9018, that associated with the model in the testing data is 0.9049 and that associated with the model using cross validation is 0.90096. From that we can see that our model is performing good.
+
+
+
+
+
+## Second For Linear Regression Model:
+
+## The diamond ring data 
+
+In this part we used the diamond ring data. 
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+
+rings_data<-read_excel("diamonds.xlsx",col_types = c("guess","guess","guess","guess","guess","guess","guess","numeric","text"))%>%
+  clean_names()%>%
+  select(price,everything())
+
+ glimpse(rings_data)
+
+```
+
+
+## splitting the data to training and testing splits
+
+In this step we are going to split the data on hands so that 3/4 of the data would be assigned for training and 1/4 of the data would be assigned for testing.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+set.seed(221)
+
+
+data_rings_split <- initial_split(rings_data,prop = 0.75,strata = price)
+
+train_data_rings<- data_rings_split%>%
+  training()
+
+test_data_rings <- data_rings_split%>%
+  testing()
+
+```
+
+
+
+### create the linear regression model
+
+Creating the linear regression model that will be used to predict the price of the diamond ring of interest.
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+model_rings <- linear_reg() %>% 
+  # Specify the engine
+  set_engine('lm') %>% 
+  # Specify the mode
+  set_mode('regression')
+
+
+```
+
+### creating the recipe
+
+creating the suitable recipe to apply feature engineering to our data 
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+recipe_rings <- recipe(price ~ .,data =train_data_rings) %>%
+step_corr(all_numeric_predictors(), threshold = 0.9) %>%
+step_normalize(all_numeric_predictors()) %>%
+step_dummy(all_nominal())
+
+# recipe_rings %>%
+#   prep(training=train_data_rings)%>%
+#   bake(new_data=test_data_rings)
+```
+
+
+### Create workflow
+
+Create a workflow that combine the model and the recipe.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+wkfl_rings <- workflow() %>% 
+  # Add model
+  add_model(model_rings) %>% 
+  # Add recipe
+  add_recipe(recipe_rings)
+
+```
+
+
+### Fit the model
+
+Train and fitting the model using the training split of the data.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+fit_mdl_rings<- wkfl_rings %>% 
+ fit(data=train_data_rings)
+
+
+```
+
+
+### Make predictions for training data
+
+Using the trained model for prediction where the training data is used.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+train_pred_rings <- predict (fit_mdl_rings, train_data_rings)%>%
+  bind_cols(train_data_rings %>% select(everything())) 
+            
+train_pred_rings
+
+
+```
+### Evaluate performance on tarining data
+
+Evaluate the performance of the model on the training data.
+
+*R-squared*
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+rsq(train_pred_rings, truth = price, estimate = .pred)
+
+
+ggplot(train_pred_rings, aes(x = price, y = .pred)) +
+geom_point() +
+geom_abline(color = 'blue', linetype = 2) +
+coord_obs_pred() +
+labs(title = 'R-Squared Plot',
+y = 'Predicted price',
+x = 'Actual price')
+
+```
+*RMSE*
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+rmse(train_pred_rings, truth = price, estimate = .pred)
+
+```
+
+
+### Make predictions for testing data
+
+Using the trained model for prediction where the testing data is used.
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+test_pred_rings <- predict(fit_mdl_rings, test_data_rings) %>%
+  bind_cols(test_data_rings %>% select(everything()))
+test_pred_rings
+
+```
+### Evaluate performance on testing data
+
+Evaluate the performance of the model on the testing data.
+
+*R-squared*
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+rsq(test_pred_rings, truth = price, estimate = .pred)
+
+
+ggplot(test_pred_rings, aes(x = price, y = .pred)) +
+geom_point() +
+geom_abline(color = 'blue', linetype = 2) +
+coord_obs_pred() +
+labs(title = 'R-Squared Plot',
+y = 'Predicted price',
+x = 'Actual price')
+
+```
+
+
+*RMSE*
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+rmse(test_pred_rings, truth = price, estimate = .pred)
+
+```
+
+
+## Apply Cross Validation method for model evaluation 
+
+### Split data into folds
+
+The train data is split-ted into 5 folds
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+
+set.seed(15)
+
+folds <- vfold_cv(train_data_rings,v = 5,strata = price)
+
+
+```
+
+
+### Fit resamples
+
+Fit the folds into the workflow.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+
+cv_fit_rings<- wkfl_rings%>%
+  fit_resamples(folds)
+
+```
+
+### Collect CV metrics
+
+Show the metrics resulted from Cross-Validation process
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+collect_metrics(cv_fit_rings)
+```
+### Conclusion 
+
+The rsq associated with the model on the training data is 0.99, that associated with the model in the testing data is 0.98 and that associated with the model using cross validation is 0.98. From that we can see that our model is performing good.

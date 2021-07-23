@@ -1,0 +1,160 @@
+---
+title: A03 Resampling Methods
+author: Nouran
+date: '2021-07-22'
+slug: a03-resampling-methods
+categories:
+  - ggplot2
+  - tidymodels
+  - Tideverse
+  - caret
+  - yardstick
+  - dplyr
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-07-22T09:31:53-03:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="the-goal" class="section level3">
+<h3>The Goal</h3>
+<p>The goal behind this study is to use the cross-validation method to evaluate the performance of our logistic regression model.</p>
+</div>
+<div id="the-data" class="section level3">
+<h3>The data</h3>
+<p>The data used in this study was obtained from UCI website and we specifically used the Bank-full.csv dataset.</p>
+</div>
+<div id="splitting-the-data-to-training-and-testing-splits" class="section level2">
+<h2>splitting the data to training and testing splits</h2>
+<p>In this step we are going to split the data on hands so that 3/4 of the data would be assigned for training and 1/4 of the data would be assigned for testing.</p>
+<div id="create-the-logistic-regression-model" class="section level3">
+<h3>create the logistic regression model</h3>
+<p>Creating the logistic regression model that will be used to identify whether a customer will subscribe to a term deposit or not.</p>
+</div>
+<div id="creating-the-recipie" class="section level3">
+<h3>creating the recipie</h3>
+<p>creating the suitable recipie to apply feature engineering to our data</p>
+</div>
+<div id="create-workflow" class="section level3">
+<h3>Create workflow</h3>
+<p>Create a workflow that combine the model and the recipe.</p>
+</div>
+<div id="fit-the-model" class="section level3">
+<h3>Fit the model</h3>
+<p>Train and fitting the model using the training split of the data.</p>
+<pre><code>## # A tibble: 72 x 5
+##    term             estimate std.error statistic  p.value
+##    &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+##  1 (Intercept)      -1.46       0.236     -6.18  6.45e-10
+##  2 age              -0.0267     0.0272    -0.982 3.26e- 1
+##  3 balance           0.0312     0.0185     1.69  9.06e- 2
+##  4 duration          1.07       0.0191    56.2   0       
+##  5 campaign         -0.275      0.0363    -7.58  3.51e-14
+##  6 pdays             0.00805    0.0357     0.226 8.21e- 1
+##  7 previous          0.0220     0.0159     1.38  1.67e- 1
+##  8 job_blue.collar  -0.303      0.0843    -3.60  3.22e- 4
+##  9 job_entrepreneur -0.265      0.144     -1.84  6.55e- 2
+## 10 job_housemaid    -0.378      0.151     -2.50  1.25e- 2
+## 11 job_management   -0.192      0.0848    -2.26  2.35e- 2
+## 12 job_retired       0.282      0.113      2.49  1.29e- 2
+## # ... with 60 more rows</code></pre>
+</div>
+<div id="make-predictions-for-training-data" class="section level3">
+<h3>Make predictions for training data</h3>
+<p>Using the trained model for prediction where the training data is used.</p>
+<pre><code>## # A tibble: 33,907 x 18
+##    .pred_class   age job         marital education default balance housing loan 
+##    &lt;fct&gt;       &lt;int&gt; &lt;fct&gt;       &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt; &lt;fct&gt;   &lt;fct&gt;
+##  1 no             58 management  married tertiary  no         2143 yes     no   
+##  2 no             33 entreprene~ married secondary no            2 yes     yes  
+##  3 no             47 blue-collar married unknown   no         1506 yes     no   
+##  4 no             33 unknown     single  unknown   no            1 no      no   
+##  5 no             35 management  married tertiary  no          231 yes     no   
+##  6 no             43 technician  single  secondary no          593 yes     no   
+##  7 no             29 admin.      single  secondary no          390 yes     no   
+##  8 no             53 technician  married secondary no            6 yes     no   
+##  9 no             58 technician  married unknown   no           71 yes     no   
+## 10 no             57 services    married secondary no          162 yes     no   
+## # ... with 33,897 more rows, and 9 more variables: contact &lt;fct&gt;, day &lt;chr&gt;,
+## #   month &lt;fct&gt;, duration &lt;int&gt;, campaign &lt;int&gt;, pdays &lt;int&gt;, previous &lt;int&gt;,
+## #   poutcome &lt;fct&gt;, y &lt;fct&gt;</code></pre>
+</div>
+<div id="evaluate-performance-on-tarining-data" class="section level3">
+<h3>Evaluate performance on tarining data</h3>
+<p>Evaluate the performance of the model on the training data.</p>
+<pre><code>##           Truth
+## Prediction    no   yes
+##        no  29186  2557
+##        yes   755  1409</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy binary         0.902
+## 2 sens     binary         0.975
+## 3 spec     binary         0.355</code></pre>
+</div>
+<div id="make-predictions-for-testing-data" class="section level3">
+<h3>Make predictions for testing data</h3>
+<p>Using the trained model for prediction where the testing data is used.</p>
+<pre><code>## # A tibble: 11,304 x 18
+##    .pred_class   age job         marital education default balance housing loan 
+##    &lt;fct&gt;       &lt;int&gt; &lt;fct&gt;       &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt; &lt;fct&gt;   &lt;fct&gt;
+##  1 no             44 technician  single  secondary no           29 yes     no   
+##  2 no             28 management  single  tertiary  no          447 yes     yes  
+##  3 no             42 entreprene~ divorc~ tertiary  yes           2 yes     no   
+##  4 no             58 retired     married primary   no          121 yes     no   
+##  5 no             41 admin.      divorc~ secondary no          270 yes     no   
+##  6 no             51 retired     married primary   no          229 yes     no   
+##  7 no             45 admin.      single  unknown   no           13 yes     no   
+##  8 no             57 blue-collar married primary   no           52 yes     no   
+##  9 no             60 retired     married primary   no           60 yes     no   
+## 10 no             36 technician  single  secondary no          265 yes     yes  
+## # ... with 11,294 more rows, and 9 more variables: contact &lt;fct&gt;, day &lt;chr&gt;,
+## #   month &lt;fct&gt;, duration &lt;int&gt;, campaign &lt;int&gt;, pdays &lt;int&gt;, previous &lt;int&gt;,
+## #   poutcome &lt;fct&gt;, y &lt;fct&gt;</code></pre>
+</div>
+<div id="evaluate-performance-on-testing-data" class="section level3">
+<h3>Evaluate performance on testing data</h3>
+<p>Evaluate the performance of the model on the testing data.</p>
+<pre><code>##           Truth
+## Prediction   no  yes
+##        no  9752  860
+##        yes  229  463</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy binary         0.904
+## 2 sens     binary         0.977
+## 3 spec     binary         0.350</code></pre>
+</div>
+</div>
+<div id="apply-cross-validation-method-for-model-evaluation" class="section level2">
+<h2>Apply Cross Validation method for model evaluation</h2>
+<div id="split-data-into-folds" class="section level3">
+<h3>Split data into folds</h3>
+<p>The train data is split-ted into 10 folds</p>
+</div>
+<div id="fit-resamples" class="section level3">
+<h3>Fit resamples</h3>
+<p>Fit the folds into the workflow.</p>
+</div>
+<div id="collect-cv-metrics" class="section level3">
+<h3>Collect CV metrics</h3>
+<p>Show the metrics resulted from Cross-Validation process</p>
+<pre><code>## # A tibble: 2 x 6
+##   .metric  .estimator  mean     n std_err .config             
+##   &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
+## 1 accuracy binary     0.901     5 0.00122 Preprocessor1_Model1
+## 2 roc_auc  binary     0.906     5 0.00255 Preprocessor1_Model1</code></pre>
+</div>
+</div>

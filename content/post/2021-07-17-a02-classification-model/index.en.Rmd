@@ -1225,7 +1225,7 @@ summary(poutcome_mdl)
 
 ## The multiple Logistic regression Model:
 
-From the model we can see that the significance of the some of the variables have been changed to less significant or not even significant at all, we cann see that in the shown mode the significant variables have three stars beside them and the less significant variables have two or one star only while the not significant variables have no stars at all.
+From the model we can see that the significance of the some of the variables have been changed to less significant or not even significant at all where the significant variables have three stars beside them (P<0.05) and the less significant variables have two or one star only while the not significant variables have no stars at all.
 
 
 ```{r,warning=FALSE , message=FALSE,echo=FALSE}
@@ -1233,11 +1233,11 @@ full_mdl <- glm(y ~ . , data= data, family = binomial)
 summary(full_mdl)
 ```
 
-## Testing our multiple Logistic regression Model
+## Evaluating our multiple Logistic regression Model
 
 In this part we will use the test data to pass it to the multiple Logistic regression Model in order to classify whether clients associated with the given information in the test data set will subscribe to a term deposit. Also we will evaluate the performance of the model through using the confusion matrix
 
-After passing the test data set that represent 25% of the original data set to the developed multiple Logistic regression Model and evaluating the classification output with reference to the original output we got accuracy of 90%.
+After passing the test data set that represent 25% of the original data set to the developed multiple Logistic regression Model and evaluating the classification output with reference to the original output we got accuracy of 90.51%.
 
 ```{r,warning=FALSE , message=FALSE,echo=FALSE}
 
@@ -1258,5 +1258,44 @@ autoplot(confusion)
 summary(confusion, event_level = "second")
 
 ```
+## Updating the model with the significant parameters only
 
 
+ In this part we will update our model to include only the significant predictors in the process of classification.
+ 
+Based on the obtained p-values from the previous model we can see that out of 17 predictors, 9 are considered the significant predictors. Accordingly our model would be updated to include the 9 significant predictors only.
+
+```{r}
+
+updated_mdl<- update (full_mdl , ~ job+ education +housing+ loan+contact +month+duration+campaign+poutcome)
+summary(updated_mdl)
+```
+## Evaluating the updated Model
+
+
+After passing the test data set to the updated model and evaluating the classification output with respect to the observed values we got accuracy of 90.54% which is higher than the accuracy that we got by the model which includes all the predictors. 
+
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+
+p_updated<- predict(updated_mdl, explanatory_data,type = "response")
+summary(p)
+
+predicted_response_updated<-ifelse(p_updated>0.5,"yes","no")
+
+outcomes_updated<- table(predicted_response_updated,test$y)
+
+confusion_updated <- conf_mat(outcomes_updated)
+
+autoplot(confusion_updated)
+
+summary(confusion_updated, event_level = "second")
+
+```
+
+
+## Conclusion 
+
+By comparing the accuracy associated with the first model that used all the predictors to the second model that used only the significant predictors, The accuracy associated with the second model is considered higher than the first one and the second model is considered less computationally expensive than the first model.

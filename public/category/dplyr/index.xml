@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>dplyr | HOME</title>
+    <link>/category/dplyr/</link>
+      <atom:link href="/category/dplyr/index.xml" rel="self" type="application/rss+xml" />
+    <description>dplyr</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 22 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>dplyr</title>
+      <link>/category/dplyr/</link>
+    </image>
+    
+    <item>
+      <title>A03 Resampling Methods</title>
+      <link>/post/a03-resampling-methods/</link>
+      <pubDate>Thu, 22 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>/post/a03-resampling-methods/</guid>
+      <description>
+&lt;script src=&#34;/post/a03-resampling-methods/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;the-goal&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The Goal&lt;/h3&gt;
+&lt;p&gt;The goal behind this study is to use the cross-validation method to evaluate the performance of our logistic regression model.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The data&lt;/h3&gt;
+&lt;p&gt;The data used in this study was obtained from UCI website and we specifically used the Bank-full.csv dataset.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;splitting-the-data-to-training-and-testing-splits&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;splitting the data to training and testing splits&lt;/h2&gt;
+&lt;p&gt;In this step we are going to split the data on hands so that 3/4 of the data would be assigned for training and 1/4 of the data would be assigned for testing.&lt;/p&gt;
+&lt;div id=&#34;create-the-logistic-regression-model&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;create the logistic regression model&lt;/h3&gt;
+&lt;p&gt;Creating the logistic regression model that will be used to identify whether a customer will subscribe to a term deposit or not.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-the-recipie&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;creating the recipie&lt;/h3&gt;
+&lt;p&gt;creating the suitable recipie to apply feature engineering to our data&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;create-workflow&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Create workflow&lt;/h3&gt;
+&lt;p&gt;Create a workflow that combine the model and the recipe.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;fit-the-model&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Fit the model&lt;/h3&gt;
+&lt;p&gt;Train and fitting the model using the training split of the data.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 72 x 5
+##    term             estimate std.error statistic  p.value
+##    &amp;lt;chr&amp;gt;               &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+##  1 (Intercept)      -1.46       0.236     -6.18  6.45e-10
+##  2 age              -0.0267     0.0272    -0.982 3.26e- 1
+##  3 balance           0.0312     0.0185     1.69  9.06e- 2
+##  4 duration          1.07       0.0191    56.2   0       
+##  5 campaign         -0.275      0.0363    -7.58  3.51e-14
+##  6 pdays             0.00805    0.0357     0.226 8.21e- 1
+##  7 previous          0.0220     0.0159     1.38  1.67e- 1
+##  8 job_blue.collar  -0.303      0.0843    -3.60  3.22e- 4
+##  9 job_entrepreneur -0.265      0.144     -1.84  6.55e- 2
+## 10 job_housemaid    -0.378      0.151     -2.50  1.25e- 2
+## 11 job_management   -0.192      0.0848    -2.26  2.35e- 2
+## 12 job_retired       0.282      0.113      2.49  1.29e- 2
+## # ... with 60 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;make-predictions-for-training-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Make predictions for training data&lt;/h3&gt;
+&lt;p&gt;Using the trained model for prediction where the training data is used.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 33,907 x 18
+##    .pred_class   age job         marital education default balance housing loan 
+##    &amp;lt;fct&amp;gt;       &amp;lt;int&amp;gt; &amp;lt;fct&amp;gt;       &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;     &amp;lt;fct&amp;gt;     &amp;lt;int&amp;gt; &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;
+##  1 no             58 management  married tertiary  no         2143 yes     no   
+##  2 no             33 entreprene~ married secondary no            2 yes     yes  
+##  3 no             47 blue-collar married unknown   no         1506 yes     no   
+##  4 no             33 unknown     single  unknown   no            1 no      no   
+##  5 no             35 management  married tertiary  no          231 yes     no   
+##  6 no             43 technician  single  secondary no          593 yes     no   
+##  7 no             29 admin.      single  secondary no          390 yes     no   
+##  8 no             53 technician  married secondary no            6 yes     no   
+##  9 no             58 technician  married unknown   no           71 yes     no   
+## 10 no             57 services    married secondary no          162 yes     no   
+## # ... with 33,897 more rows, and 9 more variables: contact &amp;lt;fct&amp;gt;, day &amp;lt;chr&amp;gt;,
+## #   month &amp;lt;fct&amp;gt;, duration &amp;lt;int&amp;gt;, campaign &amp;lt;int&amp;gt;, pdays &amp;lt;int&amp;gt;, previous &amp;lt;int&amp;gt;,
+## #   poutcome &amp;lt;fct&amp;gt;, y &amp;lt;fct&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;evaluate-performance-on-tarining-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Evaluate performance on tarining data&lt;/h3&gt;
+&lt;p&gt;Evaluate the performance of the model on the training data.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;##           Truth
+## Prediction    no   yes
+##        no  29186  2557
+##        yes   755  1409&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 3
+##   .metric  .estimator .estimate
+##   &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
+## 1 accuracy binary         0.902
+## 2 sens     binary         0.975
+## 3 spec     binary         0.355&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;make-predictions-for-testing-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Make predictions for testing data&lt;/h3&gt;
+&lt;p&gt;Using the trained model for prediction where the testing data is used.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 11,304 x 18
+##    .pred_class   age job         marital education default balance housing loan 
+##    &amp;lt;fct&amp;gt;       &amp;lt;int&amp;gt; &amp;lt;fct&amp;gt;       &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;     &amp;lt;fct&amp;gt;     &amp;lt;int&amp;gt; &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;
+##  1 no             44 technician  single  secondary no           29 yes     no   
+##  2 no             28 management  single  tertiary  no          447 yes     yes  
+##  3 no             42 entreprene~ divorc~ tertiary  yes           2 yes     no   
+##  4 no             58 retired     married primary   no          121 yes     no   
+##  5 no             41 admin.      divorc~ secondary no          270 yes     no   
+##  6 no             51 retired     married primary   no          229 yes     no   
+##  7 no             45 admin.      single  unknown   no           13 yes     no   
+##  8 no             57 blue-collar married primary   no           52 yes     no   
+##  9 no             60 retired     married primary   no           60 yes     no   
+## 10 no             36 technician  single  secondary no          265 yes     yes  
+## # ... with 11,294 more rows, and 9 more variables: contact &amp;lt;fct&amp;gt;, day &amp;lt;chr&amp;gt;,
+## #   month &amp;lt;fct&amp;gt;, duration &amp;lt;int&amp;gt;, campaign &amp;lt;int&amp;gt;, pdays &amp;lt;int&amp;gt;, previous &amp;lt;int&amp;gt;,
+## #   poutcome &amp;lt;fct&amp;gt;, y &amp;lt;fct&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;evaluate-performance-on-testing-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Evaluate performance on testing data&lt;/h3&gt;
+&lt;p&gt;Evaluate the performance of the model on the testing data.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;##           Truth
+## Prediction   no  yes
+##        no  9752  860
+##        yes  229  463&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 3
+##   .metric  .estimator .estimate
+##   &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
+## 1 accuracy binary         0.904
+## 2 sens     binary         0.977
+## 3 spec     binary         0.350&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;apply-cross-validation-method-for-model-evaluation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Apply Cross Validation method for model evaluation&lt;/h2&gt;
+&lt;div id=&#34;split-data-into-folds&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Split data into folds&lt;/h3&gt;
+&lt;p&gt;The train data is split-ted into 10 folds&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;fit-resamples&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Fit resamples&lt;/h3&gt;
+&lt;p&gt;Fit the folds into the workflow.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;collect-cv-metrics&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Collect CV metrics&lt;/h3&gt;
+&lt;p&gt;Show the metrics resulted from Cross-Validation process&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 x 6
+##   .metric  .estimator  mean     n std_err .config             
+##   &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;               
+## 1 accuracy binary     0.901     5 0.00122 Preprocessor1_Model1
+## 2 roc_auc  binary     0.906     5 0.00255 Preprocessor1_Model1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
