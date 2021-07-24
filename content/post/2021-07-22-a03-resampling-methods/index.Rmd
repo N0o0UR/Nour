@@ -43,7 +43,7 @@ library("boot")
 
 ### The Goal
 
-The goal behind this study is to discuss two of the most commonly used resampling methods, cross-validation and the bootstrap and we would apply both resampling methods on linear and logestic regression methods.
+The goal behind this study is to discuss two of the most commonly used resampling methods, cross-validation and the bootstrap and we would apply both resampling methods on linear and logistic regression models.
 
 ## First For Logistic Regression Model:
 
@@ -66,9 +66,9 @@ bank_data<- bank_data%>%
 ```
 
 
-### splitting the data to training and testing splits
+### Splitting the data to training and testing splits
 
-In this step we are going to split the data on hands so that 3/4 of the data would be assigned for training and 1/4 of the data would be assigned for testing.
+In this step we are going to split the data so that 3/4 of the data would be assigned for training and the remaining 1/4 of the data would be assigned for testing.
 
 ```{r,warning=FALSE , message=FALSE,echo=FALSE}
 
@@ -87,7 +87,7 @@ test_data <- data_split%>%
 
 
 
-### create the logistic regression model
+### Create the logistic regression model
 
 Creating the logistic regression model that will be used to identify whether a customer will subscribe to a term deposit or not.
 
@@ -102,9 +102,9 @@ logistic_model <- logistic_reg() %>%
 
 ```
 
-### creating the recipe
+### Creating the recipe
 
-creating the suitable recipe to apply feature engineering to our data
+Creating the suitable recipe to apply feature engineering to our data
 
 
 ```{r,warning=FALSE , message=FALSE,echo=FALSE}
@@ -148,7 +148,7 @@ tidy_bank<-tidy(mdl_fit) %>%
 
 ### Make predictions for training data
 
-Using the trained model for prediction where the training data is used.
+Using the trained model for prediction on the training data.
 
 ```{r,warning=FALSE , message=FALSE,echo=FALSE}
 
@@ -176,7 +176,7 @@ estimate = .pred_class)
 ```
 ### Make predictions for testing data
 
-Using the trained model for prediction where the testing data is used.
+Using the trained model for prediction on the testing data.
 
 
 ```{r,warning=FALSE , message=FALSE,echo=FALSE}
@@ -383,7 +383,7 @@ tidy(fit_mdl_rings)
 
 ### Make predictions for training data
 
-Using the trained model for prediction where the training data is used.
+Using the trained model for prediction on the training data.
 
 ```{r,warning=FALSE , message=FALSE,echo=FALSE}
 
@@ -427,7 +427,7 @@ rmse(train_pred_rings, truth = price, estimate = .pred)
 
 ### Make predictions for testing data
 
-Using the trained model for prediction where the testing data is used.
+Using the trained model for prediction on the testing data.
 
 
 ```{r,warning=FALSE , message=FALSE,echo=FALSE}

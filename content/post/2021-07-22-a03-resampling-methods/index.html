@@ -28,7 +28,7 @@ projects: []
 
 <div id="the-goal" class="section level3">
 <h3>The Goal</h3>
-<p>The goal behind this study is to discuss two of the most commonly used resampling methods, cross-validation and the bootstrap and we would apply both resampling methods on linear and logestic regression methods.</p>
+<p>The goal behind this study is to discuss two of the most commonly used resampling methods, cross-validation and the bootstrap and we would apply both resampling methods on linear and logistic regression models.</p>
 </div>
 <div id="first-for-logistic-regression-model" class="section level2">
 <h2>First For Logistic Regression Model:</h2>
@@ -37,16 +37,16 @@ projects: []
 <p>The data used in this study was obtained from UCI website and we specifically used the Bank-full.csv dataset.</p>
 </div>
 <div id="splitting-the-data-to-training-and-testing-splits" class="section level3">
-<h3>splitting the data to training and testing splits</h3>
-<p>In this step we are going to split the data on hands so that 3/4 of the data would be assigned for training and 1/4 of the data would be assigned for testing.</p>
+<h3>Splitting the data to training and testing splits</h3>
+<p>In this step we are going to split the data so that 3/4 of the data would be assigned for training and the remaining 1/4 of the data would be assigned for testing.</p>
 </div>
 <div id="create-the-logistic-regression-model" class="section level3">
-<h3>create the logistic regression model</h3>
+<h3>Create the logistic regression model</h3>
 <p>Creating the logistic regression model that will be used to identify whether a customer will subscribe to a term deposit or not.</p>
 </div>
 <div id="creating-the-recipe" class="section level3">
-<h3>creating the recipe</h3>
-<p>creating the suitable recipe to apply feature engineering to our data</p>
+<h3>Creating the recipe</h3>
+<p>Creating the suitable recipe to apply feature engineering to our data</p>
 </div>
 <div id="create-workflow" class="section level3">
 <h3>Create workflow</h3>
@@ -74,7 +74,7 @@ projects: []
 </div>
 <div id="make-predictions-for-training-data" class="section level3">
 <h3>Make predictions for training data</h3>
-<p>Using the trained model for prediction where the training data is used.</p>
+<p>Using the trained model for prediction on the training data.</p>
 <pre><code>## # A tibble: 33,907 x 11
 ##    .pred_class y     job          education housing loan  contact month duration
 ##    &lt;fct&gt;       &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;     &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;    &lt;int&gt;
@@ -107,7 +107,7 @@ projects: []
 </div>
 <div id="make-predictions-for-testing-data" class="section level3">
 <h3>Make predictions for testing data</h3>
-<p>Using the trained model for prediction where the testing data is used.</p>
+<p>Using the trained model for prediction on the testing data.</p>
 <pre><code>## # A tibble: 11,304 x 11
 ##    .pred_class y     job          education housing loan  contact month duration
 ##    &lt;fct&gt;       &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;     &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;    &lt;int&gt;
