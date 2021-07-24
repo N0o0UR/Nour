@@ -1237,7 +1237,7 @@ summary(full_mdl)
 
 In this part we will use the test data to pass it to the multiple Logistic regression Model in order to classify whether clients associated with the given information in the test data set will subscribe to a term deposit. Also we will evaluate the performance of the model through using the confusion matrix
 
-After passing the test data set that represent 25% of the original data set to the developed multiple Logistic regression Model and evaluating the classification output with reference to the original output we got accuracy of 90.51%.
+After passing the test data set that represent 25% of the original data set to the developed multiple Logistic regression Model and evaluating the classification output with reference to the original output we got accuracy of 90.2g%.
 
 ```{r,warning=FALSE , message=FALSE,echo=FALSE}
 
@@ -1273,7 +1273,7 @@ summary(updated_mdl)
 ## Evaluating the updated Model
 
 
-After passing the test data set to the updated model and evaluating the classification output with respect to the observed values we got accuracy of 90.54% which is higher than the accuracy that we got by the model which includes all the predictors. 
+After passing the test data set to the updated model and evaluating the classification output with respect to the observed values we got accuracy of 90.3% which is higher than the accuracy that we got by the model which includes all the predictors. 
 
 
 
