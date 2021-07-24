@@ -21,24 +21,30 @@
 &lt;script src=&#34;/post/a03-resampling-methods/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
+&lt;div id=&#34;part-1-cross--validation-for-logistic-and-linear-regression-model&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Part 1 Cross- Validation for Logistic and linear Regression model:&lt;/h2&gt;
 &lt;div id=&#34;the-goal&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;The Goal&lt;/h3&gt;
-&lt;p&gt;The goal behind this study is to use the cross-validation method to evaluate the performance of our logistic regression model.&lt;/p&gt;
+&lt;p&gt;The goal behind this study is to use the cross-validation resampling method to evaluate the performance of our logistic and linear regression models.&lt;/p&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;first-for-logistic-regression-model&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;First For Logistic Regression Model:&lt;/h2&gt;
 &lt;div id=&#34;the-data&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;The data&lt;/h3&gt;
 &lt;p&gt;The data used in this study was obtained from UCI website and we specifically used the Bank-full.csv dataset.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&#34;splitting-the-data-to-training-and-testing-splits&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;splitting the data to training and testing splits&lt;/h2&gt;
+&lt;div id=&#34;splitting-the-data-to-training-and-testing-splits&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;splitting the data to training and testing splits&lt;/h3&gt;
 &lt;p&gt;In this step we are going to split the data on hands so that 3/4 of the data would be assigned for training and 1/4 of the data would be assigned for testing.&lt;/p&gt;
+&lt;/div&gt;
 &lt;div id=&#34;create-the-logistic-regression-model&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;create the logistic regression model&lt;/h3&gt;
 &lt;p&gt;Creating the logistic regression model that will be used to identify whether a customer will subscribe to a term deposit or not.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&#34;creating-the-recipie&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;creating the recipie&lt;/h3&gt;
-&lt;p&gt;creating the suitable recipie to apply feature engineering to our data&lt;/p&gt;
+&lt;div id=&#34;creating-the-recipe&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;creating the recipe&lt;/h3&gt;
+&lt;p&gt;creating the suitable recipe to apply feature engineering to our data&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;create-workflow&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Create workflow&lt;/h3&gt;
@@ -47,97 +53,95 @@
 &lt;div id=&#34;fit-the-model&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Fit the model&lt;/h3&gt;
 &lt;p&gt;Train and fitting the model using the training split of the data.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 72 x 5
-##    term             estimate std.error statistic  p.value
-##    &amp;lt;chr&amp;gt;               &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
-##  1 (Intercept)      -1.46       0.236     -6.18  6.45e-10
-##  2 age              -0.0267     0.0272    -0.982 3.26e- 1
-##  3 balance           0.0312     0.0185     1.69  9.06e- 2
-##  4 duration          1.07       0.0191    56.2   0       
-##  5 campaign         -0.275      0.0363    -7.58  3.51e-14
-##  6 pdays             0.00805    0.0357     0.226 8.21e- 1
-##  7 previous          0.0220     0.0159     1.38  1.67e- 1
-##  8 job_blue.collar  -0.303      0.0843    -3.60  3.22e- 4
-##  9 job_entrepreneur -0.265      0.144     -1.84  6.55e- 2
-## 10 job_housemaid    -0.378      0.151     -2.50  1.25e- 2
-## 11 job_management   -0.192      0.0848    -2.26  2.35e- 2
-## 12 job_retired       0.282      0.113      2.49  1.29e- 2
-## # ... with 60 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 35 x 5
+##    term              estimate std.error statistic  p.value
+##    &amp;lt;chr&amp;gt;                &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+##  1 (Intercept)         -1.65     0.126     -13.1  3.88e-39
+##  2 duration             1.06     0.0189     56.3  0       
+##  3 campaign            -0.272    0.0358     -7.60 2.94e-14
+##  4 job_blue.collar     -0.368    0.0833     -4.41 1.01e- 5
+##  5 job_entrepreneur    -0.367    0.143      -2.57 1.01e- 2
+##  6 job_housemaid       -0.441    0.150      -2.95 3.20e- 3
+##  7 job_management      -0.243    0.0838     -2.90 3.72e- 3
+##  8 job_retired          0.166    0.0997      1.67 9.57e- 2
+##  9 job_self.employed   -0.330    0.128      -2.57 1.03e- 2
+## 10 job_services        -0.242    0.0971     -2.49 1.27e- 2
+## 11 job_student          0.521    0.119       4.37 1.23e- 5
+## 12 job_technician      -0.183    0.0794     -2.31 2.11e- 2
+## # ... with 23 more rows&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;make-predictions-for-training-data&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Make predictions for training data&lt;/h3&gt;
 &lt;p&gt;Using the trained model for prediction where the training data is used.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 33,907 x 18
-##    .pred_class   age job         marital education default balance housing loan 
-##    &amp;lt;fct&amp;gt;       &amp;lt;int&amp;gt; &amp;lt;fct&amp;gt;       &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;     &amp;lt;fct&amp;gt;     &amp;lt;int&amp;gt; &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;
-##  1 no             58 management  married tertiary  no         2143 yes     no   
-##  2 no             33 entreprene~ married secondary no            2 yes     yes  
-##  3 no             47 blue-collar married unknown   no         1506 yes     no   
-##  4 no             33 unknown     single  unknown   no            1 no      no   
-##  5 no             35 management  married tertiary  no          231 yes     no   
-##  6 no             43 technician  single  secondary no          593 yes     no   
-##  7 no             29 admin.      single  secondary no          390 yes     no   
-##  8 no             53 technician  married secondary no            6 yes     no   
-##  9 no             58 technician  married unknown   no           71 yes     no   
-## 10 no             57 services    married secondary no          162 yes     no   
-## # ... with 33,897 more rows, and 9 more variables: contact &amp;lt;fct&amp;gt;, day &amp;lt;chr&amp;gt;,
-## #   month &amp;lt;fct&amp;gt;, duration &amp;lt;int&amp;gt;, campaign &amp;lt;int&amp;gt;, pdays &amp;lt;int&amp;gt;, previous &amp;lt;int&amp;gt;,
-## #   poutcome &amp;lt;fct&amp;gt;, y &amp;lt;fct&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 33,907 x 11
+##    .pred_class y     job          education housing loan  contact month duration
+##    &amp;lt;fct&amp;gt;       &amp;lt;fct&amp;gt; &amp;lt;fct&amp;gt;        &amp;lt;fct&amp;gt;     &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt; &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;    &amp;lt;int&amp;gt;
+##  1 no          no    management   tertiary  yes     no    unknown may        261
+##  2 no          no    entrepreneur secondary yes     yes   unknown may         76
+##  3 no          no    blue-collar  unknown   yes     no    unknown may         92
+##  4 no          no    unknown      unknown   no      no    unknown may        198
+##  5 no          no    management   tertiary  yes     no    unknown may        139
+##  6 no          no    technician   secondary yes     no    unknown may         55
+##  7 no          no    admin.       secondary yes     no    unknown may        137
+##  8 no          no    technician   secondary yes     no    unknown may        517
+##  9 no          no    technician   unknown   yes     no    unknown may         71
+## 10 no          no    services     secondary yes     no    unknown may        174
+## # ... with 33,897 more rows, and 2 more variables: campaign &amp;lt;int&amp;gt;,
+## #   poutcome &amp;lt;fct&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;evaluate-performance-on-tarining-data&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Evaluate performance on tarining data&lt;/h3&gt;
 &lt;p&gt;Evaluate the performance of the model on the training data.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;##           Truth
 ## Prediction    no   yes
-##        no  29186  2557
-##        yes   755  1409&lt;/code&gt;&lt;/pre&gt;
+##        no  29193  2595
+##        yes   748  1371&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 3
 ##   .metric  .estimator .estimate
 ##   &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
-## 1 accuracy binary         0.902
+## 1 accuracy binary         0.901
 ## 2 sens     binary         0.975
-## 3 spec     binary         0.355&lt;/code&gt;&lt;/pre&gt;
+## 3 spec     binary         0.346&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;make-predictions-for-testing-data&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Make predictions for testing data&lt;/h3&gt;
 &lt;p&gt;Using the trained model for prediction where the testing data is used.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 11,304 x 18
-##    .pred_class   age job         marital education default balance housing loan 
-##    &amp;lt;fct&amp;gt;       &amp;lt;int&amp;gt; &amp;lt;fct&amp;gt;       &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;     &amp;lt;fct&amp;gt;     &amp;lt;int&amp;gt; &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;
-##  1 no             44 technician  single  secondary no           29 yes     no   
-##  2 no             28 management  single  tertiary  no          447 yes     yes  
-##  3 no             42 entreprene~ divorc~ tertiary  yes           2 yes     no   
-##  4 no             58 retired     married primary   no          121 yes     no   
-##  5 no             41 admin.      divorc~ secondary no          270 yes     no   
-##  6 no             51 retired     married primary   no          229 yes     no   
-##  7 no             45 admin.      single  unknown   no           13 yes     no   
-##  8 no             57 blue-collar married primary   no           52 yes     no   
-##  9 no             60 retired     married primary   no           60 yes     no   
-## 10 no             36 technician  single  secondary no          265 yes     yes  
-## # ... with 11,294 more rows, and 9 more variables: contact &amp;lt;fct&amp;gt;, day &amp;lt;chr&amp;gt;,
-## #   month &amp;lt;fct&amp;gt;, duration &amp;lt;int&amp;gt;, campaign &amp;lt;int&amp;gt;, pdays &amp;lt;int&amp;gt;, previous &amp;lt;int&amp;gt;,
-## #   poutcome &amp;lt;fct&amp;gt;, y &amp;lt;fct&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 11,304 x 11
+##    .pred_class y     job          education housing loan  contact month duration
+##    &amp;lt;fct&amp;gt;       &amp;lt;fct&amp;gt; &amp;lt;fct&amp;gt;        &amp;lt;fct&amp;gt;     &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt; &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;    &amp;lt;int&amp;gt;
+##  1 no          no    technician   secondary yes     no    unknown may        151
+##  2 no          no    management   tertiary  yes     yes   unknown may        217
+##  3 no          no    entrepreneur tertiary  yes     no    unknown may        380
+##  4 no          no    retired      primary   yes     no    unknown may         50
+##  5 no          no    admin.       secondary yes     no    unknown may        222
+##  6 no          no    retired      primary   yes     no    unknown may        353
+##  7 no          no    admin.       unknown   yes     no    unknown may         98
+##  8 no          no    blue-collar  primary   yes     no    unknown may         38
+##  9 no          no    retired      primary   yes     no    unknown may        219
+## 10 no          no    technician   secondary yes     yes   unknown may        348
+## # ... with 11,294 more rows, and 2 more variables: campaign &amp;lt;int&amp;gt;,
+## #   poutcome &amp;lt;fct&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;evaluate-performance-on-testing-data&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Evaluate performance on testing data&lt;/h3&gt;
 &lt;p&gt;Evaluate the performance of the model on the testing data.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;##           Truth
 ## Prediction   no  yes
-##        no  9752  860
-##        yes  229  463&lt;/code&gt;&lt;/pre&gt;
+##        no  9754  875
+##        yes  227  448&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 3
 ##   .metric  .estimator .estimate
 ##   &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
-## 1 accuracy binary         0.904
+## 1 accuracy binary         0.903
 ## 2 sens     binary         0.977
-## 3 spec     binary         0.350&lt;/code&gt;&lt;/pre&gt;
+## 3 spec     binary         0.339&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;apply-cross-validation-method-for-model-evaluation&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Apply Cross Validation method for model evaluation&lt;/h2&gt;
 &lt;div id=&#34;split-data-into-folds&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Split data into folds&lt;/h3&gt;
-&lt;p&gt;The train data is split-ted into 10 folds&lt;/p&gt;
+&lt;p&gt;The train data is split-ted into 5 folds&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;fit-resamples&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Fit resamples&lt;/h3&gt;
@@ -149,8 +153,140 @@
 &lt;pre&gt;&lt;code&gt;## # A tibble: 2 x 6
 ##   .metric  .estimator  mean     n std_err .config             
 ##   &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;               
-## 1 accuracy binary     0.901     5 0.00122 Preprocessor1_Model1
-## 2 roc_auc  binary     0.906     5 0.00255 Preprocessor1_Model1&lt;/code&gt;&lt;/pre&gt;
+## 1 accuracy binary     0.902     5 0.00165 Preprocessor1_Model1
+## 2 roc_auc  binary     0.904     5 0.00174 Preprocessor1_Model1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;The accuracy associated with the model using the training data is 90.1%, that associated with the model using the testing data is 90.3% and that associated with the model using cross validation resampling method is 90.1%. The accuracy in the testing data is quite good and it is slightly better than the accuracy in the training data which indicates that our model is not exposed to overfitting on the training data, also the accuracy resulted from the testing data is comparable with the accuracy we got from cross-validation resampling method that indicates that our model is working properly.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;second-for-linear-regression-model&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Second For Linear Regression Model:&lt;/h2&gt;
+&lt;div id=&#34;the-diamond-ring-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The diamond ring data&lt;/h3&gt;
+&lt;p&gt;In this part we used the diamond ring data.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 440
+## Columns: 9
+## $ price         &amp;lt;dbl&amp;gt; 3000, 3000, 3004, 3004, 3006, 3007, 3008, 3010, 3012, 30~
+## $ carat         &amp;lt;dbl&amp;gt; 0.92, 0.92, 0.82, 0.81, 0.90, 0.87, 0.80, 0.84, 0.80, 0.~
+## $ colour        &amp;lt;chr&amp;gt; &amp;quot;I&amp;quot;, &amp;quot;I&amp;quot;, &amp;quot;F&amp;quot;, &amp;quot;G&amp;quot;, &amp;quot;J&amp;quot;, &amp;quot;F&amp;quot;, &amp;quot;D&amp;quot;, &amp;quot;F&amp;quot;, &amp;quot;D&amp;quot;, &amp;quot;D&amp;quot;, &amp;quot;G&amp;quot;, &amp;quot;~
+## $ clarity       &amp;lt;chr&amp;gt; &amp;quot;SI2&amp;quot;, &amp;quot;SI2&amp;quot;, &amp;quot;SI2&amp;quot;, &amp;quot;SI1&amp;quot;, &amp;quot;VS2&amp;quot;, &amp;quot;SI2&amp;quot;, &amp;quot;SI2&amp;quot;, &amp;quot;SI1&amp;quot;, ~
+## $ cut           &amp;lt;chr&amp;gt; &amp;quot;G&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;I&amp;quot;, &amp;quot;I&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;I&amp;quot;, &amp;quot;I&amp;quot;, &amp;quot;G&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;I&amp;quot;, &amp;quot;~
+## $ certification &amp;lt;chr&amp;gt; &amp;quot;AGS&amp;quot;, &amp;quot;AGS&amp;quot;, &amp;quot;GIA&amp;quot;, &amp;quot;GIA&amp;quot;, &amp;quot;GIA&amp;quot;, &amp;quot;AGS&amp;quot;, &amp;quot;GIA&amp;quot;, &amp;quot;GIA&amp;quot;, ~
+## $ polish        &amp;lt;chr&amp;gt; &amp;quot;V&amp;quot;, &amp;quot;G&amp;quot;, &amp;quot;X&amp;quot;, &amp;quot;X&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;G&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;~
+## $ symmetry      &amp;lt;chr&amp;gt; &amp;quot;V&amp;quot;, &amp;quot;G&amp;quot;, &amp;quot;X&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;X&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;~
+## $ wholesaler    &amp;lt;chr&amp;gt; &amp;quot;1&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;~&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;splitting-the-data-to-training-and-testing-splits-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;splitting the data to training and testing splits&lt;/h3&gt;
+&lt;p&gt;In this step we are going to split the data on hands so that 3/4 of the data would be assigned for training and 1/4 of the data would be assigned for testing.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;create-the-linear-regression-model&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;create the linear regression model&lt;/h3&gt;
+&lt;p&gt;Creating the linear regression model that will be used to predict the price of the diamond ring of interest.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-the-recipe-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;creating the recipe&lt;/h3&gt;
+&lt;p&gt;creating the suitable recipe to apply feature engineering to our data&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;create-workflow-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Create workflow&lt;/h3&gt;
+&lt;p&gt;Create a workflow that combine the model and the recipe.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;fit-the-model-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Fit the model&lt;/h3&gt;
+&lt;p&gt;Train and fitting the model using the training split of the data.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;make-predictions-for-training-data-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Make predictions for training data&lt;/h3&gt;
+&lt;p&gt;Using the trained model for prediction where the training data is used.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 328 x 10
+##    .pred price carat colour clarity cut   certification polish symmetry
+##    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   
+##  1 350.    190  0.09 D      SI1     X     IGI           G      G       
+##  2 134.    160  0.09 E      SI1     I     IGI           G      G       
+##  3  85.6   160  0.09 F      SI1     I     IGI           V      G       
+##  4 134.    180  0.09 E      SI1     I     IGI           G      G       
+##  5 227.    190  0.09 E      VS1     I     IGI           V      G       
+##  6 196.    330  0.1  E      VS2     V     IGI           V      G       
+##  7 192.    180  0.1  E      VS2     X     IGI           G      G       
+##  8  88.9   160  0.1  F      SI1     X     IGI           G      G       
+##  9 142.    160  0.1  E      SI1     V     IGI           G      G       
+## 10  60.7   190  0.1  E      SI2     G     IGI           V      G       
+## # ... with 318 more rows, and 1 more variable: wholesaler &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;evaluate-performance-on-tarining-data-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Evaluate performance on tarining data&lt;/h3&gt;
+&lt;p&gt;Evaluate the performance of the model on the training data.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;R-squared&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 3
+##   .metric .estimator .estimate
+##   &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
+## 1 rsq     standard       0.986&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a03-resampling-methods/index_files/figure-html/unnamed-chunk-22-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;em&gt;RMSE&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 3
+##   .metric .estimator .estimate
+##   &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
+## 1 rmse    standard        136.&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;make-predictions-for-testing-data-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Make predictions for testing data&lt;/h3&gt;
+&lt;p&gt;Using the trained model for prediction where the testing data is used.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 112 x 10
+##    .pred price carat colour clarity cut   certification polish symmetry
+##    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   
+##  1 3035.  3000  0.92 I      SI2     G     AGS           V      V       
+##  2 3028.  3000  0.92 I      SI2     V     AGS           G      G       
+##  3 3088.  3006  0.9  J      VS2     V     GIA           V      V       
+##  4 3027.  3027  0.81 F      SI1     V     AGS           V      V       
+##  5 2957.  3036  0.81 H      SI1     V     GIA           G      V       
+##  6 3235.  3041  0.83 D      SI2     G     GIA           G      G       
+##  7 3052.  3044  0.91 I      SI2     I     GIA           V      V       
+##  8 3000.  3062  0.8  E      SI2     V     GIA           V      V       
+##  9   NA   3081  0.9  F      SI2     F     GIA           v      G       
+## 10 2956.  3089  0.91 H      SI2     F     GIA           V      V       
+## # ... with 102 more rows, and 1 more variable: wholesaler &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;evaluate-performance-on-testing-data-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Evaluate performance on testing data&lt;/h3&gt;
+&lt;p&gt;Evaluate the performance of the model on the testing data.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;R-squared&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 3
+##   .metric .estimator .estimate
+##   &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
+## 1 rsq     standard       0.983&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a03-resampling-methods/index_files/figure-html/unnamed-chunk-25-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;RMSE&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 3
+##   .metric .estimator .estimate
+##   &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
+## 1 rmse    standard        157.&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;apply-cross-validation-method-for-model-evaluation-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Apply Cross Validation method for model evaluation&lt;/h2&gt;
+&lt;div id=&#34;split-data-into-folds-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Split data into folds&lt;/h3&gt;
+&lt;p&gt;The train data is split-ted into 5 folds&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;fit-resamples-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Fit resamples&lt;/h3&gt;
+&lt;p&gt;Fit the folds into the workflow.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;collect-cv-metrics-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Collect CV metrics&lt;/h3&gt;
+&lt;p&gt;Show the metrics resulted from Cross-Validation process&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 x 6
+##   .metric .estimator    mean     n std_err .config             
+##   &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;        &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;               
+## 1 rmse    standard   153.        5 5.07    Preprocessor1_Model1
+## 2 rsq     standard     0.983     5 0.00123 Preprocessor1_Model1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;The rsq associated with the model on the training data is 0.99, that associated with the model in the testing data is 0.98 and that associated with the model using cross validation is 0.98. From that we can see that our model is performing good.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>

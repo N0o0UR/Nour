@@ -587,7 +587,8 @@ The multiple linear regression model can be achieved by using the following beta
 
 ```{r,warning=FALSE , message=FALSE,echo=FALSE}
 
-lm(price ~ carat+ colour+ clarity + cut+ certification + polish + symmetry +factor(wholesaler), data = data)
+m_mdl<-lm(price ~ carat+ colour+ clarity + cut+ certification + polish + symmetry +factor(wholesaler), data = data)
+summary(m_mdl)
 ```
 
 From the above analysis, we can see that the price of the diamond ring depends mainly on the carat mass and the relationship between these two variables are strong and positive so that as the carat mass increase as the price of the diamond ring increase and vice versa.

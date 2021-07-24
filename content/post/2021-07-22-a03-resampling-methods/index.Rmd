@@ -40,11 +40,10 @@ library("boot")
 
 ```
 
-## Part 1 Cross- Validation for Logistic and linear Regression model:
 
 ### The Goal
 
-The goal behind this study is to use the cross-validation method to evaluate the performance of our logistic and linear regression models.
+The goal behind this study is to discuss two of the most commonly used resampling methods, cross-validation and the bootstrap and we would apply both resampling methods on linear and logestic regression methods.
 
 ## First For Logistic Regression Model:
 
@@ -54,17 +53,20 @@ The data used in this study was obtained from UCI website and we specifically us
 
 ```{r,warning=FALSE , message=FALSE,echo=FALSE,results=FALSE}
 
-bank_data<-read.csv2 ("bank-full.csv",stringsAsFactors=T)
+b_data<-read.csv2 ("bank-full.csv",stringsAsFactors=T)
 
-bank_data<- bank_data %>%
+bank_data<- b_data %>%
 mutate(day=as.character(day))
 
 #create_report(data)
 
+bank_data<- bank_data%>%
+  select(y,job, education ,housing, loan,contact ,month,duration,campaign,poutcome)
+
 ```
 
 
-## splitting the data to training and testing splits
+### splitting the data to training and testing splits
 
 In this step we are going to split the data on hands so that 3/4 of the data would be assigned for training and 1/4 of the data would be assigned for testing.
 
@@ -139,7 +141,7 @@ mdl_fit <- logistic_wkfl %>%
   fit(data=train_data)
 
 
-tidy(mdl_fit) %>%
+tidy_bank<-tidy(mdl_fit) %>%
   print(n = 12)
 ```
 
@@ -201,6 +203,8 @@ test_metric
 ```
 ## Apply Cross Validation method for model evaluation
 
+We will use the cross-validation resampling method to evaluate the performance of our logestic regression model.
+
 ### Split data into folds
 
 The train data is split-ted into 5 folds
@@ -237,15 +241,44 @@ collect_metrics(cv_fit)
 ```
 ### Conclusion
 
-The accuracy associated with the model on the training data is 0.9018, that associated with the model in the testing data is 0.9049 and that associated with the model using cross validation is 0.90096. From that we can see that our model is performing good.
+The accuracy associated with the model using the training data is 90.1%, that associated with the model using the testing data is 90.3% and that associated with the model using cross validation resampling method is 90.1%. The accuracy in the testing data is quite good and it is slightly better than the accuracy in the training data which indicates that our model is not exposed to overfitting on the training data, also the accuracy resulted from the testing data is comparable with the accuracy we got from cross-validation resampling method that indicates that our model is working properly.
 
+
+## Applying Bootstrap resampling method
+
+In this part we are estimating the accuracy of a Logestic Regression Model through the bootstrap approach which can be used to assess the variability of the coefficient estimates (Betas) and predictions from a statistical learning method. 
+
+The standard error reflects the variability between the estimates we would obtain if we repeatedly took samples from the population. The standard error associated with the coefficients of both the model and that obtained through bootstrapping are shown below: 
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+
+boot_fn_bank= function (data ,index ){
+  return (coef (glm(y ~ . ,data =data , subset =index,family = binomial )))
+}
+
+
+# boot_fn_bank= function (data ,index ){
+#   return (tidy (logistic_wkfl %>%
+#   fit(data=data[index, ])))
+# }
+
+
+boot_fn_bank(bank_data, 1:nrow(bank_data))
+
+summary(glm(y ~ . ,data =bank_data ,family = binomial ))$coef
+
+boot(bank_data, boot_fn_bank, R=100)
+
+```
 
 
 
 
 ## Second For Linear Regression Model:
 
-## The diamond ring data 
+### The diamond ring data 
 
 In this part we used the diamond ring data. 
 
@@ -255,13 +288,17 @@ In this part we used the diamond ring data.
 rings_data<-read_excel("diamonds.xlsx",col_types = c("guess","guess","guess","guess","guess","guess","guess","numeric","text"))%>%
   clean_names()%>%
   select(price,everything())
+  
+rings_data <- rings_data%>%
+ mutate(clarity= as.factor(clarity))
+
 
  glimpse(rings_data)
 
 ```
 
 
-## splitting the data to training and testing splits
+### splitting the data to training and testing splits
 
 In this step we are going to split the data on hands so that 3/4 of the data would be assigned for training and 1/4 of the data would be assigned for testing.
 
@@ -340,7 +377,7 @@ Train and fitting the model using the training split of the data.
 fit_mdl_rings<- wkfl_rings %>% 
  fit(data=train_data_rings)
 
-
+tidy(fit_mdl_rings)
 ```
 
 
@@ -397,7 +434,6 @@ Using the trained model for prediction where the testing data is used.
 test_pred_rings <- predict(fit_mdl_rings, test_data_rings) %>%
   bind_cols(test_data_rings %>% select(everything()))
 test_pred_rings
-
 ```
 ### Evaluate performance on testing data
 
@@ -433,6 +469,8 @@ rmse(test_pred_rings, truth = price, estimate = .pred)
 
 
 ## Apply Cross Validation method for model evaluation 
+
+We will use the cross-validation resampling method to evaluate the performance of our linear regression model.
 
 ### Split data into folds
 
@@ -471,3 +509,33 @@ collect_metrics(cv_fit_rings)
 ### Conclusion 
 
 The rsq associated with the model on the training data is 0.99, that associated with the model in the testing data is 0.98 and that associated with the model using cross validation is 0.98. From that we can see that our model is performing good.
+
+
+
+## Applying Bootstrap resampling method
+
+In this part we are estimating the accuracy of a Linear Regression Model through the bootstrap approach which can be used to assess the variability of the coefficient estimates (Betas) and predictions from a statistical learning method. 
+
+The standard error reflects the variability between the estimates we would obtain if we repeatedly took samples from the population. The standard error associated with the coefficients of both the model and that obtained through bootstrapping are shown below:
+
+```{r}
+
+# boot_fn_rings= function (data ,index){
+#   return(tidy( wkfl_rings %>%fit(data=data[index,]))) }
+
+boot_fn_rings= function (data ,index ){
+return (coef (lm(price ~ .,data =data , subset =index )))}
+
+df2 <- model.matrix( ~ price + carat + colour + clarity+cut + certification + polish + symmetry + wholesaler-1, data = rings_data)
+
+set.seed(103)
+
+summary(lm(price ~ .,data =as.data.frame(df2)))$coef
+
+boot(statistic = boot_fn_rings,
+                  data = as.data.frame(df2), R = 1000)
+
+```
+
+
+.
