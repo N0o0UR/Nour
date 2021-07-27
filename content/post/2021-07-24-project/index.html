@@ -1,0 +1,275 @@
+---
+title: 'project '
+author: Nouran
+date: '2021-07-24'
+slug: project
+categories:
+  - Basics
+  - caret
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-07-24T19:12:40-03:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<pre class="r"><code>credit_bureau_data&lt;-read_csv(&quot;Credit_Bureau.csv&quot;)%&gt;%
+# Cleaning the names of the columns
+clean_names() %&gt;%
+# removing the rows where the values of performance_tag are  Nas
+drop_na(performance_tag)</code></pre>
+<pre><code>## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   `Application ID` = col_double(),
+##   `No of times 90 DPD or worse in last 6 months` = col_double(),
+##   `No of times 60 DPD or worse in last 6 months` = col_double(),
+##   `No of times 30 DPD or worse in last 6 months` = col_double(),
+##   `No of times 90 DPD or worse in last 12 months` = col_double(),
+##   `No of times 60 DPD or worse in last 12 months` = col_double(),
+##   `No of times 30 DPD or worse in last 12 months` = col_double(),
+##   `Avgas CC Utilization in last 12 months` = col_double(),
+##   `No of trades opened in last 6 months` = col_double(),
+##   `No of trades opened in last 12 months` = col_double(),
+##   `No of PL trades opened in last 6 months` = col_double(),
+##   `No of PL trades opened in last 12 months` = col_double(),
+##   `No of Inquiries in last 6 months (excluding home &amp; auto loans)` = col_double(),
+##   `No of Inquiries in last 12 months (excluding home &amp; auto loans)` = col_double(),
+##   `Presence of open home loan` = col_double(),
+##   `Outstanding Balance` = col_double(),
+##   `Total No of Trades` = col_double(),
+##   `Presence of open auto loan` = col_double(),
+##   `Performance Tag` = col_double()
+## )</code></pre>
+<pre class="r"><code># converting the independent categorical variables to be stored as factors based on Listendata.com
+credit_bureau_data$ presence_of_open_home_loan &lt;- factor(credit_bureau_data$ presence_of_open_home_loan)
+credit_bureau_data$ presence_of_open_auto_loan &lt;- factor(credit_bureau_data$ presence_of_open_auto_loan)
+
+# Converting the application ID variable to character
+credit_bureau_data$ application_id &lt;- as.character(credit_bureau_data$ application_id)
+
+
+glimpse(credit_bureau_data)</code></pre>
+<pre><code>## Rows: 69,870
+## Columns: 19
+## $ application_id                                              &lt;chr&gt; &quot;954457215~
+## $ no_of_times_90_dpd_or_worse_in_last_6_months                &lt;dbl&gt; 0, 0, 0, 0~
+## $ no_of_times_60_dpd_or_worse_in_last_6_months                &lt;dbl&gt; 0, 0, 0, 0~
+## $ no_of_times_30_dpd_or_worse_in_last_6_months                &lt;dbl&gt; 0, 0, 0, 0~
+## $ no_of_times_90_dpd_or_worse_in_last_12_months               &lt;dbl&gt; 0, 0, 0, 0~
+## $ no_of_times_60_dpd_or_worse_in_last_12_months               &lt;dbl&gt; 0, 0, 0, 0~
+## $ no_of_times_30_dpd_or_worse_in_last_12_months               &lt;dbl&gt; 0, 0, 0, 0~
+## $ avgas_cc_utilization_in_last_12_months                      &lt;dbl&gt; 4, 3, 7, 1~
+## $ no_of_trades_opened_in_last_6_months                        &lt;dbl&gt; 1, 1, 0, 1~
+## $ no_of_trades_opened_in_last_12_months                       &lt;dbl&gt; 2, 2, 0, 1~
+## $ no_of_pl_trades_opened_in_last_6_months                     &lt;dbl&gt; 0, 0, 0, 0~
+## $ no_of_pl_trades_opened_in_last_12_months                    &lt;dbl&gt; 0, 0, 0, 0~
+## $ no_of_inquiries_in_last_6_months_excluding_home_auto_loans  &lt;dbl&gt; 0, 0, 0, 0~
+## $ no_of_inquiries_in_last_12_months_excluding_home_auto_loans &lt;dbl&gt; 0, 0, 0, 0~
+## $ presence_of_open_home_loan                                  &lt;fct&gt; 1, 0, 1, 1~
+## $ outstanding_balance                                         &lt;dbl&gt; 2999395, 3~
+## $ total_no_of_trades                                          &lt;dbl&gt; 4, 5, 2, 4~
+## $ presence_of_open_auto_loan                                  &lt;fct&gt; 0, 0, 0, 1~
+## $ performance_tag                                             &lt;dbl&gt; 0, 0, 0, 0~</code></pre>
+<pre class="r"><code>str(credit_bureau_data)</code></pre>
+<pre><code>## tibble [69,870 x 19] (S3: tbl_df/tbl/data.frame)
+##  $ application_id                                             : chr [1:69870] &quot;954457215&quot; &quot;432830445&quot; &quot;941387308&quot; &quot;392161677&quot; ...
+##  $ no_of_times_90_dpd_or_worse_in_last_6_months               : num [1:69870] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ no_of_times_60_dpd_or_worse_in_last_6_months               : num [1:69870] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ no_of_times_30_dpd_or_worse_in_last_6_months               : num [1:69870] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ no_of_times_90_dpd_or_worse_in_last_12_months              : num [1:69870] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ no_of_times_60_dpd_or_worse_in_last_12_months              : num [1:69870] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ no_of_times_30_dpd_or_worse_in_last_12_months              : num [1:69870] 0 0 0 0 0 0 0 0 1 0 ...
+##  $ avgas_cc_utilization_in_last_12_months                     : num [1:69870] 4 3 7 11 12 10 11 13 9 6 ...
+##  $ no_of_trades_opened_in_last_6_months                       : num [1:69870] 1 1 0 1 0 0 0 1 0 1 ...
+##  $ no_of_trades_opened_in_last_12_months                      : num [1:69870] 2 2 0 1 1 0 1 1 0 1 ...
+##  $ no_of_pl_trades_opened_in_last_6_months                    : num [1:69870] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ no_of_pl_trades_opened_in_last_12_months                   : num [1:69870] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ no_of_inquiries_in_last_6_months_excluding_home_auto_loans : num [1:69870] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ no_of_inquiries_in_last_12_months_excluding_home_auto_loans: num [1:69870] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ presence_of_open_home_loan                                 : Factor w/ 2 levels &quot;0&quot;,&quot;1&quot;: 2 1 2 2 2 1 2 2 2 1 ...
+##  $ outstanding_balance                                        : num [1:69870] 2999395 3078 3004972 3355373 3014283 ...
+##  $ total_no_of_trades                                         : num [1:69870] 4 5 2 4 4 1 4 3 2 1 ...
+##  $ presence_of_open_auto_loan                                 : Factor w/ 2 levels &quot;0&quot;,&quot;1&quot;: 1 1 1 2 1 1 1 1 1 2 ...
+##  $ performance_tag                                            : num [1:69870] 0 0 0 0 0 0 0 0 0 0 ...
+##  - attr(*, &quot;spec&quot;)=
+##   .. cols(
+##   ..   `Application ID` = col_double(),
+##   ..   `No of times 90 DPD or worse in last 6 months` = col_double(),
+##   ..   `No of times 60 DPD or worse in last 6 months` = col_double(),
+##   ..   `No of times 30 DPD or worse in last 6 months` = col_double(),
+##   ..   `No of times 90 DPD or worse in last 12 months` = col_double(),
+##   ..   `No of times 60 DPD or worse in last 12 months` = col_double(),
+##   ..   `No of times 30 DPD or worse in last 12 months` = col_double(),
+##   ..   `Avgas CC Utilization in last 12 months` = col_double(),
+##   ..   `No of trades opened in last 6 months` = col_double(),
+##   ..   `No of trades opened in last 12 months` = col_double(),
+##   ..   `No of PL trades opened in last 6 months` = col_double(),
+##   ..   `No of PL trades opened in last 12 months` = col_double(),
+##   ..   `No of Inquiries in last 6 months (excluding home &amp; auto loans)` = col_double(),
+##   ..   `No of Inquiries in last 12 months (excluding home &amp; auto loans)` = col_double(),
+##   ..   `Presence of open home loan` = col_double(),
+##   ..   `Outstanding Balance` = col_double(),
+##   ..   `Total No of Trades` = col_double(),
+##   ..   `Presence of open auto loan` = col_double(),
+##   ..   `Performance Tag` = col_double()
+##   .. )</code></pre>
+<pre class="r"><code>summary(credit_bureau_data)</code></pre>
+<pre><code>##  application_id     no_of_times_90_dpd_or_worse_in_last_6_months
+##  Length:69870       Min.   :0.000                               
+##  Class :character   1st Qu.:0.000                               
+##  Mode  :character   Median :0.000                               
+##                     Mean   :0.249                               
+##                     3rd Qu.:0.000                               
+##                     Max.   :3.000                               
+##                                                                 
+##  no_of_times_60_dpd_or_worse_in_last_6_months
+##  Min.   :0.0000                              
+##  1st Qu.:0.0000                              
+##  Median :0.0000                              
+##  Mean   :0.3917                              
+##  3rd Qu.:1.0000                              
+##  Max.   :5.0000                              
+##                                              
+##  no_of_times_30_dpd_or_worse_in_last_6_months
+##  Min.   :0.0000                              
+##  1st Qu.:0.0000                              
+##  Median :0.0000                              
+##  Mean   :0.5235                              
+##  3rd Qu.:1.0000                              
+##  Max.   :7.0000                              
+##                                              
+##  no_of_times_90_dpd_or_worse_in_last_12_months
+##  Min.   :0.0000                               
+##  1st Qu.:0.0000                               
+##  Median :0.0000                               
+##  Mean   :0.4148                               
+##  3rd Qu.:1.0000                               
+##  Max.   :5.0000                               
+##                                               
+##  no_of_times_60_dpd_or_worse_in_last_12_months
+##  Min.   :0.0000                               
+##  1st Qu.:0.0000                               
+##  Median :0.0000                               
+##  Mean   :0.6034                               
+##  3rd Qu.:1.0000                               
+##  Max.   :7.0000                               
+##                                               
+##  no_of_times_30_dpd_or_worse_in_last_12_months
+##  Min.   :0.0000                               
+##  1st Qu.:0.0000                               
+##  Median :0.0000                               
+##  Mean   :0.7339                               
+##  3rd Qu.:1.0000                               
+##  Max.   :9.0000                               
+##                                               
+##  avgas_cc_utilization_in_last_12_months no_of_trades_opened_in_last_6_months
+##  Min.   :  0.00                         Min.   : 0.000                      
+##  1st Qu.:  8.00                         1st Qu.: 1.000                      
+##  Median : 15.00                         Median : 2.000                      
+##  Mean   : 29.27                         Mean   : 2.285                      
+##  3rd Qu.: 45.00                         3rd Qu.: 3.000                      
+##  Max.   :113.00                         Max.   :12.000                      
+##  NA&#39;s   :1023                           NA&#39;s   :1                           
+##  no_of_trades_opened_in_last_12_months no_of_pl_trades_opened_in_last_6_months
+##  Min.   : 0.000                        Min.   :0.00                           
+##  1st Qu.: 2.000                        1st Qu.:0.00                           
+##  Median : 4.000                        Median :1.00                           
+##  Mean   : 5.785                        Mean   :1.19                           
+##  3rd Qu.: 9.000                        3rd Qu.:2.00                           
+##  Max.   :28.000                        Max.   :6.00                           
+##                                                                               
+##  no_of_pl_trades_opened_in_last_12_months
+##  Min.   : 0.000                          
+##  1st Qu.: 0.000                          
+##  Median : 2.000                          
+##  Mean   : 2.363                          
+##  3rd Qu.: 4.000                          
+##  Max.   :12.000                          
+##                                          
+##  no_of_inquiries_in_last_6_months_excluding_home_auto_loans
+##  Min.   : 0.000                                            
+##  1st Qu.: 0.000                                            
+##  Median : 1.000                                            
+##  Mean   : 1.758                                            
+##  3rd Qu.: 3.000                                            
+##  Max.   :10.000                                            
+##                                                            
+##  no_of_inquiries_in_last_12_months_excluding_home_auto_loans
+##  Min.   : 0.000                                             
+##  1st Qu.: 0.000                                             
+##  Median : 3.000                                             
+##  Mean   : 3.525                                             
+##  3rd Qu.: 5.000                                             
+##  Max.   :20.000                                             
+##                                                             
+##  presence_of_open_home_loan outstanding_balance total_no_of_trades
+##  0   :51527                 Min.   :      0     Min.   : 0.000    
+##  1   :18071                 1st Qu.: 208391     1st Qu.: 3.000    
+##  NA&#39;s:  272                 Median : 774234     Median : 6.000    
+##                             Mean   :1253338     Mean   : 8.175    
+##                             3rd Qu.:2926224     3rd Qu.:10.000    
+##                             Max.   :5218801     Max.   :44.000    
+##                             NA&#39;s   :272                           
+##  presence_of_open_auto_loan performance_tag  
+##  0:63940                    Min.   :0.00000  
+##  1: 5930                    1st Qu.:0.00000  
+##                             Median :0.00000  
+##                             Mean   :0.04219  
+##                             3rd Qu.:0.00000  
+##                             Max.   :1.00000  
+## </code></pre>
+<pre class="r"><code>## splitting the data for training and testing
+set.seed(130)
+
+
+data_split &lt;- initial_split(credit_bureau_data,prop = 0.75,strata = performance_tag)
+
+training_data&lt;- data_split%&gt;%
+  training()
+
+testing_data &lt;- data_split%&gt;%
+  testing()</code></pre>
+<pre class="r"><code>IV &lt;- create_infotables(data=credit_bureau_data, y=&quot;performance_tag&quot;, bins=10, parallel=FALSE)</code></pre>
+<pre><code>## [1] &quot;Variable application_id was removed because it is a non-numeric variable with &gt;1000 categories&quot;</code></pre>
+<pre class="r"><code>IV_Value = data.frame(IV$Summary)
+
+print(IV$Tables$avgas_cc_utilization_in_last_12_months, row.names=FALSE)</code></pre>
+<pre><code>##  avgas_cc_utilization_in_last_12_months    N    Percent         WOE
+##                                      NA 1023 0.01464148  0.11116433
+##                                   [0,4] 5524 0.07906111 -0.80206781
+##                                   [5,6] 5471 0.07830256 -0.80181177
+##                                   [7,8] 6869 0.09831115 -0.79483250
+##                                  [9,11] 9598 0.13736940 -0.67282211
+##                                 [12,14] 6595 0.09438958 -0.46831130
+##                                 [15,21] 6854 0.09809646 -0.07931369
+##                                 [22,37] 7122 0.10193216  0.47473638
+##                                 [38,51] 6746 0.09655074  0.58427961
+##                                 [52,71] 7017 0.10042937  0.56342160
+##                                [72,113] 7051 0.10091599  0.38322026
+##            IV
+##  0.0001904273
+##  0.0360021031
+##  0.0714513048
+##  0.1153141404
+##  0.1615328655
+##  0.1783274393
+##  0.1789226083
+##  0.2075895540
+##  0.2509133274
+##  0.2924043188
+##  0.3101156920</code></pre>
+<pre class="r"><code>avgas_cc_utilization_in_last_12_months = data.frame(IV$Tables$avgas_cc_utilization_in_last_12_months)</code></pre>
+<pre class="r"><code>plot_infotables(IV, &quot;avgas_cc_utilization_in_last_12_months&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>plot_infotables(IV, IV$Summary$Variable[1:17], same_scale=FALSE)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-2.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>

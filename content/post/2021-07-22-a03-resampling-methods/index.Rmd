@@ -319,7 +319,7 @@ test_data_rings <- data_rings_split%>%
 
 
 
-### create the linear regression model
+### Create the linear regression model
 
 Creating the linear regression model that will be used to predict the price of the diamond ring of interest.
 
@@ -335,9 +335,9 @@ model_rings <- linear_reg() %>%
 
 ```
 
-### creating the recipe
+### Creating the recipe
 
-creating the suitable recipe to apply feature engineering to our data 
+Creating the suitable recipe to apply feature engineering to our data 
 
 
 ```{r,warning=FALSE , message=FALSE,echo=FALSE}
@@ -351,6 +351,7 @@ step_dummy(all_nominal())
 #   prep(training=train_data_rings)%>%
 #   bake(new_data=test_data_rings)
 ```
+
 
 
 ### Create workflow

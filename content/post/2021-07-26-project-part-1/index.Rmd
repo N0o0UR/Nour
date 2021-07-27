@@ -1,0 +1,173 @@
+---
+title: 'Project  part 1 '
+author: Nouran
+date: '2021-07-26'
+slug: project-part-1
+categories:
+  - caret
+  - dplyr
+  - ggplot2
+  - Tideverse
+  - tidymodels
+  - yardstick
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-07-26T20:48:58-03:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE,results=FALSE}
+library("DataExplorer")
+library("janitor")
+library("tidyr")
+library("tidyverse")
+library("dplyr")
+library("yardstick")
+library("ggplot2")
+library("tidymodels")
+library("Information")
+library("scorecard")
+
+```
+
+
+
+```{r}
+## Reading the Credit_Bureau.csv File 
+credit_bureau_data<-read_csv("Credit_Bureau.csv")%>%
+# Cleaning the names of the columns
+clean_names() %>%
+# removing the rows where the values of performance_tag are  Nas
+drop_na(performance_tag)
+
+# converting the independent categorical variables to be stored as factors based on Listendata.com
+credit_bureau_data$ presence_of_open_home_loan <- factor(credit_bureau_data$ presence_of_open_home_loan)
+credit_bureau_data$ presence_of_open_auto_loan <- factor(credit_bureau_data$ presence_of_open_auto_loan)
+
+# Converting the application ID variable to character
+credit_bureau_data$ application_id <- as.character(credit_bureau_data$ application_id)
+
+
+# glimpse(credit_bureau_data)
+str(credit_bureau_data)
+# summary(credit_bureau_data)
+
+
+
+
+#############################################################################################################
+
+
+### Reading the demogs.csv File 
+
+demogs_data<-read_csv("demogs.csv")%>%
+# Cleaning the names of the columns
+clean_names() %>%
+# removing the rows where the values of performance_tag are  Nas
+drop_na(performance_tag)
+
+# converting the independent categorical variables to be stored as factors based on Listendata.com
+credit_bureau_data$ presence_of_open_home_loan <- factor(credit_bureau_data$ presence_of_open_home_loan)
+credit_bureau_data$ presence_of_open_auto_loan <- factor(credit_bureau_data$ presence_of_open_auto_loan)
+
+# Converting the application ID variable to character
+credit_bureau_data$ application_id <- as.character(credit_bureau_data$ application_id)
+
+
+# glimpse(credit_bureau_data)
+str(credit_bureau_data)
+# summary(credit_bureau_data)
+
+
+```
+
+```{r}
+### Reading the demogs.csv File 
+
+demogs_data<-read_csv("demogs.csv")%>%
+# Cleaning the names of the columns
+clean_names() %>%
+# removing the rows where the values of performance_tag are  Nas
+drop_na(performance_tag)
+
+# converting the independent categorical variables to be stored as factors based on Listendata.com
+credit_bureau_data$ presence_of_open_home_loan <- factor(credit_bureau_data$ presence_of_open_home_loan)
+credit_bureau_data$ presence_of_open_auto_loan <- factor(credit_bureau_data$ presence_of_open_auto_loan)
+
+# Converting the application ID variable to character
+credit_bureau_data$ application_id <- as.character(credit_bureau_data$ application_id)
+
+
+# glimpse(credit_bureau_data)
+str(credit_bureau_data)
+# summary(credit_bureau_data)
+
+
+
+```
+
+
+```{r}
+## Data Exploration 
+#create_report(credit_bureau_data)
+```
+
+
+
+```{r}
+
+## splitting the data for training and testing
+set.seed(130)
+
+
+data_split_cb <- initial_split(credit_bureau_data,prop = 0.75,strata = performance_tag)
+
+training_data_cb<- data_split_cb%>%
+  training()
+
+testing_data_cb <- data_split_cb%>%
+  testing()
+
+
+```
+
+
+```{r}
+
+IV_values_cb <- iv(dt = training_data_cb,y = "performance_tag")
+
+# Dropping the predictors with weak predictive power which are presence_of_open_home_loan, presence_of_open_auto_loan and application_id
+
+
+reduced_training_data_cb<- training_data_cb%>% 
+  select(-presence_of_open_auto_loan,-presence_of_open_home_loan,-application_id)
+reduced_testing_data_cb<- testing_data_cb%>% 
+  select(-presence_of_open_auto_loan,-presence_of_open_home_loan,-application_id)
+
+```
+
+
+
+
+```{r}
+
+bins_cb <- woebin(dt = reduced_training_data_cb,y = "performance_tag")
+
+woebin_plot(bins_cb$avgas_cc_utilization_in_last_12_months)
+
+```
+
+
+```{r}
+woe_credit_bureau_data <- woebin_ply(reduced_training_data_cb,bins_cb)
+
+```
+

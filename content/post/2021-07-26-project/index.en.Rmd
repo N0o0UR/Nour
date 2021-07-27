@@ -1,0 +1,124 @@
+---
+title: project
+author: Nouran
+date: '2021-07-26'
+slug: project
+categories: []
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-07-26T23:02:26-03:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE,results=FALSE}
+library("DataExplorer")
+library("janitor")
+library("tidyr")
+library("tidyverse")
+library("dplyr")
+library("yardstick")
+library("ggplot2")
+library("tidymodels")
+library("Information")
+library("scorecard")
+
+```
+
+
+
+```{r}
+
+### Reading the demogs.csv File 
+
+demogs_data<-read_csv("demogs.csv")%>%
+# Cleaning the names of the columns
+clean_names() %>%
+# removing the rows where the values of performance_tag are  Nas
+drop_na(performance_tag)
+
+str(demogs_data)
+
+
+# Converting the application ID variable to character
+demogs_data$ application_id <- as.character(demogs_data$ application_id)
+
+
+```
+
+
+
+```{r}
+## Data Exploration 
+#create_report(demogs_data)
+```
+
+
+
+```{r}
+
+## splitting the data for training and testing
+set.seed(130)
+
+
+data_split_d <- initial_split(demogs_data,prop = 0.75,strata = performance_tag)
+
+training_data_d<- data_split_d%>%
+  training()
+
+testing_data_d <- data_split_d%>%
+  testing()
+
+
+```
+
+
+```{r}
+
+IV_values_d <- iv(dt = training_data_d,y = "performance_tag")
+
+
+# Dropping the application ID from our training and testing data because of the pacakge limitation to del with variables of type character.
+
+reduced_training_data_d<- training_data_d%>%
+  select(-application_id )
+reduced_testing_data_d<- testing_data_d%>%
+  select(-application_id )
+
+# Dropping all the predictors with weak predictive power which are all the predictors except the  no_of_months_in_current_residence as it has medium power of prediction
+
+# reduced_training_data_d<- training_data_d%>% 
+#   select(no_of_months_in_current_residence )
+# reduced_testing_data_d<- testing_data_d%>% 
+#   select(no_of_months_in_current_residence )
+
+```
+
+
+
+
+```{r}
+
+bins_d <- woebin(dt = reduced_training_data_d,y = "performance_tag")
+
+woebin_plot(bins_d$no_of_months_in_current_residence)
+
+```
+
+
+```{r}
+woe_demogs<- woebin_ply(reduced_training_data_d,bins_d)
+
+```
+

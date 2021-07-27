@@ -21,12 +21,9 @@
 &lt;script src=&#34;/post/a03-resampling-methods/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
-&lt;div id=&#34;part-1-cross--validation-for-logistic-and-linear-regression-model&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Part 1 Cross- Validation for Logistic and linear Regression model:&lt;/h2&gt;
 &lt;div id=&#34;the-goal&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;The Goal&lt;/h3&gt;
-&lt;p&gt;The goal behind this study is to use the cross-validation resampling method to evaluate the performance of our logistic and linear regression models.&lt;/p&gt;
-&lt;/div&gt;
+&lt;p&gt;The goal behind this study is to discuss two of the most commonly used resampling methods, cross-validation and the bootstrap and we would apply both resampling methods on linear and logistic regression models.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;first-for-logistic-regression-model&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;First For Logistic Regression Model:&lt;/h2&gt;
@@ -35,16 +32,16 @@
 &lt;p&gt;The data used in this study was obtained from UCI website and we specifically used the Bank-full.csv dataset.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;splitting-the-data-to-training-and-testing-splits&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;splitting the data to training and testing splits&lt;/h3&gt;
-&lt;p&gt;In this step we are going to split the data on hands so that 3/4 of the data would be assigned for training and 1/4 of the data would be assigned for testing.&lt;/p&gt;
+&lt;h3&gt;Splitting the data to training and testing splits&lt;/h3&gt;
+&lt;p&gt;In this step we are going to split the data so that 3/4 of the data would be assigned for training and the remaining 1/4 of the data would be assigned for testing.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;create-the-logistic-regression-model&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;create the logistic regression model&lt;/h3&gt;
+&lt;h3&gt;Create the logistic regression model&lt;/h3&gt;
 &lt;p&gt;Creating the logistic regression model that will be used to identify whether a customer will subscribe to a term deposit or not.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;creating-the-recipe&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;creating the recipe&lt;/h3&gt;
-&lt;p&gt;creating the suitable recipe to apply feature engineering to our data&lt;/p&gt;
+&lt;h3&gt;Creating the recipe&lt;/h3&gt;
+&lt;p&gt;Creating the suitable recipe to apply feature engineering to our data&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;create-workflow&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Create workflow&lt;/h3&gt;
@@ -72,7 +69,7 @@
 &lt;/div&gt;
 &lt;div id=&#34;make-predictions-for-training-data&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Make predictions for training data&lt;/h3&gt;
-&lt;p&gt;Using the trained model for prediction where the training data is used.&lt;/p&gt;
+&lt;p&gt;Using the trained model for prediction on the training data.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 33,907 x 11
 ##    .pred_class y     job          education housing loan  contact month duration
 ##    &amp;lt;fct&amp;gt;       &amp;lt;fct&amp;gt; &amp;lt;fct&amp;gt;        &amp;lt;fct&amp;gt;     &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt; &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;    &amp;lt;int&amp;gt;
@@ -105,7 +102,7 @@
 &lt;/div&gt;
 &lt;div id=&#34;make-predictions-for-testing-data&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Make predictions for testing data&lt;/h3&gt;
-&lt;p&gt;Using the trained model for prediction where the testing data is used.&lt;/p&gt;
+&lt;p&gt;Using the trained model for prediction on the testing data.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 11,304 x 11
 ##    .pred_class y     job          education housing loan  contact month duration
 ##    &amp;lt;fct&amp;gt;       &amp;lt;fct&amp;gt; &amp;lt;fct&amp;gt;        &amp;lt;fct&amp;gt;     &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt; &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;    &amp;lt;int&amp;gt;
@@ -139,6 +136,7 @@
 &lt;/div&gt;
 &lt;div id=&#34;apply-cross-validation-method-for-model-evaluation&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Apply Cross Validation method for model evaluation&lt;/h2&gt;
+&lt;p&gt;We will use the cross-validation resampling method to evaluate the performance of our logestic regression model.&lt;/p&gt;
 &lt;div id=&#34;split-data-into-folds&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Split data into folds&lt;/h3&gt;
 &lt;p&gt;The train data is split-ted into 5 folds&lt;/p&gt;
@@ -161,6 +159,110 @@
 &lt;p&gt;The accuracy associated with the model using the training data is 90.1%, that associated with the model using the testing data is 90.3% and that associated with the model using cross validation resampling method is 90.1%. The accuracy in the testing data is quite good and it is slightly better than the accuracy in the training data which indicates that our model is not exposed to overfitting on the training data, also the accuracy resulted from the testing data is comparable with the accuracy we got from cross-validation resampling method that indicates that our model is working properly.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;div id=&#34;applying-bootstrap-resampling-method&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Applying Bootstrap resampling method&lt;/h2&gt;
+&lt;p&gt;In this part we are estimating the accuracy of a Logestic Regression Model through the bootstrap approach which can be used to assess the variability of the coefficient estimates (Betas) and predictions from a statistical learning method.&lt;/p&gt;
+&lt;p&gt;The standard error reflects the variability between the estimates we would obtain if we repeatedly took samples from the population. The standard error associated with the coefficients of both the model and that obtained through bootstrapping are shown below:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;##        (Intercept)     jobblue-collar    jobentrepreneur       jobhousemaid 
+##       -2.416485382       -0.346072166       -0.413788618       -0.538843667 
+##      jobmanagement         jobretired   jobself-employed        jobservices 
+##       -0.189089703        0.196164320       -0.311713723       -0.236414425 
+##         jobstudent      jobtechnician      jobunemployed         jobunknown 
+##        0.511192792       -0.173019378       -0.177429381       -0.361506746 
+## educationsecondary  educationtertiary   educationunknown         housingyes 
+##        0.203955264        0.436149134        0.269835962       -0.700007468 
+##            loanyes   contacttelephone     contactunknown           monthaug 
+##       -0.444875217       -0.175980434       -1.605880094       -0.763099074 
+##           monthdec           monthfeb           monthjan           monthjul 
+##        0.646688881       -0.251511233       -1.163911847       -0.843156031 
+##           monthjun           monthmar           monthmay           monthnov 
+##        0.366545869        1.553360619       -0.425837991       -0.874011401 
+##           monthoct           monthsep           duration           campaign 
+##        0.888103673        0.811484702        0.004190172       -0.086589973 
+##      poutcomeother    poutcomesuccess    poutcomeunknown 
+##        0.233821843        2.303692088       -0.078536962&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                        Estimate   Std. Error    z value      Pr(&amp;gt;|z|)
+## (Intercept)        -2.416485382 1.113856e-01 -21.694773 2.298578e-104
+## jobblue-collar     -0.346072166 7.226905e-02  -4.788664  1.678955e-06
+## jobentrepreneur    -0.413788618 1.249918e-01  -3.310525  9.312098e-04
+## jobhousemaid       -0.538843667 1.354648e-01  -3.977740  6.957349e-05
+## jobmanagement      -0.189089703 7.293692e-02  -2.592510  9.527837e-03
+## jobretired          0.196164320 8.618864e-02   2.275988  2.284672e-02
+## jobself-employed   -0.311713723 1.114374e-01  -2.797210  5.154603e-03
+## jobservices        -0.236414425 8.390921e-02  -2.817503  4.839869e-03
+## jobstudent          0.511192792 1.044029e-01   4.896346  9.763496e-07
+## jobtechnician      -0.173019378 6.880062e-02  -2.514794  1.191020e-02
+## jobunemployed      -0.177429381 1.114466e-01  -1.592058  1.113717e-01
+## jobunknown         -0.361506746 2.329359e-01  -1.551958  1.206723e-01
+## educationsecondary  0.203955264 6.411055e-02   3.181306  1.466128e-03
+## educationtertiary   0.436149134 7.395298e-02   5.897654  3.687051e-09
+## educationunknown    0.269835962 1.035801e-01   2.605095  9.184878e-03
+## housingyes         -0.700007468 4.329460e-02 -16.168472  8.415943e-59
+## loanyes            -0.444875217 5.967071e-02  -7.455504  8.952482e-14
+## contacttelephone   -0.175980434 7.410680e-02  -2.374687  1.756384e-02
+## contactunknown     -1.605880094 7.237608e-02 -22.187993 4.485657e-109
+## monthaug           -0.763099074 7.747181e-02  -9.850022  6.852875e-23
+## monthdec            0.646688881 1.757141e-01   3.680347  2.329164e-04
+## monthfeb           -0.251511233 8.412492e-02  -2.989735  2.792195e-03
+## monthjan           -1.163911847 1.196732e-01  -9.725755  2.341610e-22
+## monthjul           -0.843156031 7.706815e-02 -10.940395  7.387702e-28
+## monthjun            0.366545869 9.019358e-02   4.063991  4.824078e-05
+## monthmar            1.553360619 1.187454e-01  13.081435  4.204289e-39
+## monthmay           -0.425837991 7.108191e-02  -5.990807  2.088027e-09
+## monthnov           -0.874011401 8.371180e-02 -10.440719  1.615814e-25
+## monthoct            0.888103673 1.076217e-01   8.252090  1.556480e-16
+## monthsep            0.811484702 1.180207e-01   6.875780  6.165138e-12
+## duration            0.004190172 6.442787e-05  65.036632  0.000000e+00
+## campaign           -0.086589973 1.003337e-02  -8.630197  6.124664e-18
+## poutcomeother       0.233821843 8.916180e-02   2.622444  8.730153e-03
+## poutcomesuccess     2.303692088 7.959003e-02  28.944480 3.293120e-184
+## poutcomeunknown    -0.078536962 5.731654e-02  -1.370232  1.706144e-01&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## ORDINARY NONPARAMETRIC BOOTSTRAP
+## 
+## 
+## Call:
+## boot(data = bank_data, statistic = boot_fn_bank, R = 100)
+## 
+## 
+## Bootstrap Statistics :
+##          original        bias     std. error
+## t1*  -2.416485382 -8.028300e-03 0.1255282876
+## t2*  -0.346072166  6.884443e-03 0.0656667243
+## t3*  -0.413788618 -1.746870e-02 0.1250063163
+## t4*  -0.538843667 -2.632170e-02 0.1506685985
+## t5*  -0.189089703 -1.946738e-03 0.0703688067
+## t6*   0.196164320  9.726636e-03 0.1007565978
+## t7*  -0.311713723  6.681341e-03 0.1118123533
+## t8*  -0.236414425  4.509866e-03 0.0777245698
+## t9*   0.511192792  1.878887e-02 0.0999970178
+## t10* -0.173019378 -2.964749e-03 0.0639570480
+## t11* -0.177429381 -1.918871e-02 0.1279365248
+## t12* -0.361506746  2.929020e-02 0.2202905524
+## t13*  0.203955264  3.677783e-03 0.0710370345
+## t14*  0.436149134  2.678866e-03 0.0783973333
+## t15*  0.269835962 -7.098522e-03 0.1134082599
+## t16* -0.700007468  2.614857e-03 0.0437524671
+## t17* -0.444875217  2.541731e-03 0.0564787713
+## t18* -0.175980434 -1.769945e-02 0.0788122518
+## t19* -1.605880094  2.710617e-03 0.0776266569
+## t20* -0.763099074  2.196291e-04 0.0861235310
+## t21*  0.646688881 -1.281272e-03 0.2189127383
+## t22* -0.251511233 -3.810631e-03 0.0928764444
+## t23* -1.163911847 -6.144847e-03 0.1196075241
+## t24* -0.843156031 -4.977336e-03 0.0803586902
+## t25*  0.366545869 -1.096552e-02 0.0949528655
+## t26*  1.553360619  4.760479e-03 0.1289172848
+## t27* -0.425837991 -2.116673e-03 0.0731852404
+## t28* -0.874011401 -5.277234e-03 0.0887677215
+## t29*  0.888103673  1.226003e-02 0.1220745778
+## t30*  0.811484702 -3.511322e-02 0.1457014049
+## t31*  0.004190172 -5.900232e-07 0.0001029556
+## t32* -0.086589973 -2.098398e-03 0.0115775812
+## t33*  0.233821843  1.028080e-02 0.0957398188
+## t34*  2.303692088  1.141992e-02 0.0869714862
+## t35* -0.078536962  3.761925e-03 0.0625711164&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;div id=&#34;second-for-linear-regression-model&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Second For Linear Regression Model:&lt;/h2&gt;
 &lt;div id=&#34;the-diamond-ring-data&#34; class=&#34;section level3&#34;&gt;
@@ -171,7 +273,7 @@
 ## $ price         &amp;lt;dbl&amp;gt; 3000, 3000, 3004, 3004, 3006, 3007, 3008, 3010, 3012, 30~
 ## $ carat         &amp;lt;dbl&amp;gt; 0.92, 0.92, 0.82, 0.81, 0.90, 0.87, 0.80, 0.84, 0.80, 0.~
 ## $ colour        &amp;lt;chr&amp;gt; &amp;quot;I&amp;quot;, &amp;quot;I&amp;quot;, &amp;quot;F&amp;quot;, &amp;quot;G&amp;quot;, &amp;quot;J&amp;quot;, &amp;quot;F&amp;quot;, &amp;quot;D&amp;quot;, &amp;quot;F&amp;quot;, &amp;quot;D&amp;quot;, &amp;quot;D&amp;quot;, &amp;quot;G&amp;quot;, &amp;quot;~
-## $ clarity       &amp;lt;chr&amp;gt; &amp;quot;SI2&amp;quot;, &amp;quot;SI2&amp;quot;, &amp;quot;SI2&amp;quot;, &amp;quot;SI1&amp;quot;, &amp;quot;VS2&amp;quot;, &amp;quot;SI2&amp;quot;, &amp;quot;SI2&amp;quot;, &amp;quot;SI1&amp;quot;, ~
+## $ clarity       &amp;lt;fct&amp;gt; SI2, SI2, SI2, SI1, VS2, SI2, SI2, SI1, SI2, SI2, SI2, S~
 ## $ cut           &amp;lt;chr&amp;gt; &amp;quot;G&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;I&amp;quot;, &amp;quot;I&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;I&amp;quot;, &amp;quot;I&amp;quot;, &amp;quot;G&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;I&amp;quot;, &amp;quot;~
 ## $ certification &amp;lt;chr&amp;gt; &amp;quot;AGS&amp;quot;, &amp;quot;AGS&amp;quot;, &amp;quot;GIA&amp;quot;, &amp;quot;GIA&amp;quot;, &amp;quot;GIA&amp;quot;, &amp;quot;AGS&amp;quot;, &amp;quot;GIA&amp;quot;, &amp;quot;GIA&amp;quot;, ~
 ## $ polish        &amp;lt;chr&amp;gt; &amp;quot;V&amp;quot;, &amp;quot;G&amp;quot;, &amp;quot;X&amp;quot;, &amp;quot;X&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;G&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;V&amp;quot;, &amp;quot;~
@@ -197,13 +299,27 @@
 &lt;div id=&#34;fit-the-model-1&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Fit the model&lt;/h3&gt;
 &lt;p&gt;Train and fitting the model using the training split of the data.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 36 x 5
+##    term        estimate std.error statistic  p.value
+##    &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+##  1 (Intercept)    2141.     128.      16.7  2.29e-44
+##  2 carat           709.      58.5     12.1  1.14e-27
+##  3 colour_E       -215.      45.1     -4.75 3.13e- 6
+##  4 colour_F       -280.      45.2     -6.20 1.94e- 9
+##  5 colour_G       -276.      46.7     -5.91 9.47e- 9
+##  6 colour_H       -343.      46.0     -7.46 9.79e-13
+##  7 colour_I       -380.      46.4     -8.19 8.25e-15
+##  8 colour_J       -435.      49.6     -8.76 1.65e-16
+##  9 colour_K       -666.      57.1    -11.7  4.62e-26
+## 10 colour_L       -878.      68.3    -12.8  2.92e-30
+## # ... with 26 more rows&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;make-predictions-for-training-data-1&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Make predictions for training data&lt;/h3&gt;
-&lt;p&gt;Using the trained model for prediction where the training data is used.&lt;/p&gt;
+&lt;p&gt;Using the trained model for prediction on the training data.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 328 x 10
 ##    .pred price carat colour clarity cut   certification polish symmetry
-##    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   
+##    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;fct&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   
 ##  1 350.    190  0.09 D      SI1     X     IGI           G      G       
 ##  2 134.    160  0.09 E      SI1     I     IGI           G      G       
 ##  3  85.6   160  0.09 F      SI1     I     IGI           V      G       
@@ -224,7 +340,7 @@
 ##   .metric .estimator .estimate
 ##   &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
 ## 1 rsq     standard       0.986&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/a03-resampling-methods/index_files/figure-html/unnamed-chunk-22-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a03-resampling-methods/index_files/figure-html/unnamed-chunk-23-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;em&gt;RMSE&lt;/em&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
@@ -233,10 +349,10 @@
 &lt;/div&gt;
 &lt;div id=&#34;make-predictions-for-testing-data-1&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Make predictions for testing data&lt;/h3&gt;
-&lt;p&gt;Using the trained model for prediction where the testing data is used.&lt;/p&gt;
+&lt;p&gt;Using the trained model for prediction on the testing data.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 112 x 10
 ##    .pred price carat colour clarity cut   certification polish symmetry
-##    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   
+##    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;fct&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   
 ##  1 3035.  3000  0.92 I      SI2     G     AGS           V      V       
 ##  2 3028.  3000  0.92 I      SI2     V     AGS           G      G       
 ##  3 3088.  3006  0.9  J      VS2     V     GIA           V      V       
@@ -257,7 +373,7 @@
 ##   .metric .estimator .estimate
 ##   &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
 ## 1 rsq     standard       0.983&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/a03-resampling-methods/index_files/figure-html/unnamed-chunk-25-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/a03-resampling-methods/index_files/figure-html/unnamed-chunk-26-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;RMSE&lt;/em&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
@@ -267,6 +383,7 @@
 &lt;/div&gt;
 &lt;div id=&#34;apply-cross-validation-method-for-model-evaluation-1&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Apply Cross Validation method for model evaluation&lt;/h2&gt;
+&lt;p&gt;We will use the cross-validation resampling method to evaluate the performance of our linear regression model.&lt;/p&gt;
 &lt;div id=&#34;split-data-into-folds-1&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Split data into folds&lt;/h3&gt;
 &lt;p&gt;The train data is split-ted into 5 folds&lt;/p&gt;
@@ -288,6 +405,110 @@
 &lt;h3&gt;Conclusion&lt;/h3&gt;
 &lt;p&gt;The rsq associated with the model on the training data is 0.99, that associated with the model in the testing data is 0.98 and that associated with the model using cross validation is 0.98. From that we can see that our model is performing good.&lt;/p&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;applying-bootstrap-resampling-method-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Applying Bootstrap resampling method&lt;/h2&gt;
+&lt;p&gt;In this part we are estimating the accuracy of a Linear Regression Model through the bootstrap approach which can be used to assess the variability of the coefficient estimates (Betas) and predictions from a statistical learning method.&lt;/p&gt;
+&lt;p&gt;The standard error reflects the variability between the estimates we would obtain if we repeatedly took samples from the population. The standard error associated with the coefficients of both the model and that obtained through bootstrapping are shown below:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# boot_fn_rings= function (data ,index){
+#   return(tidy( wkfl_rings %&amp;gt;%fit(data=data[index,]))) }
+
+boot_fn_rings= function (data ,index ){
+return (coef (lm(price ~ .,data =data , subset =index )))}
+
+df2 &amp;lt;- model.matrix( ~ price + carat + colour + clarity+cut + certification + polish + symmetry + wholesaler-1, data = rings_data)
+
+set.seed(103)
+
+summary(lm(price ~ .,data =as.data.frame(df2)))$coef&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                     Estimate Std. Error     t value     Pr(&amp;gt;|t|)
+## (Intercept)       -106.56155  175.79890  -0.6061560 5.447516e-01
+## carat             1885.30336  133.35039  14.1379667 3.742257e-37
+## colourD            895.44460   59.30734  15.0983785 3.695004e-41
+## colourE            728.83798   52.92247  13.7718071 1.196791e-35
+## colourF            648.29530   52.36663  12.3799311 4.580770e-30
+## colourG            665.84244   51.58213  12.9083948 3.708078e-32
+## colourH            595.60521   50.56202  11.7796946 9.764476e-28
+## colourI            557.81920   49.66629  11.2313443 1.170879e-25
+## colourJ            461.05137   49.26745   9.3581342 5.704793e-19
+## colourK            199.01441   50.96007   3.9053008 1.102762e-04
+## clarityI2         -590.10469   39.59374 -14.9039905 2.424038e-40
+## claritySI1         652.27743   37.30949  17.4828817 2.280084e-51
+## claritySI2         560.50704   30.84165  18.1737061 2.265758e-54
+## claritySI3         290.45599   37.17977   7.8122046 4.902422e-14
+## clarityVS1         743.08136   49.56030  14.9934784 1.020529e-40
+## clarityVS2         689.49914   43.96568  15.6826658 1.246192e-43
+## clarityVVS1       1015.21402  117.33428   8.6523228 1.208576e-16
+## clarityVVS2        760.49537   77.07807   9.8665595 1.025130e-20
+## cutG                48.81986   30.73652   1.5883339 1.129931e-01
+## cutI                84.50708   30.00680   2.8162641 5.096725e-03
+## cutV                78.44805   30.50328   2.5717904 1.047401e-02
+## cutX                93.37420   26.51667   3.5213390 4.783374e-04
+## certificationDOW  -271.24204  164.60408  -1.6478452 1.001619e-01
+## certificationEGL  -307.28583   67.95169  -4.5221220 8.057030e-06
+## certificationGIA    12.15763   60.44293   0.2011423 8.406885e-01
+## certificationIGI  -118.26743   72.53254  -1.6305431 1.037661e-01
+## polishG             66.57386   78.84945   0.8443161 3.989925e-01
+## polishI            247.69579  115.61368   2.1424436 3.275488e-02
+## polishv            136.45426  169.48598   0.8051065 4.212318e-01
+## polishV             78.39863   81.67731   0.9598581 3.377007e-01
+## polishX             84.85158   83.94039   1.0108553 3.126907e-01
+## symmetryG          133.37429   42.42139   3.1440340 1.789425e-03
+## symmetryV          151.49072   45.27573   3.3459583 8.967355e-04
+## symmetryX          137.39985   50.44279   2.7238747 6.732040e-03
+## wholesaler2        112.07125   49.94276   2.2439938 2.537367e-02
+## wholesaler3      -1460.66895   78.09862 -18.7028787 1.115682e-56&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;boot(statistic = boot_fn_rings,
+                  data = as.data.frame(df2), R = 1000)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## ORDINARY NONPARAMETRIC BOOTSTRAP
+## 
+## 
+## Call:
+## boot(data = as.data.frame(df2), statistic = boot_fn_rings, R = 1000)
+## 
+## 
+## Bootstrap Statistics :
+##         original      bias    std. error
+## t1*   -106.56155 -9.35456333   261.67043
+## t2*   1885.30336 16.89859427   177.59923
+## t3*    895.44460  2.78838482    99.78342
+## t4*    728.83798  1.96797173    88.88759
+## t5*    648.29530  0.44403917    88.81436
+## t6*    665.84244 -0.87732839    86.79063
+## t7*    595.60521  1.51940839    86.22062
+## t8*    557.81920  1.08977842    85.60847
+## t9*    461.05137 -1.31429699    83.33705
+## t10*   199.01441 -5.71033660    81.01659
+## t12*  -590.10469 -5.62400852    57.95193
+## t13*   652.27743  4.13415624    53.01940
+## t14*   560.50704  3.28170559    46.95164
+## t15*   290.45599  5.96937782    58.04980
+## t16*   743.08136  5.88777718    62.79755
+## t17*   689.49914  3.99395348    58.81016
+## t18*  1015.21402 10.65485966    80.97264
+## t19*   760.49537  4.40900611   103.99886
+## t20*    48.81986 -3.96590696    42.73852
+## t21*    84.50708 -2.33151751    37.91071
+## t22*    78.44805 -2.30491726    32.90870
+## t23*    93.37420 -1.88620077    34.89901
+## t24*  -271.24204 -1.08968639    78.50134
+## t25*  -307.28583 -2.51905597    53.47293
+## t26*    12.15763  0.16925914    30.04501
+## t27*  -118.26743  2.50044800    49.52972
+## t28*    66.57386 -7.36747324   136.36556
+## t29*   247.69579 -8.64360605   133.21323
+## t30*   136.45426 -7.91079733   139.81229
+## t31*    78.39863 -7.36281044   140.63048
+## t32*    84.85158 -6.72228927   141.11272
+## t33*   133.37429  0.59236148    62.87303
+## t35*   151.49072 -0.05086443    65.82882
+## t36*   137.39985  1.01165019    67.30974
+## t37*   112.07125  0.30607925    62.57052
+## t38* -1460.66895  8.51131528    99.28839
+## WARNING: All values of t11* are NA
+## WARNING: All values of t34* are NA&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;.&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
