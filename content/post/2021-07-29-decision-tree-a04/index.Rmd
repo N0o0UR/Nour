@@ -259,6 +259,7 @@ update_model(tune_model)
 ### Create a tuning grid
 
 Create the tuning grid with 3 levels for each parameter.
+
 ```{r}
 set.seed(216)
 grid<-grid_regular(parameters(tune_model),levels = 3)
@@ -294,6 +295,7 @@ final_params
 ### Finalize the model 
 
 Finalize the model with the best value for each hyperparameter.
+
 ```{r}
 best_spec <- finalize_model(tune_model,
 final_params)
@@ -303,6 +305,7 @@ best_spec
 ## Passing the testing data to the tuned model 
 
 Make prediction with the tuned model on the testing data.
+
 ```{r}
 tuned_decision_tree_mdl <- decision_tree(cost_complexity = 1e-10,tree_depth = 8,min_n = 2) %>%
   # Specify the engine
@@ -332,6 +335,7 @@ tuned_prediction
 ### Evaluate the performance of the tuned model
 
 Evaluate the performance of the tuned model on the testing data.
+
 ```{r}
 conf_mat(tuned_prediction, truth = y, estimate = .pred_class)
 
@@ -342,7 +346,6 @@ estimate = .pred_class)
 
 test_metric_tuned
 ```
-
 
 ### Conclusion
 
