@@ -80,7 +80,7 @@ test_data <- data_split%>%
 Creating the decision tree model that will be used to identify whether a customer will subscribe to a term deposit or not.
 
 
-```{r,warning=FALSE , message=FALSE,echo=FALSE}
+```{r,warning=FALSE , message=FALSE}
 
 decision_tree_mdl <- decision_tree() %>%
   # Specify the engine
@@ -88,6 +88,7 @@ decision_tree_mdl <- decision_tree() %>%
   # Specify the mode
   set_mode('classification')
 
+decision_tree_mdl
 ```
 
 ### Creating the recipe
@@ -102,6 +103,7 @@ step_normalize(all_numeric()) %>%
 step_dummy(all_nominal(), -all_outcomes())%>%
   # remove zero variance predictors
   step_zv(all_predictors())
+the_recipe
 ```
 
 
@@ -116,6 +118,7 @@ wkfl <- workflow() %>%
   # Add recipe
   add_recipe(the_recipe)
 
+wkfl
 ```
 
 
@@ -127,6 +130,7 @@ Train and fitting the model using the training split of the data.
 
 mdl_fit <- wkfl %>%
   fit(data=train_data)
+mdl_fit
 
 ```
 
@@ -146,7 +150,7 @@ train_pred
 ```
 ### Evaluate performance on tarining data
 
-Evaluate the performance of the model on the training data.
+Evaluate the performance of the model on the training data.The accuracy of the model on the training data is 90.2%.
 
 ```{r,warning=FALSE , message=FALSE,echo=FALSE}
 
@@ -173,7 +177,7 @@ test_pred
 ```
 ### Evaluate performance on testing data
 
-Evaluate the performance of the model on the testing data.
+Evaluate the performance of the model on the testing data.The accuracy of the model on the testing data is 90%. 
 
 ```{r,warning=FALSE , message=FALSE,echo=FALSE}
 
@@ -193,14 +197,14 @@ We will use the cross-validation resampling method to evaluate the performance o
 
 ### Split data into folds
 
-The train data is split-ted into 5 folds
+The train data is split-ted into 10 folds
 
 ```{r,warning=FALSE , message=FALSE,echo=FALSE}
 
 
 set.seed(13)
 folds <- vfold_cv(train_data,v = 10,strata = y)
-
+folds
 
 ```
 
@@ -219,22 +223,25 @@ cv_fit<- wkfl%>%
 
 ### Collect CV metrics
 
-Show the metrics resulted from Cross-Validation process
+Show the metrics resulted from Cross-Validation process. The accurcay achieved after using the 10 folds cross validation for resampling is 90.1% .
+
+
+  
 ```{r,warning=FALSE , message=FALSE,echo=FALSE}
 
 collect_metrics(cv_fit)
 ```
-### Conclusion
-
-The accuracy associated with the model using the training data is 90.1%, that associated with the model using the testing data is 90.3% and that associated with the model using cross validation resampling method is 90.1%. The accuracy in the testing data is quite good and it is slightly better than the accuracy in the training data which indicates that our model is not exposed to overfitting on the training data, also the accuracy resulted from the testing data is comparable with the accuracy we got from cross-validation resampling method that indicates that our model is working properly.
 
 
-### Hyperparameter tuning 
+## Hyperparameter tuning 
 
 In this part we will tune the hyperparameters of the decision tree and check the tuning effect on the model accuracy.
 
+### Set the hyperparameters for tuning in the decision tree
+
+We will modify the model so that the hyperparameters will be undergo tuuining and accordingly the workflow would be updated with the new model.
+
 ```{r}
-# creating the decision tree with and tune it's hyperparameters
 
 tune_model <- decision_tree(cost_complexity = tune(),
 tree_depth = tune(),
@@ -245,10 +252,24 @@ set_mode('classification')
 tune_wkfl <- wkfl %>%
 update_model(tune_model)
 
-set.seed(216)
-grid<-grid_regular(parameters(tune_model),size = 3)
 
-# Hyperparameter tuning with cross validation
+```
+
+
+### Create a tuning grid
+
+Create the tuning grid with 3 levels for each parameter.
+```{r}
+set.seed(216)
+grid<-grid_regular(parameters(tune_model),levels = 3)
+
+
+```
+### Hyperparameter tuning with cross validation
+
+From the shown graph we can see the accuracy Vs. the different combination of the 3 hyperparameters levels.  
+
+```{r}
 tune_results <- tune_wkfl %>%
 tune_grid(resamples = folds,
 grid = grid,
@@ -258,26 +279,30 @@ autoplot(tune_results)
 
 tune_results %>%
 collect_metrics()
+```
+### Select the best parameters
 
-# best_model <- tuning %>%
-# select_best(metric = 'accuracy')
-# best_model
+From the above graph we can see that the best hyperparameters combination is minimum node size of 40, tree depth of 8 and the cost complexity of 0.0000000001, where this combination result in an accuracy of 92.5%
 
+```{r}
 final_params <- select_best(tune_results)
 final_params
 
 
+
+```
+### Finalize the model 
+
+Finalize the model with the best value for each hyperparameter.
+```{r}
 best_spec <- finalize_model(tune_model,
 final_params)
 best_spec
-
-
-
 ```
 
+## Passing the testing data to the tuned model 
 
-
-## passing the testing data to the tuned model 
+Make prediction with the tuned model on the testing data.
 ```{r}
 tuned_decision_tree_mdl <- decision_tree(cost_complexity = 1e-10,tree_depth = 8,min_n = 2) %>%
   # Specify the engine
@@ -300,6 +325,14 @@ tuned_prediction<-predict(fit_tuned_mdl, test_data,type = 'class') %>%
 
 tuned_prediction
 
+
+
+```
+
+### Evaluate the performance of the tuned model
+
+Evaluate the performance of the tuned model on the testing data.
+```{r}
 conf_mat(tuned_prediction, truth = y, estimate = .pred_class)
 
 
@@ -308,11 +341,9 @@ truth = y,
 estimate = .pred_class)
 
 test_metric_tuned
-
 ```
-
 
 
 ### Conclusion
 
-The accuracy associated with the model using the training data is 90.1%, that associated with the model using the testing data is 90.3% and that associated with the model using cross validation resampling method is 90.1%. The accuracy in the testing data is quite good and it is slightly better than the accuracy in the training data which indicates that our model is not exposed to overfitting on the training data, also the accuracy resulted from the testing data is comparable with the accuracy we got from cross-validation resampling method that indicates that our model is working properly.
+The accuracy associated with the untuned model on the training data is 90.2%, and that associated with the untuned model on the testing data is 90% and that associated with the same model using cross validation resampling method is 90.1%. The accuracy in the testing data is quite good and it is slightly less than the accuracy in the training data which indicates that our model is not exposed to overfitting on the training data, also the accuracy resulted from the testing data is comparable with the accuracy we got from cross-validation resampling method that indicates that our model is working properly. After tuning the model with the best combination of the 3 hyperparameters that are min_n=40 , tree_depth=8 and the cost_complexity=0.0000000001 we got an accuracy of 92.5% that is considered the highest accuracy. This shows us the importance and the effect of tuning the decision tree model hyperparameters on the accuracy of the model.

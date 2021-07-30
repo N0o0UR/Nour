@@ -35,18 +35,87 @@ projects: []
 <div id="create-the-decision-tree-model" class="section level3">
 <h3>Create the decision tree model</h3>
 <p>Creating the decision tree model that will be used to identify whether a customer will subscribe to a term deposit or not.</p>
+<pre class="r"><code>decision_tree_mdl &lt;- decision_tree() %&gt;%
+  # Specify the engine
+  set_engine(&#39;rpart&#39;) %&gt;%
+  # Specify the mode
+  set_mode(&#39;classification&#39;)
+
+decision_tree_mdl</code></pre>
+<pre><code>## Decision Tree Model Specification (classification)
+## 
+## Computational engine: rpart</code></pre>
 </div>
 <div id="creating-the-recipe" class="section level3">
 <h3>Creating the recipe</h3>
 <p>Creating the suitable recipe to apply feature engineering to our data</p>
+<pre><code>## Data Recipe
+## 
+## Inputs:
+## 
+##       role #variables
+##    outcome          1
+##  predictor         16
+## 
+## Operations:
+## 
+## Correlation filter on all_numeric()
+## Centering and scaling for all_numeric()
+## Dummy variables from all_nominal(), -all_outcomes()
+## Zero variance filter on all_predictors()</code></pre>
 </div>
 <div id="create-workflow" class="section level3">
 <h3>Create workflow</h3>
 <p>Create a workflow that combine the model and the recipe.</p>
+<pre><code>## == Workflow ====================================================================
+## Preprocessor: Recipe
+## Model: decision_tree()
+## 
+## -- Preprocessor ----------------------------------------------------------------
+## 4 Recipe Steps
+## 
+## * step_corr()
+## * step_normalize()
+## * step_dummy()
+## * step_zv()
+## 
+## -- Model -----------------------------------------------------------------------
+## Decision Tree Model Specification (classification)
+## 
+## Computational engine: rpart</code></pre>
 </div>
 <div id="fit-the-model" class="section level3">
 <h3>Fit the model</h3>
 <p>Train and fitting the model using the training split of the data.</p>
+<pre><code>## == Workflow [trained] ==========================================================
+## Preprocessor: Recipe
+## Model: decision_tree()
+## 
+## -- Preprocessor ----------------------------------------------------------------
+## 4 Recipe Steps
+## 
+## * step_corr()
+## * step_normalize()
+## * step_dummy()
+## * step_zv()
+## 
+## -- Model -----------------------------------------------------------------------
+## n= 33907 
+## 
+## node), split, n, loss, yval, (yprob)
+##       * denotes terminal node
+## 
+##  1) root 33907 3966 no (0.88303300 0.11696700)  
+##    2) duration&lt; 1.013834 30124 2309 no (0.92335015 0.07664985)  
+##      4) poutcome_success&lt; 0.5 29150 1715 no (0.94116638 0.05883362) *
+##      5) poutcome_success&gt;=0.5 974  380 yes (0.39014374 0.60985626)  
+##       10) duration&lt; -0.4872674 190   38 no (0.80000000 0.20000000) *
+##       11) duration&gt;=-0.4872674 784  228 yes (0.29081633 0.70918367) *
+##    3) duration&gt;=1.013834 3783 1657 no (0.56198784 0.43801216)  
+##      6) duration&lt; 2.215492 2461  881 no (0.64201544 0.35798456)  
+##       12) poutcome_success&lt; 0.5 2344  785 no (0.66510239 0.33489761) *
+##       13) poutcome_success&gt;=0.5 117   21 yes (0.17948718 0.82051282) *
+##      7) duration&gt;=2.215492 1322  546 yes (0.41301059 0.58698941) *</code></pre>
 </div>
 <div id="make-predictions-for-training-data" class="section level3">
 <h3>Make predictions for training data</h3>
@@ -70,7 +139,7 @@ projects: []
 </div>
 <div id="evaluate-performance-on-tarining-data" class="section level3">
 <h3>Evaluate performance on tarining data</h3>
-<p>Evaluate the performance of the model on the training data.</p>
+<p>Evaluate the performance of the model on the training data.The accuracy of the model on the training data is 90.2%.</p>
 <pre><code>##           Truth
 ## Prediction    no   yes
 ##        no  29146  2538
@@ -104,7 +173,7 @@ projects: []
 </div>
 <div id="evaluate-performance-on-testing-data" class="section level3">
 <h3>Evaluate performance on testing data</h3>
-<p>Evaluate the performance of the model on the testing data.</p>
+<p>Evaluate the performance of the model on the testing data.The accuracy of the model on the testing data is 90%.</p>
 <pre><code>##           Truth
 ## Prediction   no  yes
 ##        no  9698  847
@@ -121,7 +190,21 @@ projects: []
 <p>We will use the cross-validation resampling method to evaluate the performance of our decision tree model.</p>
 <div id="split-data-into-folds" class="section level3">
 <h3>Split data into folds</h3>
-<p>The train data is split-ted into 5 folds</p>
+<p>The train data is split-ted into 10 folds</p>
+<pre><code>## #  10-fold cross-validation using stratification 
+## # A tibble: 10 x 2
+##    splits               id    
+##    &lt;list&gt;               &lt;chr&gt; 
+##  1 &lt;split [30515/3392]&gt; Fold01
+##  2 &lt;split [30516/3391]&gt; Fold02
+##  3 &lt;split [30516/3391]&gt; Fold03
+##  4 &lt;split [30516/3391]&gt; Fold04
+##  5 &lt;split [30516/3391]&gt; Fold05
+##  6 &lt;split [30516/3391]&gt; Fold06
+##  7 &lt;split [30517/3390]&gt; Fold07
+##  8 &lt;split [30517/3390]&gt; Fold08
+##  9 &lt;split [30517/3390]&gt; Fold09
+## 10 &lt;split [30517/3390]&gt; Fold10</code></pre>
 </div>
 <div id="fit-resamples" class="section level3">
 <h3>Fit resamples</h3>
@@ -129,42 +212,43 @@ projects: []
 </div>
 <div id="collect-cv-metrics" class="section level3">
 <h3>Collect CV metrics</h3>
-<p>Show the metrics resulted from Cross-Validation process</p>
+<p>Show the metrics resulted from Cross-Validation process. The accurcay achieved after using the 10 folds cross validation for resampling is 90.1% .</p>
 <pre><code>## # A tibble: 2 x 6
 ##   .metric  .estimator  mean     n std_err .config             
 ##   &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
 ## 1 accuracy binary     0.901    10 0.00143 Preprocessor1_Model1
 ## 2 roc_auc  binary     0.747    10 0.00361 Preprocessor1_Model1</code></pre>
 </div>
-<div id="conclusion" class="section level3">
-<h3>Conclusion</h3>
-<p>The accuracy associated with the model using the training data is 90.1%, that associated with the model using the testing data is 90.3% and that associated with the model using cross validation resampling method is 90.1%. The accuracy in the testing data is quite good and it is slightly better than the accuracy in the training data which indicates that our model is not exposed to overfitting on the training data, also the accuracy resulted from the testing data is comparable with the accuracy we got from cross-validation resampling method that indicates that our model is working properly.</p>
 </div>
-<div id="hyperparameter-tuning" class="section level3">
-<h3>Hyperparameter tuning</h3>
+<div id="hyperparameter-tuning" class="section level2">
+<h2>Hyperparameter tuning</h2>
 <p>In this part we will tune the hyperparameters of the decision tree and check the tuning effect on the model accuracy.</p>
-<pre class="r"><code># creating the decision tree with and tune it&#39;s hyperparameters
-
-tune_model &lt;- decision_tree(cost_complexity = tune(),
+<div id="set-the-hyperparameters-for-tuning-in-the-decision-tree" class="section level3">
+<h3>Set the hyperparameters for tuning in the decision tree</h3>
+<p>We will modify the model so that the hyperparameters will be undergo tuuining and accordingly the workflow would be updated with the new model.</p>
+<pre class="r"><code>tune_model &lt;- decision_tree(cost_complexity = tune(),
 tree_depth = tune(),
 min_n = tune()) %&gt;%
 set_engine(&#39;rpart&#39;) %&gt;%
 set_mode(&#39;classification&#39;)
 
 tune_wkfl &lt;- wkfl %&gt;%
-update_model(tune_model)
-
-set.seed(216)
-grid&lt;-grid_regular(parameters(tune_model),size = 3)</code></pre>
-<pre><code>## Warning: `size` is not an argument to `grid_regular()`. Did you mean `levels`?</code></pre>
-<pre class="r"><code># Hyperparameter tuning with cross validation
-tune_results &lt;- tune_wkfl %&gt;%
+update_model(tune_model)</code></pre>
+</div>
+<div id="create-a-tuning-grid" class="section level3">
+<h3>Create a tuning grid</h3>
+<pre class="r"><code>set.seed(216)
+grid&lt;-grid_regular(parameters(tune_model),levels = 3)</code></pre>
+</div>
+<div id="hyperparameter-tuning-with-cross-validation" class="section level3">
+<h3>Hyperparameter tuning with cross validation</h3>
+<pre class="r"><code>tune_results &lt;- tune_wkfl %&gt;%
 tune_grid(resamples = folds,
 grid = grid,
 metrics = metric_set(accuracy))
 
 autoplot(tune_results)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <pre class="r"><code>tune_results %&gt;%
 collect_metrics()</code></pre>
 <pre><code>## # A tibble: 27 x 9
@@ -181,16 +265,18 @@ collect_metrics()</code></pre>
 ##  9    0.1                  15     2 accuracy binary     0.883    10 0.0000417
 ## 10    0.0000000001          1    21 accuracy binary     0.883    10 0.0000417
 ## # ... with 17 more rows, and 1 more variable: .config &lt;chr&gt;</code></pre>
-<pre class="r"><code># best_model &lt;- tuning %&gt;%
-# select_best(metric = &#39;accuracy&#39;)
-# best_model
-
-final_params &lt;- select_best(tune_results)
+</div>
+<div id="select-the-best-parameters" class="section level3">
+<h3>Select the best parameters</h3>
+<pre class="r"><code>final_params &lt;- select_best(tune_results)
 final_params</code></pre>
 <pre><code>## # A tibble: 1 x 4
 ##   cost_complexity tree_depth min_n .config              
 ##             &lt;dbl&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt;                
 ## 1    0.0000000001          8    40 Preprocessor1_Model22</code></pre>
+</div>
+<div id="finalize-the-model" class="section level3">
+<h3>Finalize the model</h3>
 <pre class="r"><code>best_spec &lt;- finalize_model(tune_model,
 final_params)
 best_spec</code></pre>
@@ -242,6 +328,8 @@ tuned_prediction</code></pre>
 ## # ... with 11,294 more rows, and 9 more variables: contact &lt;fct&gt;, day &lt;chr&gt;,
 ## #   month &lt;fct&gt;, duration &lt;int&gt;, campaign &lt;int&gt;, pdays &lt;int&gt;, previous &lt;int&gt;,
 ## #   poutcome &lt;fct&gt;, y &lt;fct&gt;</code></pre>
+<div id="evaluate-the-performance-of-the-tuned-model" class="section level3">
+<h3>Evaluate the performance of the tuned model</h3>
 <pre class="r"><code>conf_mat(tuned_prediction, truth = y, estimate = .pred_class)</code></pre>
 <pre><code>##           Truth
 ## Prediction   no  yes
@@ -258,8 +346,9 @@ test_metric_tuned</code></pre>
 ## 1 accuracy binary         0.925
 ## 2 sens     binary         0.984
 ## 3 spec     binary         0.480</code></pre>
-<div id="conclusion-1" class="section level3">
+</div>
+<div id="conclusion" class="section level3">
 <h3>Conclusion</h3>
-<p>The accuracy associated with the model using the training data is 90.1%, that associated with the model using the testing data is 90.3% and that associated with the model using cross validation resampling method is 90.1%. The accuracy in the testing data is quite good and it is slightly better than the accuracy in the training data which indicates that our model is not exposed to overfitting on the training data, also the accuracy resulted from the testing data is comparable with the accuracy we got from cross-validation resampling method that indicates that our model is working properly.</p>
+<p>The accuracy associated with the untuned model on the training data is 90.2%, and that associated with the untuned model on the testing data is 90% and that associated with the same model using cross validation resampling method is 90.1%. The accuracy in the testing data is quite good and it is slightly less than the accuracy in the training data which indicates that our model is not exposed to overfitting on the training data, also the accuracy resulted from the testing data is comparable with the accuracy we got from cross-validation resampling method that indicates that our model is working properly. After tuning the model with the best combination of the 3 hyperparameters that are min_n=40 , tree_depth=8 and the cost_complexity=0.0000000001 we got an accuracy of 92.5% that is considered the highest accuracy. This shows us the importance and the effect of tunining the decision tree model hyperparameters on the accuracy of the model.</p>
 </div>
 </div>
