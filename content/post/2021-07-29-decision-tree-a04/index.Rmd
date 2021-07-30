@@ -1,0 +1,318 @@
+---
+title: Decision tree A04
+author: Nouran
+date: '2021-07-29'
+slug: decision-tree-a04
+categories: []
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-07-30T00:03:35-03:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE,results=FALSE}
+library("DataExplorer")
+library("janitor")
+library("tidyr")
+library("tidyverse")
+library("dplyr")
+library("yardstick")
+library("ggplot2")
+library("caret")
+library("tidymodels")
+library("readxl")
+library("boot")
+
+```
+
+
+### The Goal
+
+The goal behind this study is to use the decision tree to build a tree-based model for prediction, so that we will use the provided data set to identify whether a customer will subscribe to a term deposit or not. 
+
+
+### The data
+The data used in this study was obtained from UCI website and we specifically used the Bank-full.csv dataset.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE,results=FALSE}
+
+bank_data<-read.csv2 ("bank-full.csv",stringsAsFactors=T)%>%
+mutate(day=as.character(day))
+
+
+```
+
+
+### Splitting the data to training and testing splits
+
+In this step we are going to split the data so that 3/4 of the data would be assigned for training and the remaining 1/4 of the data would be assigned for testing.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+set.seed(121)
+
+
+data_split <- initial_split(bank_data,prop = 0.75,strata = y)
+
+train_data<- data_split%>%
+  training()
+
+test_data <- data_split%>%
+  testing()
+
+```
+
+
+
+### Create the decision tree  model
+
+Creating the decision tree model that will be used to identify whether a customer will subscribe to a term deposit or not.
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+decision_tree_mdl <- decision_tree() %>%
+  # Specify the engine
+  set_engine('rpart') %>%
+  # Specify the mode
+  set_mode('classification')
+
+```
+
+### Creating the recipe
+
+Creating the suitable recipe to apply feature engineering to our data
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+the_recipe <- recipe(y ~ .,data = train_data) %>%
+step_corr(all_numeric(), threshold = 0.9) %>%
+step_normalize(all_numeric()) %>%
+step_dummy(all_nominal(), -all_outcomes())%>%
+  # remove zero variance predictors
+  step_zv(all_predictors())
+```
+
+
+### Create workflow
+
+Create a workflow that combine the model and the recipe.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+wkfl <- workflow() %>%
+  # Add model
+  add_model(decision_tree_mdl) %>%
+  # Add recipe
+  add_recipe(the_recipe)
+
+```
+
+
+### Fit the model
+
+Train and fitting the model using the training split of the data.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+mdl_fit <- wkfl %>%
+  fit(data=train_data)
+
+```
+
+
+### Make predictions for training data
+
+Using the trained model for prediction on the training data.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+train_pred<-predict(mdl_fit, train_data,type = 'class') %>%
+  bind_cols(train_data %>% select(everything()))
+
+train_pred
+
+
+```
+### Evaluate performance on tarining data
+
+Evaluate the performance of the model on the training data.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+conf_mat(train_pred, truth = y, estimate = .pred_class)
+
+custom_metrics <-
+metric_set(accuracy, sens, spec)
+
+custom_metrics(train_pred,
+truth = y,
+estimate = .pred_class)
+
+```
+### Make predictions for testing data
+
+Using the trained model for prediction on the testing data.
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+test_pred <- predict(mdl_fit, test_data) %>%
+  bind_cols(test_data %>% select(everything()))
+test_pred
+
+```
+### Evaluate performance on testing data
+
+Evaluate the performance of the model on the testing data.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+conf_mat(test_pred, truth = y, estimate = .pred_class)
+
+
+test_metric<- custom_metrics(test_pred,
+truth = y,
+estimate = .pred_class)
+
+test_metric
+
+```
+## Apply Cross Validation method for model evaluation
+
+We will use the cross-validation resampling method to evaluate the performance of our decision tree model.
+
+### Split data into folds
+
+The train data is split-ted into 5 folds
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+
+set.seed(13)
+folds <- vfold_cv(train_data,v = 10,strata = y)
+
+
+```
+
+
+### Fit resamples
+
+Fit the folds into the workflow.
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+
+cv_fit<- wkfl%>%
+  fit_resamples(folds)
+
+```
+
+### Collect CV metrics
+
+Show the metrics resulted from Cross-Validation process
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
+collect_metrics(cv_fit)
+```
+### Conclusion
+
+The accuracy associated with the model using the training data is 90.1%, that associated with the model using the testing data is 90.3% and that associated with the model using cross validation resampling method is 90.1%. The accuracy in the testing data is quite good and it is slightly better than the accuracy in the training data which indicates that our model is not exposed to overfitting on the training data, also the accuracy resulted from the testing data is comparable with the accuracy we got from cross-validation resampling method that indicates that our model is working properly.
+
+
+### Hyperparameter tuning 
+
+In this part we will tune the hyperparameters of the decision tree and check the tuning effect on the model accuracy.
+
+```{r}
+# creating the decision tree with and tune it's hyperparameters
+
+tune_model <- decision_tree(cost_complexity = tune(),
+tree_depth = tune(),
+min_n = tune()) %>%
+set_engine('rpart') %>%
+set_mode('classification')
+
+tune_wkfl <- wkfl %>%
+update_model(tune_model)
+
+set.seed(216)
+grid<-grid_regular(parameters(tune_model),size = 3)
+
+# Hyperparameter tuning with cross validation
+tune_results <- tune_wkfl %>%
+tune_grid(resamples = folds,
+grid = grid,
+metrics = metric_set(accuracy))
+
+autoplot(tune_results)
+
+tune_results %>%
+collect_metrics()
+
+# best_model <- tuning %>%
+# select_best(metric = 'accuracy')
+# best_model
+
+final_params <- select_best(tune_results)
+final_params
+
+
+best_spec <- finalize_model(tune_model,
+final_params)
+best_spec
+
+
+
+```
+
+
+
+## passing the testing data to the tuned model 
+```{r}
+tuned_decision_tree_mdl <- decision_tree(cost_complexity = 1e-10,tree_depth = 8,min_n = 2) %>%
+  # Specify the engine
+  set_engine('rpart') %>%
+  # Specify the mode
+  set_mode('classification')
+
+tuned_wkflw <- workflow() %>%
+  # Add model
+  add_model(tuned_decision_tree_mdl) %>%
+  # Add recipe
+  add_recipe(the_recipe)
+
+fit_tuned_mdl <- tuned_wkflw %>%
+  fit(data=test_data)
+
+
+tuned_prediction<-predict(fit_tuned_mdl, test_data,type = 'class') %>%
+  bind_cols(test_data %>% select(everything()))
+
+tuned_prediction
+
+conf_mat(tuned_prediction, truth = y, estimate = .pred_class)
+
+
+test_metric_tuned<- custom_metrics(tuned_prediction,
+truth = y,
+estimate = .pred_class)
+
+test_metric_tuned
+
+```
+
+
+
+### Conclusion
+
+The accuracy associated with the model using the training data is 90.1%, that associated with the model using the testing data is 90.3% and that associated with the model using cross validation resampling method is 90.1%. The accuracy in the testing data is quite good and it is slightly better than the accuracy in the training data which indicates that our model is not exposed to overfitting on the training data, also the accuracy resulted from the testing data is comparable with the accuracy we got from cross-validation resampling method that indicates that our model is working properly.
