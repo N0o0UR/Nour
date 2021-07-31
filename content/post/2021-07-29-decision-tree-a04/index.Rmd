@@ -18,9 +18,6 @@ projects: []
 ---
 
 
-
-
-
 ```{r,warning=FALSE , message=FALSE,echo=FALSE,results=FALSE}
 library("DataExplorer")
 library("janitor")
@@ -33,7 +30,6 @@ library("caret")
 library("tidymodels")
 library("readxl")
 library("boot")
-
 ```
 
 
@@ -347,5 +343,6 @@ test_metric_tuned
 ```
 
 ### Conclusion
+
 
 The accuracy associated with the untuned model on the training data is 90.2%, and that associated with the untuned model on the testing data is 90% and that associated with the same model using cross validation resampling method is 90.1%. The accuracy in the testing data is quite good and it is slightly less than the accuracy in the training data which indicates that our model is not exposed to overfitting on the training data, also the accuracy resulted from the testing data is comparable with the accuracy we got from cross-validation resampling method that indicates that our model is working properly. After tuning the model with the best combination of the 3 hyperparameters that are min_n=40 , tree_depth=8 and the cost_complexity=0.0000000001 we got an accuracy of 92.5% that is considered the highest accuracy. This shows us the importance and the effect of tuning the decision tree model hyperparameters on the accuracy of the model.
