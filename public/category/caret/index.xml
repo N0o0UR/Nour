@@ -47,6 +47,318 @@ decision_tree_mdl&lt;/code&gt;&lt;/pre&gt;
 ## 
 ## Computational engine: rpart&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;div id=&#34;creating-the-recipe&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Creating the recipe&lt;/h3&gt;
+&lt;p&gt;Creating the suitable recipe to apply feature engineering to our data&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## Data Recipe
+## 
+## Inputs:
+## 
+##       role #variables
+##    outcome          1
+##  predictor         16
+## 
+## Operations:
+## 
+## Correlation filter on all_numeric()
+## Centering and scaling for all_numeric()
+## Dummy variables from all_nominal(), -all_outcomes()
+## Zero variance filter on all_predictors()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;create-workflow&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Create workflow&lt;/h3&gt;
+&lt;p&gt;Create a workflow that combine the model and the recipe.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## == Workflow ====================================================================
+## Preprocessor: Recipe
+## Model: decision_tree()
+## 
+## -- Preprocessor ----------------------------------------------------------------
+## 4 Recipe Steps
+## 
+## * step_corr()
+## * step_normalize()
+## * step_dummy()
+## * step_zv()
+## 
+## -- Model -----------------------------------------------------------------------
+## Decision Tree Model Specification (classification)
+## 
+## Computational engine: rpart&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;fit-the-model&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Fit the model&lt;/h3&gt;
+&lt;p&gt;Train and fitting the model using the training split of the data.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## == Workflow [trained] ==========================================================
+## Preprocessor: Recipe
+## Model: decision_tree()
+## 
+## -- Preprocessor ----------------------------------------------------------------
+## 4 Recipe Steps
+## 
+## * step_corr()
+## * step_normalize()
+## * step_dummy()
+## * step_zv()
+## 
+## -- Model -----------------------------------------------------------------------
+## n= 33907 
+## 
+## node), split, n, loss, yval, (yprob)
+##       * denotes terminal node
+## 
+##  1) root 33907 3966 no (0.88303300 0.11696700)  
+##    2) duration&amp;lt; 1.013834 30124 2309 no (0.92335015 0.07664985)  
+##      4) poutcome_success&amp;lt; 0.5 29150 1715 no (0.94116638 0.05883362) *
+##      5) poutcome_success&amp;gt;=0.5 974  380 yes (0.39014374 0.60985626)  
+##       10) duration&amp;lt; -0.4872674 190   38 no (0.80000000 0.20000000) *
+##       11) duration&amp;gt;=-0.4872674 784  228 yes (0.29081633 0.70918367) *
+##    3) duration&amp;gt;=1.013834 3783 1657 no (0.56198784 0.43801216)  
+##      6) duration&amp;lt; 2.215492 2461  881 no (0.64201544 0.35798456)  
+##       12) poutcome_success&amp;lt; 0.5 2344  785 no (0.66510239 0.33489761) *
+##       13) poutcome_success&amp;gt;=0.5 117   21 yes (0.17948718 0.82051282) *
+##      7) duration&amp;gt;=2.215492 1322  546 yes (0.41301059 0.58698941) *&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;make-predictions-for-training-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Make predictions for training data&lt;/h3&gt;
+&lt;p&gt;Using the trained model for prediction on the training data.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 33,907 x 18
+##    .pred_class   age job         marital education default balance housing loan 
+##    &amp;lt;fct&amp;gt;       &amp;lt;int&amp;gt; &amp;lt;fct&amp;gt;       &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;     &amp;lt;fct&amp;gt;     &amp;lt;int&amp;gt; &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;
+##  1 no             58 management  married tertiary  no         2143 yes     no   
+##  2 no             44 technician  single  secondary no           29 yes     no   
+##  3 no             47 blue-collar married unknown   no         1506 yes     no   
+##  4 no             35 management  married tertiary  no          231 yes     no   
+##  5 no             28 management  single  tertiary  no          447 yes     yes  
+##  6 no             42 entreprene~ divorc~ tertiary  yes           2 yes     no   
+##  7 no             58 retired     married primary   no          121 yes     no   
+##  8 no             43 technician  single  secondary no          593 yes     no   
+##  9 no             29 admin.      single  secondary no          390 yes     no   
+## 10 no             53 technician  married secondary no            6 yes     no   
+## # ... with 33,897 more rows, and 9 more variables: contact &amp;lt;fct&amp;gt;, day &amp;lt;chr&amp;gt;,
+## #   month &amp;lt;fct&amp;gt;, duration &amp;lt;int&amp;gt;, campaign &amp;lt;int&amp;gt;, pdays &amp;lt;int&amp;gt;, previous &amp;lt;int&amp;gt;,
+## #   poutcome &amp;lt;fct&amp;gt;, y &amp;lt;fct&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;evaluate-performance-on-tarining-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Evaluate performance on tarining data&lt;/h3&gt;
+&lt;p&gt;Evaluate the performance of the model on the training data.The accuracy of the model on the training data is 90.2%.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;##           Truth
+## Prediction    no   yes
+##        no  29146  2538
+##        yes   795  1428&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 3
+##   .metric  .estimator .estimate
+##   &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
+## 1 accuracy binary         0.902
+## 2 sens     binary         0.973
+## 3 spec     binary         0.360&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;make-predictions-for-testing-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Make predictions for testing data&lt;/h3&gt;
+&lt;p&gt;Using the trained model for prediction on the testing data.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 11,304 x 18
+##    .pred_class   age job         marital education default balance housing loan 
+##    &amp;lt;fct&amp;gt;       &amp;lt;int&amp;gt; &amp;lt;fct&amp;gt;       &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;     &amp;lt;fct&amp;gt;     &amp;lt;int&amp;gt; &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;
+##  1 no             33 entreprene~ married secondary no            2 yes     yes  
+##  2 no             33 unknown     single  unknown   no            1 no      no   
+##  3 no             41 admin.      divorc~ secondary no          270 yes     no   
+##  4 no             57 services    married secondary no          162 yes     no   
+##  5 no             45 admin.      single  unknown   no           13 yes     no   
+##  6 no             56 management  married tertiary  no          779 yes     no   
+##  7 no             40 retired     married primary   no            0 yes     yes  
+##  8 no             46 management  single  secondary no         -246 yes     no   
+##  9 no             36 technician  single  secondary no          265 yes     yes  
+## 10 no             57 technician  married secondary no          839 no      yes  
+## # ... with 11,294 more rows, and 9 more variables: contact &amp;lt;fct&amp;gt;, day &amp;lt;chr&amp;gt;,
+## #   month &amp;lt;fct&amp;gt;, duration &amp;lt;int&amp;gt;, campaign &amp;lt;int&amp;gt;, pdays &amp;lt;int&amp;gt;, previous &amp;lt;int&amp;gt;,
+## #   poutcome &amp;lt;fct&amp;gt;, y &amp;lt;fct&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;evaluate-performance-on-testing-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Evaluate performance on testing data&lt;/h3&gt;
+&lt;p&gt;Evaluate the performance of the model on the testing data.The accuracy of the model on the testing data is 90%.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;##           Truth
+## Prediction   no  yes
+##        no  9698  847
+##        yes  283  476&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 3
+##   .metric  .estimator .estimate
+##   &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
+## 1 accuracy binary         0.900
+## 2 sens     binary         0.972
+## 3 spec     binary         0.360&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;apply-cross-validation-method-for-model-evaluation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Apply Cross Validation method for model evaluation&lt;/h2&gt;
+&lt;p&gt;We will use the cross-validation resampling method to evaluate the performance of our decision tree model.&lt;/p&gt;
+&lt;div id=&#34;split-data-into-folds&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Split data into folds&lt;/h3&gt;
+&lt;p&gt;The train data is split-ted into 10 folds&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## #  10-fold cross-validation using stratification 
+## # A tibble: 10 x 2
+##    splits               id    
+##    &amp;lt;list&amp;gt;               &amp;lt;chr&amp;gt; 
+##  1 &amp;lt;split [30515/3392]&amp;gt; Fold01
+##  2 &amp;lt;split [30516/3391]&amp;gt; Fold02
+##  3 &amp;lt;split [30516/3391]&amp;gt; Fold03
+##  4 &amp;lt;split [30516/3391]&amp;gt; Fold04
+##  5 &amp;lt;split [30516/3391]&amp;gt; Fold05
+##  6 &amp;lt;split [30516/3391]&amp;gt; Fold06
+##  7 &amp;lt;split [30517/3390]&amp;gt; Fold07
+##  8 &amp;lt;split [30517/3390]&amp;gt; Fold08
+##  9 &amp;lt;split [30517/3390]&amp;gt; Fold09
+## 10 &amp;lt;split [30517/3390]&amp;gt; Fold10&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;fit-resamples&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Fit resamples&lt;/h3&gt;
+&lt;p&gt;Fit the folds into the workflow.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;collect-cv-metrics&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Collect CV metrics&lt;/h3&gt;
+&lt;p&gt;Show the metrics resulted from Cross-Validation process. The accurcay achieved after using the 10 folds cross validation for resampling is 90.1% .&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 x 6
+##   .metric  .estimator  mean     n std_err .config             
+##   &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;               
+## 1 accuracy binary     0.901    10 0.00143 Preprocessor1_Model1
+## 2 roc_auc  binary     0.747    10 0.00361 Preprocessor1_Model1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;hyperparameter-tuning&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Hyperparameter tuning&lt;/h2&gt;
+&lt;p&gt;In this part we will tune the hyperparameters of the decision tree and check the tuning effect on the model accuracy.&lt;/p&gt;
+&lt;div id=&#34;set-the-hyperparameters-for-tuning-in-the-decision-tree&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Set the hyperparameters for tuning in the decision tree&lt;/h3&gt;
+&lt;p&gt;We will modify the model so that the hyperparameters will be undergo tuuining and accordingly the workflow would be updated with the new model.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tune_model &amp;lt;- decision_tree(cost_complexity = tune(),
+tree_depth = tune(),
+min_n = tune()) %&amp;gt;%
+set_engine(&amp;#39;rpart&amp;#39;) %&amp;gt;%
+set_mode(&amp;#39;classification&amp;#39;)
+
+tune_wkfl &amp;lt;- wkfl %&amp;gt;%
+update_model(tune_model)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;create-a-tuning-grid&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Create a tuning grid&lt;/h3&gt;
+&lt;p&gt;Create the tuning grid with 3 levels for each parameter.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(216)
+grid&amp;lt;-grid_regular(parameters(tune_model),levels = 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;hyperparameter-tuning-with-cross-validation&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Hyperparameter tuning with cross validation&lt;/h3&gt;
+&lt;p&gt;From the shown graph we can see the accuracy Vs. the different combination of the 3 hyperparameters levels.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tune_results &amp;lt;- tune_wkfl %&amp;gt;%
+tune_grid(resamples = folds,
+grid = grid,
+metrics = metric_set(accuracy))
+
+autoplot(tune_results)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/nouran/index_files/figure-html/unnamed-chunk-17-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tune_results %&amp;gt;%
+collect_metrics()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 27 x 9
+##    cost_complexity tree_depth min_n .metric  .estimator  mean     n   std_err
+##              &amp;lt;dbl&amp;gt;      &amp;lt;int&amp;gt; &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt;     &amp;lt;dbl&amp;gt;
+##  1    0.0000000001          1     2 accuracy binary     0.883    10 0.0000417
+##  2    0.00000316            1     2 accuracy binary     0.883    10 0.0000417
+##  3    0.1                   1     2 accuracy binary     0.883    10 0.0000417
+##  4    0.0000000001          8     2 accuracy binary     0.899    10 0.000797 
+##  5    0.00000316            8     2 accuracy binary     0.899    10 0.000797 
+##  6    0.1                   8     2 accuracy binary     0.883    10 0.0000417
+##  7    0.0000000001         15     2 accuracy binary     0.891    10 0.00151  
+##  8    0.00000316           15     2 accuracy binary     0.891    10 0.00151  
+##  9    0.1                  15     2 accuracy binary     0.883    10 0.0000417
+## 10    0.0000000001          1    21 accuracy binary     0.883    10 0.0000417
+## # ... with 17 more rows, and 1 more variable: .config &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;select-the-best-parameters&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Select the best parameters&lt;/h3&gt;
+&lt;p&gt;From the above graph we can see that the best hyperparameters combination is minimum node size of 40, tree depth of 8 and the cost complexity of 0.0000000001, where this combination result in an accuracy of 92.5%&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;final_params &amp;lt;- select_best(tune_results)
+final_params&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 4
+##   cost_complexity tree_depth min_n .config              
+##             &amp;lt;dbl&amp;gt;      &amp;lt;int&amp;gt; &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt;                
+## 1    0.0000000001          8    40 Preprocessor1_Model22&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;finalize-the-model&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Finalize the model&lt;/h3&gt;
+&lt;p&gt;Finalize the model with the best value for each hyperparameter.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;best_spec &amp;lt;- finalize_model(tune_model,
+final_params)
+best_spec&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Decision Tree Model Specification (classification)
+## 
+## Main Arguments:
+##   cost_complexity = 1e-10
+##   tree_depth = 8
+##   min_n = 40
+## 
+## Computational engine: rpart&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;passing-the-testing-data-to-the-tuned-model&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Passing the testing data to the tuned model&lt;/h2&gt;
+&lt;p&gt;Make prediction with the tuned model on the testing data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tuned_decision_tree_mdl &amp;lt;- decision_tree(cost_complexity = 1e-10,tree_depth = 8,min_n = 2) %&amp;gt;%
+  # Specify the engine
+  set_engine(&amp;#39;rpart&amp;#39;) %&amp;gt;%
+  # Specify the mode
+  set_mode(&amp;#39;classification&amp;#39;)
+
+tuned_wkflw &amp;lt;- workflow() %&amp;gt;%
+  # Add model
+  add_model(tuned_decision_tree_mdl) %&amp;gt;%
+  # Add recipe
+  add_recipe(the_recipe)
+
+fit_tuned_mdl &amp;lt;- tuned_wkflw %&amp;gt;%
+  fit(data=test_data)
+
+
+tuned_prediction&amp;lt;-predict(fit_tuned_mdl, test_data,type = &amp;#39;class&amp;#39;) %&amp;gt;%
+  bind_cols(test_data %&amp;gt;% select(everything()))
+
+tuned_prediction&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 11,304 x 18
+##    .pred_class   age job         marital education default balance housing loan 
+##    &amp;lt;fct&amp;gt;       &amp;lt;int&amp;gt; &amp;lt;fct&amp;gt;       &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;     &amp;lt;fct&amp;gt;     &amp;lt;int&amp;gt; &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;
+##  1 no             33 entreprene~ married secondary no            2 yes     yes  
+##  2 no             33 unknown     single  unknown   no            1 no      no   
+##  3 no             41 admin.      divorc~ secondary no          270 yes     no   
+##  4 no             57 services    married secondary no          162 yes     no   
+##  5 no             45 admin.      single  unknown   no           13 yes     no   
+##  6 no             56 management  married tertiary  no          779 yes     no   
+##  7 no             40 retired     married primary   no            0 yes     yes  
+##  8 no             46 management  single  secondary no         -246 yes     no   
+##  9 no             36 technician  single  secondary no          265 yes     yes  
+## 10 no             57 technician  married secondary no          839 no      yes  
+## # ... with 11,294 more rows, and 9 more variables: contact &amp;lt;fct&amp;gt;, day &amp;lt;chr&amp;gt;,
+## #   month &amp;lt;fct&amp;gt;, duration &amp;lt;int&amp;gt;, campaign &amp;lt;int&amp;gt;, pdays &amp;lt;int&amp;gt;, previous &amp;lt;int&amp;gt;,
+## #   poutcome &amp;lt;fct&amp;gt;, y &amp;lt;fct&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;evaluate-the-performance-of-the-tuned-model&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Evaluate the performance of the tuned model&lt;/h3&gt;
+&lt;p&gt;Evaluate the performance of the tuned model on the testing data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conf_mat(tuned_prediction, truth = y, estimate = .pred_class)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##           Truth
+## Prediction   no  yes
+##        no  9821  688
+##        yes  160  635&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test_metric_tuned&amp;lt;- custom_metrics(tuned_prediction,
+truth = y,
+estimate = .pred_class)
+
+test_metric_tuned&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 3
+##   .metric  .estimator .estimate
+##   &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
+## 1 accuracy binary         0.925
+## 2 sens     binary         0.984
+## 3 spec     binary         0.480&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;The accuracy associated with the untuned model on the training data is 90.2%, and that associated with the untuned model on the testing data is 90% and that associated with the same model using cross validation resampling method is 90.1%. The accuracy in the testing data is quite good and it is slightly less than the accuracy in the training data which indicates that our model is not exposed to overfitting on the training data, also the accuracy resulted from the testing data is comparable with the accuracy we got from cross-validation resampling method that indicates that our model is working properly. After tuning the model with the best combination of the 3 hyperparameters that are min_n=40 , tree_depth=8 and the cost_complexity=0.0000000001 we got an accuracy of 92.5% that is considered the highest accuracy. This shows us the importance and the effect of tuning the decision tree model hyperparameters on the accuracy of the model.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 </description>
     </item>
     

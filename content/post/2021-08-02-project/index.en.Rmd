@@ -941,7 +941,7 @@ CrossTable(prediction3,
            prop.c = FALSE,
            prop.r = FALSE,
            prop.t = FALSE,
-           prop.chisq = FALSE, 
+           prop.chisq = FALSE,
            dnn=c("Predicted Y","True Y"))
 ```
 ### Accuracy Check of SVM
