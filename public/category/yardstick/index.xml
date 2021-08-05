@@ -5,12 +5,24 @@
     <link>/category/yardstick/</link>
       <atom:link href="/category/yardstick/index.xml" rel="self" type="application/rss+xml" />
     <description>yardstick</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 02 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 05 Aug 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
       <title>yardstick</title>
       <link>/category/yardstick/</link>
     </image>
+    
+    <item>
+      <title>Predicting Delinquent Customer</title>
+      <link>/post/predicting-delinquent-customer/</link>
+      <pubDate>Thu, 05 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>/post/predicting-delinquent-customer/</guid>
+      <description>
+&lt;script src=&#34;/post/predicting-delinquent-customer/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+</description>
+    </item>
     
     <item>
       <title>project</title>

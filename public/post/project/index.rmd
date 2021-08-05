@@ -1,14 +1,13 @@
 ---
-title: Modelling
-author: Raghul, Nouran and Mona
-date: '2021-07-22'
-slug: modelling
+title: Machine Learning Models Comparison
+author: Nouran, Raghul and Mona
+date: '2021-08-05'
+slug: machine-learning-models-comparison
 categories:
-  - ggplot2
   - models
-  - Tidyverse
 tags: []
 ---
+
 
 
 ## The Goal
@@ -186,7 +185,7 @@ str(credit_bureau_data)
 
 describe(credit_bureau_data)
 stat.desc(credit_bureau_data)
-hist.data.frame(credit_bureau_data)
+#hist.data.frame(credit_bureau_data)
 
 summary(credit_bureau_data$outstanding_balance)
 summary(credit_bureau_data$total_no_of_trades)
@@ -197,7 +196,7 @@ summary(credit_bureau_data$no_of_trades_opened_in_last_12_months)
 summary(credit_bureau_data$no_of_pl_trades_opened_in_last_12_months)
 summary(credit_bureau_data$total_no_of_trades)
 
-### Performance tag is equally influenced by no_of_times_90_dpd_or_worse_in_last_6_months which ranges from 7 to 125 months
+### Performance tag is equally influenced by no_of_times_90_dpd_or_worse_in_last_6_months which ranges from 0 to 3 times
 
 ggplot(credit_bureau_data, aes(x=no_of_times_90_dpd_or_worse_in_last_6_months, y= as.numeric(performance_tag),
 color = (performance_tag))) + geom_point(show.legend = FALSE) +
@@ -205,11 +204,15 @@ labs(x = 'no_of_times_90_dpd_or_worse_in_last_6_months', y='Performance Tag') +
 ggtitle("Scatter Plot no_of_times_90_dpd_or_worse_in_last_6_months vs Performance Tag")+
 theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
 
+### Performance tag is equally influenced by no_of_times_60_dpd_or_worse_in_last_6_months which ranges from 0 to 5 times
+
 ggplot(credit_bureau_data, aes(x=no_of_times_60_dpd_or_worse_in_last_6_months, y= as.numeric(performance_tag),
 color = (performance_tag))) + geom_point(show.legend = FALSE) +
 labs(x = 'no_of_times_60_dpd_or_worse_in_last_6_months', y='Performance Tag') +
 ggtitle("Scatter Plot no_of_times_60_dpd_or_worse_in_last_6_months vs Performance Tag")+
 theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
+
+### Performance tag is equally influenced by no_of_times_30_dpd_or_worse_in_last_6_months which ranges from 0 to 7 times
 
 ggplot(credit_bureau_data, aes(x=no_of_times_30_dpd_or_worse_in_last_6_months, y= as.numeric(performance_tag),
 color = (performance_tag))) + geom_point(show.legend = FALSE) +
@@ -217,11 +220,15 @@ labs(x = 'no_of_times_30_dpd_or_worse_in_last_6_months', y='Performance Tag') +
 ggtitle("Scatter Plot no_of_times_30_dpd_or_worse_in_last_6_months vs Performance Tag")+
 theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
 
+### Performance tag is equally influenced by no_of_times_90_dpd_or_worse_in_last_12_months which ranges from 0 to 5 times
+
 ggplot(credit_bureau_data, aes(x=no_of_times_90_dpd_or_worse_in_last_12_months, y= as.numeric(performance_tag),
 color = (performance_tag))) + geom_point(show.legend = FALSE) +
 labs(x = 'no_of_times_90_dpd_or_worse_in_last_12_months', y='Performance Tag') +
 ggtitle("Scatter Plot no_of_times_90_dpd_or_worse_in_last_12_months vs Performance Tag")+
 theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
+
+### Performance tag of zero is heavily influenced by no_of_times_60_dpd_or_worse_in_last_12_months which ranges from 0 to 7 times
 
 ggplot(credit_bureau_data, aes(x=no_of_times_60_dpd_or_worse_in_last_12_months, y= as.numeric(performance_tag),
 color = (performance_tag))) + geom_point(show.legend = FALSE) +
@@ -229,11 +236,15 @@ labs(x = 'no_of_times_60_dpd_or_worse_in_last_12_months', y='Performance Tag') +
 ggtitle("Scatter Plot no_of_times_60_dpd_or_worse_in_last_12_months vs Performance Tag")+
 theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
 
+### Performance tag of zero is heavily influenced by no_of_times_30_dpd_or_worse_in_last_12_months which ranges from 0 to 9 times
+
 ggplot(credit_bureau_data, aes(x=no_of_times_30_dpd_or_worse_in_last_12_months, y= as.numeric(performance_tag),
 color = (performance_tag))) + geom_point(show.legend = FALSE) +
 labs(x = 'no_of_times_30_dpd_or_worse_in_last_12_months', y='Performance Tag') +
 ggtitle("Scatter Plot no_of_times_30_dpd_or_worse_in_last_12_months vs Performance Tag")+
 theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
+
+### Performance tag of zero is heavily influenced by avgas_cc_utilization_in_last_12_months which ranges from 0 to 110 times
 
 ggplot(credit_bureau_data, aes(x=avgas_cc_utilization_in_last_12_months, y= as.numeric(performance_tag),
 color = (performance_tag))) + geom_point(show.legend = FALSE) +
@@ -241,11 +252,15 @@ labs(x = 'avgas_cc_utilization_in_last_12_months', y='Performance Tag') +
 ggtitle("Scatter Plot avgas_cc_utilization_in_last_12_months vs Performance Tag")+
 theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
 
+### Performance tag of zero is heavily influenced by no_of_trades_opened_in_last_6_months which ranges from 0 to 12
+
 ggplot(credit_bureau_data, aes(x=no_of_trades_opened_in_last_6_months, y= as.numeric(performance_tag),
 color = (performance_tag))) + geom_point(show.legend = FALSE) +
 labs(x = 'no_of_trades_opened_in_last_6_months', y='Performance Tag') +
 ggtitle("Scatter Plot no_of_trades_opened_in_last_6_months vs Performance Tag")+
 theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
+
+### Performance tag of zero is heavily influenced by no_of_trades_opened_in_last_12_months which ranges from 0 to 28
 
 ggplot(credit_bureau_data, aes(x=no_of_trades_opened_in_last_12_months, y= as.numeric(performance_tag),
 color = (performance_tag))) + geom_point(show.legend = FALSE) +
@@ -253,11 +268,15 @@ labs(x = 'no_of_trades_opened_in_last_12_months', y='Performance Tag') +
 ggtitle("Scatter Plot no_of_trades_opened_in_last_12_months vs Performance Tag")+
 theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
 
+### Performance tag is equally influenced by no_of_pl_trades_opened_in_last_6_months which ranges from 0 to 6
+
 ggplot(credit_bureau_data, aes(x=no_of_pl_trades_opened_in_last_6_months, y= as.numeric(performance_tag),
 color = (performance_tag))) + geom_point(show.legend = FALSE) +
 labs(x = 'no_of_pl_trades_opened_in_last_6_months', y='Performance Tag') +
 ggtitle("Scatter Plot no_of_pl_trades_opened_in_last_6_months vs Performance Tag")+
 theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
+
+### Performance tag is equally influenced by no_of_pl_trades_opened_in_last_12_months which ranges from 0 to 12
 
 ggplot(credit_bureau_data, aes(x=no_of_pl_trades_opened_in_last_12_months, y= as.numeric(performance_tag),
 color = (performance_tag))) + geom_point(show.legend = FALSE) +
@@ -265,11 +284,15 @@ labs(x = 'no_of_pl_trades_opened_in_last_12_months', y='Performance Tag') +
 ggtitle("Scatter Plot no_of_pl_trades_opened_in_last_12_months vs Performance Tag")+
 theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
 
+### Performance tag is equally influenced by no_of_inquiries_in_last_6_months_excluding_home_auto_loans which ranges from 0 to 10
+
 ggplot(credit_bureau_data, aes(x=no_of_inquiries_in_last_6_months_excluding_home_auto_loans, y= as.numeric(performance_tag),
 color = (performance_tag))) + geom_point(show.legend = FALSE) +
 labs(x = 'no_of_inquiries_in_last_6_months_excluding_home_auto_loans', y='Performance Tag') +
 ggtitle("Scatter Plot no_of_inquiries_in_last_6_months_excluding_home_auto_loans vs Performance Tag")+
 theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
+
+### Performance tag of zero is heavily influenced by no_of_inquiries_in_last_12_months_excluding_home_auto_loans which ranges from 0 to 20
 
 ggplot(credit_bureau_data, aes(x=no_of_inquiries_in_last_12_months_excluding_home_auto_loans, y= as.numeric(performance_tag),
 color = (performance_tag))) + geom_point(show.legend = FALSE) +
@@ -277,11 +300,15 @@ labs(x = 'no_of_inquiries_in_last_12_months_excluding_home_auto_loans', y='Perfo
 ggtitle("Scatter Plot no_of_inquiries_in_last_12_months_excluding_home_auto_loans vs Performance Tag")+
 theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
 
+### Performance tag is equally influenced by presence_of_open_home_loan
+
 ggplot(credit_bureau_data, aes(x=presence_of_open_home_loan, y= as.numeric(performance_tag),
 color = (performance_tag))) + geom_point(show.legend = FALSE) +
 labs(x = 'presence_of_open_home_loan', y='Performance Tag') +
 ggtitle("Scatter Plot presence_of_open_home_loan vs Performance Tag")+
 theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
+
+### Performance tag of zero is heavily influenced by outstanding_balance ranges from 0 to 5200000
 
 ggplot(credit_bureau_data, aes(x=outstanding_balance, y= as.numeric(performance_tag),
 color = (performance_tag))) + geom_point(show.legend = FALSE) +
@@ -289,11 +316,15 @@ labs(x = 'outstanding_balance', y='Performance Tag') +
 ggtitle("Scatter Plot outstanding_balance vs Performance Tag")+
 theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
 
+### Performance tag of zero is heavily influenced by total_no_of_trades ranges from 0 to 45
+
 ggplot(credit_bureau_data, aes(x=total_no_of_trades, y= as.numeric(performance_tag),
 color = (performance_tag))) + geom_point(show.legend = FALSE) +
 labs(x = 'total_no_of_trades', y='Performance Tag') +
 ggtitle("Scatter Plot total_no_of_trades vs Performance Tag")+
 theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
+
+### Performance tag is equally influenced by presence_of_open_auto_loan
 
 ggplot(credit_bureau_data, aes(x=presence_of_open_auto_loan, y= as.numeric(performance_tag),
 color = (performance_tag))) + geom_point(show.legend = FALSE) +
@@ -338,10 +369,10 @@ both_data<-bind_cols(credit_bureau_data,demog_predictors)
 
 ```{r warning=FALSE,echo=FALSE,message=FALSE}
                                            ## EDA using the DataExplorer Package
-create_report(demogs_data)
-file.rename("report.html", "demogs_report.html")
-create_report(both_data)
-file.rename("report.html", "both_data_report.html")
+#create_report(demogs_data)
+#file.rename("report.html", "demogs_report.html")
+#create_report(both_data)
+#file.rename("report.html", "both_data_report.html")
 ```
 
 ## Splitting the data to training and testing splits
@@ -354,6 +385,7 @@ set.seed(130)
 data_split_d <- initial_split(demogs_data,prop = 0.75,strata = performance_tag)
 training_data_d<- data_split_d%>%
   training()
+
 testing_data_d <- data_split_d%>%
   testing()
 ###############################################################################################################
@@ -484,8 +516,7 @@ The logistic regressions resulted from each predictor in the two models Vs the d
 
 
 
-```{r warning=FALSE,echo=FALSE,message=FALSE,results=FALSE}
-
+```{r, warning=FALSE,echo=FALSE,message=FALSE,results=FALSE}
                      ### checking the correct binning with WOE for all the predictors Part 2 (The slop should be 1)
 ### First for the demographic data set
 glm(performance_tag~no_of_months_in_current_residence_woe, data=woe_demogs_training_data,family=binomial)
@@ -715,13 +746,13 @@ collect_metrics(fits_cv_both)
 
 The support vector Machine model is built for performance tag vs other predictors from the demographic dataset with the balanced training data with the C-classification type and radial kernel.
 
-```{r,warning=FALSE , message=FALSE,echo=FALSE,results=FALSE}
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
 classifier1 = svm(formula = performance_tag ~ ., data = train_data_balanced_over,type = 'C-classification', kernal="radial")
 classifier1
 ```
 The hyperplane of the previous classifier is used here to predict the performance tag of demographic testing data. 
 
-```{r,warning=FALSE , message=FALSE,echo=FALSE,results=FALSE}
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
 prediction1 <- predict(classifier1, woe_demogs_testing_data)
 prediction2 <- predict(classifier1, train_data_balanced_over)
 ```
@@ -731,21 +762,21 @@ prediction2 <- predict(classifier1, train_data_balanced_over)
 
 The support vector Machine model is built for performance tag vs other predictors from the demographic dataset with the balanced training data with the C-classification type and radial kernel.
 
-```{r,warning=FALSE , message=FALSE,echo=FALSE,results=FALSE}
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
 classifier3 = svm(formula = performance_tag ~ ., data = train_data_balanced_over_both,type = 'C-classification', kernal="radial")
 classifier3
 ```
 
 The hyperplane of the previous classifier is used here to predict the performance tag of combined testing data.
 
-```{r,warning=FALSE , message=FALSE,echo=FALSE,results=FALSE}
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
 prediction3 <- predict(classifier3, woe_both_testing_data)
 prediction4 <- predict(classifier3, train_data_balanced_over_both)
 ```
 
 ### Sensitivity and Specificity check of SVM
 
-```{r,warning=FALSE , message=FALSE,echo=FALSE,results=FALSE}
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
 actual_values_1<-woe_demogs_testing_data$performance_tag
 actual_values_2<-train_data_balanced_over$performance_tag
 actual_values_3<-woe_both_testing_data$performance_tag
@@ -775,7 +806,7 @@ CrossTable(prediction1,
            dnn=c("Predicted Y","True Y"))
 ```
 ### Accuracy Check of SVM
-```{r,warning=FALSE , message=FALSE,echo=FALSE,results=FALSE}
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
 cat("The accuracy of SVM model with test dataset of demographic data is ",
 mean(prediction1 == woe_demogs_testing_data$performance_tag)*100, "%","\n")
 cat("The accuracy of SVM model with train dataset of demographic data is",
@@ -785,69 +816,60 @@ cat("The accuracy of SVM model with train dataset of combined demographic and cr
 ```
 
 
-## Building Random Forest Model for Demographic Data
-    
-```{r ,warning=FALSE , message=FALSE,echo=FALSE,results=FALSE}
+## Random forest for Demographics dataset
+
+
+The random forest model trains trees on bootstrap samples. It uses random predictors across trees. It's hyperparameter includes  ntrees = 500.
+
+
+```{r,warning=FALSE , message=FALSE,echo=FALSE}
+
 
 set.seed(120) # Setting seed
-classifier_RF_1 = randomForest(x = train_data_balanced_over, y = train_data_balanced_over$performance_tag, ntree = 25, importance = TRUE)
-
-print(classifier_RF_1)
-
+classifier_RF = randomForest(x = train_data_balanced_over, y = train_data_balanced_over$performance_tag, ntree = 500)
+classifier_RF
 # Predicting the Test set results
-y_pred_1 = predict(classifier_RF_1, newdata = woe_demogs_testing_data)
-
+y_pred = predict(classifier_RF, newdata = woe_demogs_testing_data)
+  
 # Confusion Matrix
-confusion_mtx_1 = table(actual_values_1, y_pred_1)
-print(confusion_mtx_1)
-
-cat("The specificity of Random Forest model with test dataset of demographic data is ", specificity(confusion_mtx_1)*100,"%","\n")
-
-cat("The sensitivity of Random Forest model with test dataset of demographic data is ", sensitivity(confusion_mtx_1)*100,"%","\n","\n")
-
+confusion_mtx = table(woe_demogs_testing_data$performance_tag, y_pred)
+confusion_mtx
+  
 # Plotting model
-plot(classifier_RF_1)
-
+plot(classifier_RF)
+  
 # Importance plot
-importance(classifier_RF_1)
-
+randomForest::importance(classifier_RF)
+  
 # Variable importance plot
-varImpPlot(classifier_RF_1)
-
-
+varImpPlot(classifier_RF)
 ```
 
-Building Random Forest Model using both demographics and credit bureau datasets
 
-```{r ,warning=FALSE , message=FALSE,echo=FALSE,results=FALSE}
-# 
-# set.seed(120) # Setting seed
-# classifier_RF_2 = randomForest(x = train_data_balanced_over_both, y = train_data_balanced_over_both$performance_tag, ntree = 25,importance = TRUE)
-# print(classifier_RF_2)
-# 
-# # Predicting the Test set results
-# y_pred_2 = predict(classifier_RF_2, newdata = woe_both_testing_data)
-# 
-# # Confusion Matrix
-# confusion_mtx_2 = table(actual_values_3, y_pred_2)
-# print(confusion_mtx_2)
-# 
-# # Specificity and Sensitivity of Random Forest Model
-# 
-# cat("The specificity of Random Forest model with test dataset of demographic data is ", specificity(confusion_mtx_2)*100,"%","\n")
-# 
-# cat("The sensitivity of Random Forest model with test dataset of demographic data is ", sensitivity(confusion_mtx_2)*100,"%","\n","\n")
-# 
-# # Plotting model
-# plot(classifier_RF_2)
-# 
-# # Importance plot
-# importance(classifier_RF_2)
-# 
-# # Variable importance plot
-# varImpPlot(classifier_RF_2)
+<!-- ## Random forest for both Demographics and Credit Bureau dataset -->
+<!-- ```{r,warning=FALSE , message=FALSE,echo=FALSE} -->
 
-```
+
+<!-- set.seed(120) # Setting seed -->
+<!-- classifier_RF1 = randomForest(x = train_data_balanced_over_both, y = train_data_balanced_over_both$performance_tag, ntree = 500) -->
+<!-- classifier_RF1 -->
+<!-- # Predicting the Test set results -->
+<!-- y_pred1 = predict(classifier_RF1, newdata = woe_both_testing_data) -->
+
+<!-- # Confusion Matrix -->
+<!-- confusion_mtx = table(woe_both_testing_data$performance_tag, y_pred1) -->
+<!-- confusion_mtx -->
+
+<!-- # Plotting model -->
+<!-- plot(classifier_RF) -->
+
+<!-- # Importance plot -->
+<!-- importance(classifier_RF) -->
+
+<!-- # Variable importance plot -->
+<!-- varImpPlot(classifier_RF) -->
+<!-- ``` -->
+
 
 
 
